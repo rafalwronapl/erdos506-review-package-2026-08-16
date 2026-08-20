@@ -1,0 +1,62 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{LMM{\etalchar{+}}18}
+
+\bibitem[dZ18]{DeZeeuw2018}
+Frank de~Zeeuw.
+\newblock Spanned lines and {Langer}'s inequality.
+\newblock arXiv:1802.08015, 2018.
+
+\bibitem[Ell67]{Elliott1967}
+P.~D. T.~A. Elliott.
+\newblock On the number of circles determined by $n$ points.
+\newblock {\em Acta Math. Acad. Sci. Hungar.}, 18:181--188, 1967.
+
+\bibitem[Erd61]{Erdos1961}
+Paul Erd\H{o}s.
+\newblock Some unsolved problems.
+\newblock {\em Magyar Tud. Akad. Mat. Kutat\'o Int. K\"ozl.}, 6(1--2):221--254,
+  1961.
+
+\bibitem[Hal35]{Hall1935}
+Philip Hall.
+\newblock On representatives of subsets.
+\newblock {\em J. London Math. Soc.}, s1-10(1):26--30, 1935.
+
+\bibitem[KM58]{KellyMoser1958}
+L.~M. Kelly and W.~O.~J. Moser.
+\newblock On the number of ordinary lines determined by $n$ points.
+\newblock {\em Canad. J. Math.}, 10:210--219, 1958.
+
+\bibitem[Lan03]{Langer2003}
+Adrian Langer.
+\newblock Logarithmic orbifold euler numbers of surfaces with applications.
+\newblock {\em Proc. London Math. Soc.}, 86:358--396, 2003.
+
+\bibitem[Len07]{Lenchner2007}
+Jonathan Lenchner.
+\newblock An improved bound for the affine {Sylvester} problem.
+\newblock In {\em Proceedings of the 19th Canadian Conference on Computational
+  Geometry}, pages 57--60, 2007.
+
+\bibitem[LMM{\etalchar{+}}18]{LinEtAl2018}
+Aaron Lin, Mehdi Makhul, Hossein~Nassajian Mojarrad, Josef Schicho, Konrad
+  Swanepoel, and Frank de~Zeeuw.
+\newblock On sets defining few ordinary circles.
+\newblock {\em Discrete Comput. Geom.}, 59:59--87, 2018.
+
+\bibitem[Mel40]{Melchior1940}
+E.~Melchior.
+\newblock \"uber vielseite der projektiven ebene.
+\newblock {\em Deutsche Mathematik}, 5:461--475, 1940.
+
+\bibitem[PS10]{PurdySmith2010}
+George~B. Purdy and Justin~W. Smith.
+\newblock Lines, circles, planes and spheres.
+\newblock {\em Discrete Comput. Geom.}, 44:860--882, 2010.
+
+\bibitem[Ung82]{Ungar1982}
+Peter Ungar.
+\newblock {$2N$ Noncollinear Points Determine at Least $2N$ Directions}.
+\newblock {\em J. Combin. Theory Ser. A}, 33:343--347, 1982.
+
+\end{thebibliography}

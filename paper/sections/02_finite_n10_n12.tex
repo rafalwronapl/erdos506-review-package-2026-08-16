@@ -1,0 +1,3741 @@
+﻿\section{The finite cases \texorpdfstring{$n=10,11,12$}{n=10,11,12}}
+\label{sec:finite-n10-n12}
+
+Throughout this section $C=C(P)$ and
+\[
+ F(n):=1+\binom{n-1}{2}-\floor{\frac{n-1}{2}}.
+\]
+Thus $F(10)=33$, $F(11)=41$, and $F(12)=51$.  We prove the
+corresponding lower bounds.  The upper bounds are already supplied by
+\cref{con:circle-centre}.  All blocks, degrees, and slack variables have
+the meaning fixed in \cref{sec:foundations-small}.
+
+\subsection{A deletion-free outer router}
+
+The following lemma removes every largest-circle size except five and six
+for eleven and twelve points.  It is useful to record it before the local
+geometry, because it also supplies the block-size guards used later.
+
+\begin{lemma}[Outer router]\label{lem:n11-n12-outer-router}
+Let $n\in\{11,12\}$ and suppose $C\le F(n)-1$.  If $m$ is the maximum
+number of selected points on a proper circle, then $m\in\{5,6\}$.  Moreover,
+for $n=11$ every line has at most five selected points, and for $n=12$
+every line has at most six.
+\end{lemma}
+
+\begin{proof}
+The pencil bounds \cref{lem:rich-line-pencil,lem:rich-circle-pencil} give
+\begin{equation}
+\begin{array}{c|c|c}
+n& R_n(m),\ m=7,8,\ldots,n-1&
+       \min_{s\ge s_0}L_n(s)\\ \hline
+11&55,61,61,41&45\quad(s_0=6),\\
+12&61,73,85,76,51&55\quad(s_0=7).
+\end{array}\label{eq:outer-rich-values}
+\end{equation}
+Here $R_n$ and $L_n$ denote the right sides of the rich-circle and
+rich-line bounds.  Every entry is at least $F(n)$, proving the asserted
+caps and excluding $m\ge7$.
+
+If $m\le3$, the triple partition and the global line row give, respectively,
+\[
+ C\ge \binom{11}{3}-\frac56\left(\binom{11}{2}-3\right)
+ =\frac{365}{3},
+\qquad
+ C\ge \binom{12}{3}-\frac{10}{9}\left(\binom{12}{2}-3\right)=150.
+\]
+The constants $5/6$ and $10/9$ are the maxima of
+$\binom{s}{3}/(\binom{s}{2}+s-3)$ over the allowed line sizes.
+
+It remains to exclude $m=4$.  Fix a maximal four-circle $\Gamma$ and put
+\[
+ T'=\sum_{B\ne\Gamma}\binom{|B|}{3}=\binom n3-4.
+\]
+Let $O$ be the summed Lenchner row $3C_3\ge3n$, let $G$ denote the
+left side of \eqref{eq:global-line-row}, and let $K$ denote the summed
+Kelly--Moser row.  At $n=11$ it says $3B_3\ge55$.  The fixed combination
+\[
+ 1+\frac14T'+\frac18O-\frac5{24}G+\frac18K
+\]
+has coefficient one on every proper circle and coefficients
+$0,-11/24,0$ on lines of sizes $3,4,5$.  Hence
+\[
+ C\ge1+\frac{161}{4}+\frac{33}{8}-\frac{5\cdot52}{24}+\frac{55}{8}
+ =\frac{497}{12}>41.
+\]
+At $n=12$ replace $K$ by the summed pivot row
+$3B_3-5B_5-12B_6\ge36$.  The combination
+\[
+ 1+\frac14T'+\frac2{15}O-\frac15G+\frac7{60}P
+\]
+has line coefficients $0,-2/5,-29/60,0$ for sizes $3,4,5,6$ and
+coefficient one on every proper circle.  Therefore
+\[
+ C\ge1+\frac{216}{4}+\frac{72}{15}-\frac{63}{5}+\frac{7\cdot36}{60}
+ =\frac{257}{5}>51.
+\]
+This excludes $m=4$ and completes the router.
+\end{proof}
+
+\subsection{Ten points}
+
+\begin{lemma}[The maximum-four branch at ten points]
+\label{lem:n10-gamma4}
+If $|P|=10$, no proper circle contains more than four selected points, and
+$C\le32$, then a contradiction follows.
+\end{lemma}
+
+\begin{proof}
+A line of size $s\ge6$ gives, by \cref{lem:rich-line-pencil}, respectively
+$42,54,52,36$ circles for $s=6,7,8,9$.  Thus a five-block is a line and
+all other blocks have size three or four.  Put
+$b=B_4$, $g=L_5$, $t=L_3$, and $h=L_4$.  The triple partition, circle count,
+and global Melchior row are
+\[
+ B_3+4b+10g=120,\qquad
+ C=120-3b-10g-t-h,\qquad
+ 3t+7h+12g\le42.
+\]
+At every pivot, Kelly--Moser and the congruence
+$36=d_3+3d_4+6d_5$ give $d_3\ge6$, hence $B_3\ge20$.  It follows first that
+$g=0$, then $b=25$ and $t+h\ge13$.  The summed added-centre row
+\[
+ 9L_3+16L_4+25L_5\le90+3B_3-30-5B_5
+\]
+excludes $t+h=14$ and forces $h=0$ when $t+h=13$.  Therefore the only
+possible aggregate profile is
+\begin{equation}\label{eq:n10-g4-profile}
+(B_3,B_4;L_3,L_4,L_5;C_3,C_4)
+ =(20,25;13,0,0;7,25),
+\end{equation}
+and every pivot has $(d_3,d_4)=(6,10)$.
+
+Invert at any pivot.  The nine-point image satisfies the hypotheses of
+\cref{lem:real-nine-link}; its ordinary graph is two triangles and three
+isolated points.  Let $\mathcal H$ be the $20$-edge three-uniform
+hypergraph of generalized three-blocks.  The link of every vertex of
+$\mathcal H$ is two triangles.  If $abc\in\mathcal H$, the edge $bc$ lies
+in a unique link triangle, say with fourth vertex $d$; the same link
+argument at $b$ forces all four faces of $abcd$.  Thus the $20$ hyperedges
+partition into five tetrahedron boundaries.  At most one face of each
+boundary is a line, since two faces share two points and $L_4=0$.  Hence
+$L_3\le5$, contrary to \eqref{eq:n10-g4-profile}.
+\end{proof}
+
+We first isolate the local parity input and the three geometric kernels.
+This keeps the final numerical router transparent: it will inspect only
+integer moments, while every equality face is discharged by a named lemma.
+
+\begin{lemma}[Ten-point local parity]\label{lem:n10-local-parity}
+Assume that $|P|=10$, that no proper circle contains more than five selected
+points, and that $C\le32$.  Put $r_p=d_5(p)$ and $q_p=\ell_4(p)$.  Then
+\begin{equation}\label{eq:n10-local-pair}
+ 36=d_3(p)+3d_4(p)+6d_5(p),\qquad d_3(p)\in\{6,9\}.
+\end{equation}
+If $\ell_5(p)=0$, the largest possible value of $\ell_3(p)$ is
+\begin{equation}
+\begin{array}{c|c|rrrr}
+q_p&\text{type}&r_p=0&r_p=1&r_p=2&r_p=3\\ \hline
+0&d_3=6&4&3&2&3\\
+0&d_3=9&4&4&3&4\\
+1&d_3=6&2&1&2&1\\
+1&d_3=9&3&2&3&2\\
+2&d_3=6&0&1&0&-\\
+2&d_3=9&1&2&1&0\\
+3&d_3=6&0&-&-&-\\
+3&d_3=9&1&0&-&0.
+\end{array}\label{eq:n10-full-local-table}
+\end{equation}
+A dash means that the indicated local state is impossible.  If
+\(\ell_5(p)=1\), the maximum is at least one smaller than the entry in the
+\(q_p=0\) row with the same values of \(d_3(p)\) and \(r_p\).
+\end{lemma}
+
+\begin{proof}
+The rich-line pencil bound excludes lines of size at least six.  Inversion
+at $p$ gives a noncollinear nine-point set whose ordinary lines are the
+three-blocks through $p$.  Kelly--Moser and the pair partition give
+$d_3(p)\ge6$ and $d_3(p)\equiv0\pmod3$.  Deletion of $p$ is nondegenerate:
+otherwise the corresponding rich line or rich circle pencil already has at
+least $33$ proper circles.  Hence \cref{thm:small-values} gives
+$c_3(p)\le C-f(9)\le7$, while the ray bound gives $\ell_3(p)\le4$.
+This proves \eqref{eq:n10-local-pair}.
+
+Set $\sigma_p=d_3(p)-3-d_5(p)$.  Added-centre Melchior says that
+\begin{equation}\label{eq:n10-kappa-local}
+ \kappa_p:=9+\sigma_p-3\ell_3(p)-4\ell_4(p)-5\ell_5(p)\ge0.
+\end{equation}
+Moreover $\kappa_p\ne1$.  Indeed, after inversion and restoration of the
+centre, dualize to an arrangement of ten real projective lines.  The sign
+of the product of their defining forms two-colours the cells.  If
+$\kappa_+$ and $\kappa_-$ are the sums of $|F|-3$ over the two colours,
+edge counting gives $\kappa_+\equiv\kappa_-\pmod3$; total slack one is
+therefore impossible.  Substituting $d_3=6,9$ in
+\eqref{eq:n10-kappa-local}, and taking the largest integer
+$\ell_3\le4$ for which $\kappa_p\ge0$ and $\kappa_p\ne1$, gives every entry
+of \eqref{eq:n10-full-local-table} directly.  Setting \(\ell_5=1\) subtracts
+five from the numerator in \eqref{eq:n10-kappa-local}; for
+\(r=0,1,2,3\), in both the low and high rows, the same integer maximization
+lowers \(\ell_3\) by at least one.  This proves the final assertion.
+\end{proof}
+
+\begin{lemma}[Punctured-pentagon transversal]\label{lem:n10-punctured-pentagon}
+Let five five-subsets of a ten-set have pairwise intersections at most two
+and point-degree multiset $(3^5,2^5)$.  At a degree-three point $p$, at most
+two four-subsets through $p$ can meet every five-subset in at most two
+points and meet one another in at most two points.
+\end{lemma}
+
+\begin{proof}
+The degree row gives
+$\sum_p\binom{d_5(p)}2=5\binom32+5\binom22=20
+=2\binom52$.  Since every block pair meets in at most two points, every
+pair therefore meets in exactly two.
+Every five-subset contains two degree-two and three degree-three points:
+if these numbers are $e,t$, then $e+t=5$ and $e+2t=8$.  On the five block
+labels, the supports of the degree-two points form a two-regular graph.
+It has no double edge, since a doubled $ij$ edge would exhaust the
+intersection of blocks $i,j$, whereas their six required occurrences among
+the five degree-three supports could then not be supplied.  Thus it is a
+five-cycle.  Complements of the degree-three supports form the complementary
+five-cycle, because each label pair occurs altogether twice.  This proves
+the incidence pattern uniquely, without a support catalogue.
+
+Relabel one degree-three point as $p=124$ and the other nine points as
+\[
+ A=12,\ B=134,\ C=245,\quad
+ D=135,\ Q=15,\ R=23,\ E=235,\ S=34,\ T=45.
+\]
+The three blocks through $p$ have pairwise vertices $A,B,C$ and private
+pairs
+\begin{equation}\label{eq:n10-puncture-private}
+ \{D,Q\},\qquad\{R,E\},\qquad\{S,T\}.
+\end{equation}
+A four-set through $p$ cannot use $A,B$, or $C$: such a vertex fills the
+available intersection slot on two incident five-blocks and leaves room
+for at most one further point.  It must therefore choose one point from
+each pair in \eqref{eq:n10-puncture-private}.  Membership in the two
+five-blocks $3$ and $5$ is
+\[
+ D:35,\ Q:5,\ R:3,\ E:35,\ S:3,\ T:5.
+\]
+Forbidding three chosen points in either omitted block leaves exactly
+\begin{equation}\label{eq:n10-puncture-four}
+ DRT,\qquad QRS,\qquad QRT,\qquad QES.
+\end{equation}
+Two residual triples are compatible precisely when they share at most one
+point.  The compatible pairs are
+\[
+ DRT\!-!QRS,\qquad DRT\!-!QES,\qquad QES\!-!QRT,
+\]
+the edges of a four-vertex path.  Its clique number is two, proving the
+claim.
+\end{proof}
+
+\begin{lemma}[Four-pentagon obstruction]\label{lem:n10-four-pentagon}
+Assume the hypotheses of \cref{lem:n10-local-parity}, and suppose that
+exactly four maximal generalized five-blocks occur.  Then the configuration
+is impossible.
+\end{lemma}
+
+\begin{proof}
+Write the blocks as $B_1,\ldots,B_4$, put $r(p)=d_5(p)$, and set
+\[
+ S=\sum_p\binom{r(p)}2
+   =\sum_{i<j}|B_i\cap B_j|.
+\]
+We have $\sum_pr(p)=20$, $S\le12$, and convexity gives $S\ge10$.
+Moreover
+\begin{equation}\label{eq:n10-k4-square}
+ \sum_p(r(p)-2)^2=2S-20.
+\end{equation}
+Thus the only degree rows are
+\begin{equation}\label{eq:n10-k4-degree-rows}
+ \begin{array}{c|c}
+ S&\{r(p):p\in P\}\\ \hline
+ 10&(2^{10})\\
+ 11&(1,2^8,3)\\
+ 12&(1^2,2^6,3^2).
+ \end{array}
+\end{equation}
+For each five-block and four-block $D$ introduce centred vectors
+\[
+ w_i=\mathbf1_{B_i}-\frac12\mathbf1,
+ \qquad v_D=\mathbf1_D-\frac25\mathbf1.
+\]
+Maximality gives the coefficientwise inequalities
+\begin{equation}\label{eq:n10-k4-centred}
+ \langle v_D,w_i\rangle=|D\cap B_i|-2\le0.
+\end{equation}
+
+If $S=10$, put $e_{ij}=2-|B_i\cap B_j|$.  The five actual
+pair-incidences of $B_i$, against the maximum six across its three block
+partners, give $\sum_{j\ne i}e_{ij}=1$, so the two
+deficient pairs form a perfect matching, say $12,34$.  Since every point
+has degree two, $\sum_iw_i=0$; equality after summing
+\eqref{eq:n10-k4-centred} forces $|D\cap B_i|=2$ for all $i$.  A four-block
+through the unique $12$ point must contain the unique $34$ point: the three
+remaining membership edges need degree sequence $(1,1,2,2)$, which is
+impossible without the edge $34$.  Its last two points form $13|24$ or
+$14|23$.  Different four-blocks cannot reuse either of them, whence
+$d_4(12)\le4$; but \eqref{eq:n10-local-pair} requires $d_4(12)=5$ or $6$.
+
+If $S=11$, there are a degree-three point $T$, a degree-one point $U$, and
+one deficient block pair.  Comparing the incidence and intersection row at
+each label shows that, after relabelling, the ten supports are
+\begin{equation}\label{eq:n10-k4-S11-supports}
+ T=123,\quad U=1,\quad 12,13,23,14,24,24,34,34.
+\end{equation}
+Here $\sum_iw_i=\mathbf1_T-\mathbf1_U$.  Summing
+\eqref{eq:n10-k4-centred} shows that every four-block through $T$ also
+contains $U$.  Its last two points must be a matching between the two
+$24$ points and the two $34$ points, so $d_4(T)\le2$, whereas
+\eqref{eq:n10-local-pair} requires $3$ or $4$.
+
+It remains that $S=12$.  Comparing the label rows now forces, up to
+relabelling, the support dictionary
+\begin{equation}\label{eq:n10-k4-S12-supports}
+ \begin{array}{c|c}
+ T,T'&123,124\\
+ U_1,U_2&1,2\\
+ a,b,c,d&13,14,23,24\\
+ e,f&34,34.
+ \end{array}
+\end{equation}
+Indeed, if $t_i,s_i$ count triple and singleton supports at label $i$, the
+five-incidence row gives $s_i=t_i-1$; hence the two triples meet in two
+labels and the singletons carry those labels.  Also
+\begin{equation}\label{eq:n10-k4-centred-sum}
+ \sum_iw_i=\mathbf1_T+\mathbf1_{T'}-
+            \mathbf1_{U_1}-\mathbf1_{U_2}.
+\end{equation}
+A four-block through $T$ cannot contain $T'$, and
+\eqref{eq:n10-k4-centred-sum} forces at least one singleton.  Splitting
+according as it contains both, only $U_1$, or only $U_2$, the four
+intersection caps leave precisely
+\begin{equation}\label{eq:n10-k4-local-six}
+ \begin{array}{lll}
+ TU_1U_2e,&TU_1de,&TU_2be,\\
+ TU_1U_2f,&TU_1df,&TU_2bf.
+ \end{array}
+\end{equation}
+Within each row the first entry conflicts with the other two, and the three
+same-column pairs between rows conflict.  Thus at most three coexist;
+equality has one of the two row-switched orientations.  The same holds at
+$T'$.  Both points must consequently have $(d_3,d_4,d_5)=(9,3,3)$, and
+the orientations must be opposite, since equal orientations would produce
+two four-blocks sharing $U_1,U_2$ and one of $e,f$.  Interchanging $e,f$
+if necessary, the following six blocks are forced:
+\begin{equation}\label{eq:n10-k4-forced-six}
+ \begin{array}{lll}
+ TU_1U_2e,&TU_1df,&TU_2bf,\\
+ T'U_1U_2f,&T'U_1ce,&T'U_2ae.
+ \end{array}
+\end{equation}
+
+Every remaining four-block avoids $T,T'$.  Its intersections with the four
+five-blocks are bounded by
+\begin{equation}\label{eq:n10-k4-residual-ineq}
+ \begin{array}{ll}
+ |D\cap\{U_1,a,b\}|\le2,&|D\cap\{U_2,c,d\}|\le2,\\
+ |D\cap\{a,c,e,f\}|\le2,&|D\cap\{b,d,e,f\}|\le2,
+ \end{array}
+\end{equation}
+and compatibility with \eqref{eq:n10-k4-forced-six} forbids the six triples
+\begin{equation}\label{eq:n10-k4-forbidden-six}
+ U_1U_2e,\ U_1df,\ U_2bf,\ U_1U_2f,\ U_1ce,\ U_2ae.
+\end{equation}
+According as both, one, or neither singleton is used,
+\eqref{eq:n10-k4-residual-ineq}--\eqref{eq:n10-k4-forbidden-six} give
+exactly
+\begin{equation}\label{eq:n10-k4-residual-list}
+\begin{array}{c|l}
+U_1,U_2&U_1U_2ac,\ U_1U_2ad,\ U_1U_2bc,\ U_1U_2bd\\
+U_1&U_1acd,\ U_1ade,\ U_1bcd,\ U_1bcf\\
+U_2&U_2abc,\ U_2abd,\ U_2adf,\ U_2bce\\
+\text{neither}&abcd.
+\end{array}
+\end{equation}
+For example, with both singletons the forbidden triples exclude $e,f$ and
+the first two inequalities choose one of $a,b$ and one of $c,d$; with only
+$U_1$, choosing $a$ leaves $cd$ or $de$, choosing $b$ leaves $cd$ or $cf$;
+the other row is symmetric.  With no singleton, the last two inequalities
+exclude $e,f$, proving that the list is exhaustive.
+
+Name the thirteen entries of \eqref{eq:n10-k4-residual-list} rowwise
+$A,\ldots,M$.  The seven sets
+\begin{equation}\label{eq:n10-k4-clique-cover}
+ \{A,B\},\{C,D\},\{E,F\},\{G,H\},
+ \{I,L\},\{J,K\},\{M\}
+\end{equation}
+are conflict cliques, so at most seven residual blocks coexist.  Equality
+uses $M$ and therefore forces successively $F,H,L,K,A,D$; it is uniquely
+\begin{equation}\label{eq:n10-k4-residual-equality}
+ U_1U_2ac,\ U_1U_2bd,\ U_1ade,\ U_1bcf,
+ \ U_2adf,\ U_2bce,\ abcd.
+\end{equation}
+
+Let $\alpha$ be the number of points with $d_3=9$.  Summing $d_3$ and the
+triple partition gives $B_3=20+\alpha$ and
+$B_4=15-\alpha/4$.  Since $T,T'$ are high, integrality leaves
+$\alpha=4$ or $8$.  If $\alpha=4$, then $B_4=14$, but the preceding caps
+give at most $6+7=13$.  Hence $\alpha=8$, $B_4=13$, and all blocks in
+\eqref{eq:n10-k4-forced-six} and
+\eqref{eq:n10-k4-residual-equality} occur.
+
+Invert at $T=123$.  The three incident five-blocks are the sides of a
+nondegenerate triangle with vertices
+$A=T'$, $B=a$, and $C=c$.  Use directed parameters
+\begin{equation}\label{eq:n10-k4-coordinate-dictionary}
+\begin{array}{c|c}
+AB&A=0,\ B=1,\ U_1=u,\ b=v\\
+AC&A=0,\ C=1,\ U_2=s,\ d=t\\
+BC&B=0,\ C=1,\ e=x,\ f=y.
+\end{array}
+\end{equation}
+The first row of \eqref{eq:n10-k4-forced-six} gives the collinearities
+\begin{equation}\label{eq:n10-k4-collinearities}
+ U_1U_2e,\qquad U_1df,\qquad U_2bf,
+\end{equation}
+while its second row gives the cyclic quadruples
+\begin{equation}\label{eq:n10-k4-cyclic-data}
+ AU_1U_2f,\qquad AU_1Ce,\qquad AU_2Be.
+\end{equation}
+The nonincident five-block and the last residual block are the proper
+circles
+\begin{equation}\label{eq:n10-k4-two-circles}
+\{A,b,d,e,f\},\qquad\{B,b,C,d\}.
+\end{equation}
+Here \(u-s\ne0\): equality would put the finite, distinct point \(e\) at
+the pole of the first collinearity \(U_1U_2e\), contrary to the chosen
+finite side-parameter chart.  No affine transformation of the ambient
+Euclidean plane is being used here; the parameters in
+\eqref{eq:n10-k4-coordinate-dictionary} are directed coordinates on the
+three actual sides of the inverted triangle.
+Menelaus applied to \eqref{eq:n10-k4-collinearities} gives
+\begin{equation}\label{eq:n10-k4-menelaus}
+ x=\frac{s(u-1)}{u-s},\qquad
+ y=\frac{t(u-1)}{u-t}=\frac{s(v-1)}{v-s}.
+\end{equation}
+Put $R=|AC|^2/|AB|^2>0$.  Subtracting the circle equations in
+\eqref{eq:n10-k4-cyclic-data} from the first circle in
+\eqref{eq:n10-k4-two-circles}, at $e$ and $f$, yields
+\begin{align}
+ (v-u)(1-x)+R(t-1)x&=0,\notag\\
+ (v-1)(1-x)+R(t-s)x&=0,\label{eq:n10-k4-power-three}\\
+ (v-u)(1-y)+R(t-s)y&=0.\notag
+\end{align}
+The first two equations together with \eqref{eq:n10-k4-menelaus} give
+$R=-u/s$; power of $A$ to the second circle in
+\eqref{eq:n10-k4-two-circles} then gives $v=Rt=-ut/s$.
+Substitution in \eqref{eq:n10-k4-menelaus} and
+\eqref{eq:n10-k4-power-three} produces
+\begin{align}
+ s^2u+st-s-tu&=0,\notag\\
+ 2stu-st-su+t^2-tu&=0,\label{eq:n10-k4-three-polynomials}\\
+ s^2t-s^2+st^2-stu+t^2u-t^2&=0.\notag
+\end{align}
+All cleared factors are nonzero because the named side-points are distinct.
+In particular $t-u\ne0$ follows from the second collinearity,
+$s^2+tu=-s(v-s)\ne0$ from the third, and $s^2-t\ne0$ below would otherwise
+force $t=1$.  The first equation in
+\eqref{eq:n10-k4-three-polynomials} therefore gives
+\[
+ u=\frac{s(1-t)}{s^2-t}.
+\]
+The remaining two become
+\begin{align}
+ (s+t)(s^2t-3st+s+t^2)&=0,\notag\\
+ (s+t)(s^3t-s^3+s^2t-2st^2+t^2)&=0.
+ \label{eq:n10-k4-final-two}
+\end{align}
+If $s+t=0$, then $v=u$, contrary to distinctness.  Subtracting
+$(1-2s)$ times the first remaining factor from the second gives
+$s(s-1)^2(3t-1)=0$.  Hence $t=1/3$, and the first factor becomes
+$3s^2+1=0$, impossible over $\R$.  This closes the last row of
+\eqref{eq:n10-k4-degree-rows}.
+\end{proof}
+
+\begin{lemma}[Three-pentagon rich-line endpoint]
+\label{lem:n10-three-pentagon-endpoint}
+Assume the hypotheses of \cref{lem:n10-local-parity} and the aggregate row
+\[
+ C=32,\quad B_5=3,\quad
+ |\{p:d_3(p)=9\}|=2,\quad L_5=0,
+ \quad L_4=h\in\{1,2,3\},\quad L_3=10-h.
+\]
+Then the configuration is impossible.
+\end{lemma}
+
+\begin{proof}
+Put $r(p)=d_5(p)$ and $q(p)=\ell_4(p)$.  On each four-line $D$,
+maximality gives
+\begin{equation}\label{eq:n10-k3-line-degree}
+ \sum_{p\in D}r(p)=\sum_{i=1}^3|D\cap B_i|\le6.
+\end{equation}
+The degree sum is $15$.  Convexity and the pair-intersection cap give
+$5\le\sum_p\binom{r(p)}2\le6$, and the only degree profiles are
+\begin{equation}\label{eq:n10-k3-profiles}
+ P_1=(1^5,2^5),\qquad
+ P_2=(1^6,2^3,3),\qquad
+ P_3=(0,1^3,2^6).
+\end{equation}
+Indeed, the lower moment is the distribution $(1^5,2^5)$; increasing it
+by one either replaces two \(1\)'s by \(0,2\), giving \(P_3\), or replaces
+two \(2\)'s by \(1,3\), giving \(P_2\).  The $q=0$ rows of
+\eqref{eq:n10-full-local-table} give all-low
+triple-line capacities
+\begin{equation}\label{eq:n10-k3-baselines}
+ 25,\qquad27,\qquad25,
+\end{equation}
+and each of the two high designations raises a baseline by at most one.
+
+For $h=1$, \eqref{eq:n10-k3-line-degree} forces at least two degree-one
+points on the line in $P_1,P_2$; each loses two units from its $q=0$
+capacity, even if high.  The total capacities are therefore at most
+$23,25<3L_3=27$.  In $P_3$ the line contains either the degree-zero point
+or two degree-one points.  Making the zero point high reduces its line loss
+by one but gives no baseline gain, so the total is at most $25<27$.
+
+For $h=2$, two lines need four degree-one incidences in $P_1,P_2$.  If
+their intersection is degree one, its $q=2$ row pays two units and the two
+remaining incidences pay two each; otherwise the loss is larger.  Starting
+from the high-upgraded maxima $27,29$ leaves at most $21,23<3L_3=24$.
+For $P_3$ the cheapest possibility is that the lines meet at the
+degree-zero point; \eqref{eq:n10-full-local-table} still leaves at most
+$23<24$.
+
+Suppose $h=3$.  The twelve line incidences have only three possible
+intersection topologies: a common point of all three lines, two distinct
+pairwise intersections, or three distinct pairwise intersections.  Indeed,
+without a common point their union has size $12-j\le10$, where $j$ is the
+number of selected pairwise intersections, so $j=2$ or $3$.
+Measure loss from \eqref{eq:n10-k3-baselines}, already crediting the two
+possible high-point discounts.  A degree-one point on one or two lines
+costs two, a degree-two point costs zero on one line and two on two, and a
+degree-zero point costs two on one line and four on two or three.  Directly
+from these four costs and \eqref{eq:n10-k3-line-degree}, the losses are
+\begin{equation}\label{eq:n10-k3-loss-table}
+\begin{array}{c|ccc}
+&\text{common point}&\text{two intersections}&\text{triangle}\\ \hline
+P_1&10&8&6\\
+P_2&14&12&10\\
+P_3&8&6&6.
+\end{array}
+\end{equation}
+Here is a derivation rather than a case catalogue.  In the common-point
+topology that point cannot have degree two; the first two rows cost
+$3+4\cdot2-1=10$ and $3+5\cdot2+2-1=14$, while the third costs at least
+$8$.  With two intersections, let $x$ be the number of degree-one double
+points and $z$ indicate that the degree-zero point is double.  Before the
+two discounts the first two losses are at least
+$4+2(5-x)$ and $4+2(6-x)+2$; for $P_3$ they are
+$4z+2(2-z)+2(1-z)+2(3-x)-2=10-2x\ge6$.
+In the triangle topology let $x$ count degree-one vertices and let
+$\epsilon$ indicate whether the off-line point has degree one or zero.
+The first row costs at least $6+2(5-x-\epsilon)-2\ge6$; the analogous
+$P_2$ expression has the extra degree-three deficit and is at least $10$.
+For $P_3$ the exact loss is
+\begin{equation}\label{eq:n10-k3-P3-loss}
+ 12-2x-2\epsilon.
+\end{equation}
+It is at least six except when the three triangle vertices are exactly the
+three degree-one points and the off-line point is the degree-zero point.
+In that sole exception each side contains two degree-two points and both
+high discounts are attained; the loss is four.  All other entries of
+\eqref{eq:n10-k3-loss-table} leave capacity below $3L_3=21$.
+
+Let $p$ be the off-line degree-zero point in the equality pattern.  It is
+low, $\ell_3(p)=4$, and \eqref{eq:n10-local-pair} gives
+\[
+ (d_3(p),d_4(p),d_5(p))=(6,10,0).
+\]
+After inversion at $p$, the other nine points have line profile
+$(t_2,t_3,t_4)=(6,10,0)$.  By \cref{lem:real-nine-link}, their six ordinary
+lines form $C_3\sqcup C_3$.  The four original three-lines through $p$
+would give four pairwise disjoint ordinary edges, but
+$\nu(C_3\sqcup C_3)=2$.  This final contradiction closes the endpoint.
+\end{proof}
+
+\begin{lemma}[Disjoint golden-link endpoint]\label{lem:n10-golden-link-endpoint}
+Assume the hypotheses of \cref{lem:n10-local-parity} and the aggregate row
+\begin{equation}\label{eq:n10-k2-endpoint-row}
+ C=32,\quad B_3=B_4=20,\quad B_5=2,\quad
+ L_3=10,\quad L_4=L_5=0,
+ \quad d_3(p)=6\ \text{for every }p.
+\end{equation}
+Then the configuration is impossible.
+\end{lemma}
+
+\begin{proof}
+Let the two five-blocks meet in $m=0,1$, or $2$ selected points.  Their
+degree profiles are, respectively,
+\begin{equation}\label{eq:n10-k2-degree-profiles}
+ (1^{10}),\qquad(0,1^8,2),\qquad(0^2,1^6,2^2).
+\end{equation}
+The $q=0$, low row of \eqref{eq:n10-full-local-table} gives total
+triple-line capacity exactly $30$ in each profile, equal to
+$\sum_p\ell_3(p)=3L_3$.  Thus every point attains its local maximum.  If
+$m>0$, choose a degree-zero point $p$.  Then
+$(d_3,d_4,d_5,\ell_3)(p)=(6,10,0,4)$.  Inversion at $p$ gives the
+nine-point line profile $(t_2,t_3,t_4)=(6,10,0)$, whose ordinary graph is
+$C_3\sqcup C_3$ by \cref{lem:real-nine-link}.  The four original lines
+through $p$ would be a four-edge matching in this graph, contradicting
+$\nu(C_3\sqcup C_3)=2$.  Hence $m=0$.
+
+The blocks are therefore disjoint proper circles; call their point sets
+$A,B$.  Every four-block has two points on each, since three on a base
+circle would repeat an owned triple.  Fixing an $A$-pair, at most two
+four-blocks contain it, because their $B$-pairs must be disjoint.  There
+are ten $A$-pairs and exactly twenty four-blocks, so equality holds: every
+$A$-pair has exactly two $B$ partners.  Symmetrically every $B$-pair has
+exactly two $A$ partners.
+
+Use the quadratic lift and \cref{lem:circle-lift-trace}.  No lift of an
+\(A\)-point lies in \(\Pi_B\), since \(\Pi_B\) would then cut the quadric
+in a generalized block containing the five points of \(B\) and that sixth
+selected point; symmetrically no \(B\)-point lies in \(\Pi_A\).
+Thus the base planes are distinct and meet in a projective line \(\ell\).
+A $2A+2B$ block plane
+cuts them in two chords whose chord lines meet $\ell$ at the same centre;
+conversely, an $A$-chord and a $B$-chord with the same centre span a block
+plane.  That plane cannot acquire a fifth selected point, since it is
+different from the two base planes and \eqref{eq:n10-k2-endpoint-row}
+contains only the two five-blocks $A,B$.  At one centre the chords on either
+base form a matching.  If it carries $\alpha$ $A$-chords and $\beta$
+$B$-chords, all $\alpha\beta$ cross-pairs are four-blocks; the exact partner
+degree two of every chord gives
+\begin{equation}\label{eq:n10-k2-centre-degree}
+ \alpha=\beta=2.
+\end{equation}
+Thus the edges of each $K_5$ split into five two-edge matchings, in common
+centre correspondence.  By \cref{lem:pentagon-golden}(P2), after labelling
+the $B$-vertices $0,\ldots,4$ their matching rows are
+\begin{equation}\label{eq:n10-k2-near-factor}
+ M_0=13|24,\ M_1=02|34,\ M_2=03|14,\
+ M_3=04|12,\ M_4=01|23.
+\end{equation}
+
+Choose $p\in A$.  Row $0$ is the unique $A$-matching omitting $p$.  For
+$i=1,\ldots,4$, let $q_i$ be the other endpoint of the $A$-chord through
+$p$ whose centre corresponds to $M_i$.  After inversion at $p$, the four
+$q_i$ lie on the image line of $A$, and $q_i$ is the intersection of the
+two $B$-chords in $M_i$.  Normalize the five $B$-points as
+\begin{equation}\label{eq:n10-k2-conic-frame}
+ b_0=(1,0,0),\ b_1=(0,1,0),\ b_2=(0,0,1),\
+ b_3=(1,1,1),\ b_4=(a,b,1).
+\end{equation}
+The four relevant centres are
+\begin{equation}\label{eq:n10-k2-centres}
+ q_1=(a-b,0,1-b),\quad q_2=(a,1,1),\quad
+ q_3=(0,b,1),\quad q_4=(-1,-1,0).
+\end{equation}
+Their collinearity gives, exactly as in
+\cref{lem:pentagon-golden}(P3),
+\begin{equation}\label{eq:n10-k2-golden-wall}
+ a=1-b=b^2,\qquad b^2+b-1=0.
+\end{equation}
+
+The eight four-blocks through $p$ give, at $q_i$, the two three-lines
+prescribed by $M_i$.  These cover every $q_iB$ pair except $q_ib_i$ and
+every internal $B$-pair except the two edges of $M_0$.  Hence the six
+ordinary edges in the inverted link are exactly
+\begin{equation}\label{eq:n10-k2-two-paths}
+ q_ib_i\ (1\le i\le4),\qquad b_1b_3,\qquad b_2b_4,
+\end{equation}
+namely the two paths
+\[
+ q_1-b_1-b_3-q_3,\qquad q_2-b_2-b_4-q_4.
+\]
+In the disjoint profile every point has $r=1$; the local table and
+$\sum_p\ell_3(p)=30$ force $\ell_3(p)=3$ everywhere.  Thus the three
+original lines through $p$ give a concurrent three-edge matching in these
+two paths.  Such a matching takes both end edges of one path and one edge
+of the other.  The automorphism $\rho=(1234)$ of
+\eqref{eq:n10-k2-near-factor} interchanges the paths, while $\rho^2$
+reverses both.  Consequently there are only two orbits, represented by
+\begin{equation}\label{eq:n10-k2-two-matchings}
+ \{q_1b_1,q_3b_3,q_2b_2\},\qquad
+ \{q_1b_1,q_3b_3,b_2b_4\}.
+\end{equation}
+Writing a line as the cross product of its endpoint vectors, their
+concurrency determinants are
+\begin{align}
+ \det(q_1\!\times b_1,q_3\!\times b_3,q_2\!\times b_2)
+   &=-(a-1)(ab-a+b),\notag\\
+ \det(q_1\!\times b_1,q_3\!\times b_3,b_2\!\times b_4)
+   &=a^2b-a^2+ab-b^2.\label{eq:n10-k2-determinants}
+\end{align}
+On the golden wall \eqref{eq:n10-k2-golden-wall} these reduce to
+$4-6b$ and $11b-7$.  Their possible roots $2/3$ and $7/11$ do not satisfy
+$b^2+b-1=0$.  Neither matching in \eqref{eq:n10-k2-two-matchings} is
+concurrent, the required contradiction.
+\end{proof}
+
+\begin{lemma}[Ten-point five-block kernel]\label{lem:n10-five-block-kernel}
+Assume $|P|=10$, the largest proper circle has size five, and $C\le32$.
+Put
+\[
+x=B_3,\quad b=B_4,\quad k=B_5,\quad
+L=L_3+L_4+L_5,\quad h=L_4,\quad g=L_5.
+\]
+Then no such configuration exists.
+\end{lemma}
+
+\begin{proof}
+The rich-line bound excludes lines of size at least six.  Triple ownership,
+the circle objective, and the two Melchior rows give
+\begin{align}
+x+4b+10k&=120,\label{eq:n10-g5-T}\\
+C&=30+\frac34x-\frac32k-L,\label{eq:n10-g5-C}\\
+15x-34k+28h+64g&\le36C-840.\label{eq:n10-g5-AC}
+\end{align}
+By \cref{lem:n10-local-parity}, $d_3(p)\in\{6,9\}$.  Let $\alpha$ be
+the number of high points, those with $d_3=9$.  Summing $d_3$ gives
+\begin{equation}\label{eq:n10-high-count}
+ x=20+\alpha.
+\end{equation}
+For $r_p=d_5(p)$ we also have
+\begin{equation}\label{eq:n10-five-moment}
+ \sum_pr_p=5k,\qquad
+ \sum_p\binom{r_p}{2}\le2\binom k2.
+\end{equation}
+
+We first remove the large values of $k$.  The centred-vector argument and
+the real triangle-power obstruction in \cref{lem:pentagon-golden}(P1) give
+$k\le5$.  If $k=5$, convexity and \eqref{eq:n10-five-moment} force
+$(r_p)=(3^5,2^5)$ and equality in every pair intersection.  At a
+degree-three point, \cref{lem:n10-punctured-pentagon} gives $d_4\le2$,
+whereas \eqref{eq:n10-local-pair} gives $d_4=3$ or $4$.  Thus $k\ne5$;
+\cref{lem:n10-four-pentagon} removes $k=4$.  We have proved
+\begin{equation}\label{eq:n10-kcap}
+ 1\le k\le3.
+\end{equation}
+
+Values $C\le27$ disappear before any further routing.  Indeed,
+$d_3(p)=c_3(p)+\ell_3(p)\le(C-25)+4=C-21$, while $d_3(p)\ge6$.
+At $C=27$ equality would force $\ell_3(p)=4$ at all ten points, so
+$3L_3=40$, impossible.
+
+For $C\ge28$, equations \eqref{eq:n10-g5-T}--\eqref{eq:n10-g5-AC} and
+\eqref{eq:n10-high-count} become the exact scalar router
+\begin{align}
+ \alpha+2k&\equiv0\pmod4,\notag\\
+ L&=45-C+\frac{3\alpha-6k}{4},\label{eq:n10-scalar-router}\\
+ 15\alpha-34k+28h+64g&\le36C-1140.\notag
+\end{align}
+For $k=1,2,3$, the least nonnegative $\alpha$ allowed by the congruence is
+$2,0,2$, respectively; increasing it by four raises the last left side by
+$60$.  Comparing with the five right sides
+$-132,-96,-60,-24,12$ for $C=28,\ldots,32$ therefore gives, without a
+configuration search, the complete list
+\begin{equation}\label{eq:n10-scalar-faces}
+\begin{array}{c|c|c}
+C&(k,\alpha,L)&(h,g)\\ \hline
+28,29&\text{none}&\text{--}\\
+30&(2,0,12),(3,2,12)&(0,0)\\
+31&(2,0,11),(3,2,11)&(0,0),(1,0)\\
+32&(1,2,13),(2,4,13),(3,6,13)&(0,0)\\
+  &(2,0,10)&(0,0),(1,0),(2,0),(0,1)\\
+  &(3,2,10)&(0,0),(1,0),(2,0),(3,0),(0,1).
+\end{array}
+\end{equation}
+For example, at $C=30$ the two base values in the last inequality are
+$-68,-72$, leaving only $8,12$ units and hence $h=g=0$; the other
+line-state columns follow by the same displayed costs $28,64$.
+
+It remains to apply the local table, and we record every capacity comparison.
+For two five-blocks the three degree profiles
+\eqref{eq:n10-k2-degree-profiles} have all-low capacity $30$; for three
+five-blocks the profiles \eqref{eq:n10-k3-profiles} have all-low capacities
+$25,27,25$.  Each high point adds at most one.  Thus at $C=30$ the two
+rows in \eqref{eq:n10-scalar-faces} have capacities at most $30,29$, below
+$3L_3=36$.  At $C=31$, the three-block row has capacity at most $29$,
+below both required totals $33,30$.  In the two-block row, $h=0$ gives
+$30<33$; on a four-line $D$ one has $\sum_{p\in D}r_p\le4$, and the weak
+loss $2-r_p$ sums to at least four, leaving at most $26<30$ when $h=1$.
+
+At $C=32$, the three $L=13$ rows have capacities at most
+\begin{equation}\label{eq:n10-C32-easy-capacities}
+ 37,\qquad34,\qquad33,
+\end{equation}
+against the required $39$.  For the first number, the five points of the
+unique five-block contribute $3$ each, its outsiders $4$ each, and at most
+two high points on the block add one; the other two numbers are
+$30+4$ and $27+6$.
+
+Consider $(k,\alpha,L)=(2,0,10)$.  A five-line loses at least one unit at
+each of its points, leaving at most $25<27$.  For one or two four-lines,
+sum the weak loss $2-r_p$ on each line; it is at least four because
+$\sum_Dr_p\le4$.  This addition does not overcount at an intersection:
+for $r=2,1,0$ the two-line losses from
+\eqref{eq:n10-full-local-table} are respectively $2,2,4$, at least the
+corresponding doubled weak weights $0,2,4$.  Hence capacity is at most
+$30-4h<30-3h=3L_3$.  Only $h=g=0$ survives, and it is excluded by
+\cref{lem:n10-golden-link-endpoint}.
+
+Finally take $(k,\alpha,L)=(3,2,10)$.  The no-rich-line state has capacity
+at most $29<30$, and a five-line leaves at most $29-5<27$.  The three
+remaining states $h=1,2,3$, $g=0$, are precisely the hypotheses of
+\cref{lem:n10-three-pentagon-endpoint}.  This exhausts
+\eqref{eq:n10-scalar-faces} and completes the five-circle branch.
+\end{proof}
+
+\begin{lemma}[The ten-point six-circle certificate]
+\label{lem:n10-gamma6}
+If ten admissible points contain a proper circle with at least six selected
+points, then $C\ge33$.
+\end{lemma}
+
+\begin{proof}
+The rich-circle bound gives $46,45,33$ for occupancies $7,8,9$; the
+rich-line bound gives $54,52,36$ for line occupancies $7,8,9$.  Thus a
+counterexample has a maximal six-circle $\Gamma$, four outsiders, and no
+block larger than six.
+
+Let $L_{ij},C_{ij}$ count line and circle blocks containing $i$ points of
+$\Gamma$ and $j$ outsiders.  We use
+\begin{equation}
+ \sum ijL_{ij}\le24,\qquad \sum C_{ij}\le32,\qquad
+ \sum\left(\binom{i+j}{2}+i+j-3\right)L_{ij}\le42.\label{eq:n10-g6-rows}
+\end{equation}
+the U17 row
+\[
+ \sum_j\binom j2C_{2j}\le17,
+\]
+and, for $q=0,1,2,3$, the four exact triple rows
+\[
+ \sum_{i,j}\binom iq\binom j{3-q}(L_{ij}+C_{ij})
+ =\binom6q\binom4{3-q}.
+\]
+Also $C_{60}=1$.  Multiply the three inequalities in
+\eqref{eq:n10-g6-rows}, the U17 row, and the four equalities by
+\[
+ 24,84,12,82;\qquad -21,1,-84,684,
+\]
+and add $-13764C_{60}$.  A block distinct from $\Gamma$ meets it in at most
+two points, so there are exactly nine types.  Their coefficients are
+\[
+\begin{array}{c|rrrrrrrrr}
+(i,j)&(0,3)&(0,4)&(1,2)&(1,3)&(1,4)&(2,1)&(2,2)&(2,3)&(2,4)\\ \hline
+L_{ij}&15&0&85&138&162&0&14&21&0\\
+C_{ij}&63&0&85&66&6&0&0&63&168.
+\end{array}
+\]
+The selected circle has coefficient zero, so the combined left side is
+nonnegative.  The combined right side is
+\[
+24\cdot24+84\cdot32+12\cdot42+82\cdot17
+-21\cdot4+36-84\cdot60+684\cdot20-13764=-10,
+\]
+a contradiction.
+\end{proof}
+
+\begin{proposition}\label{prop:n10-value}
+One has $f(10)=33$.
+\end{proposition}
+
+\begin{proof}
+Assume $C\le32$ and split by the maximum proper-circle size.  The three
+possibilities at most four, exactly five, and at least six are excluded by
+\cref{lem:n10-gamma4,lem:n10-five-block-kernel,lem:n10-gamma6}.
+Construction \ref{con:circle-centre} has $33$ circles.
+\end{proof}
+
+\subsection{Real link and circle-lift modules}
+
+We next isolate the real geometry used more than once.  These statements
+are independent of the endpoint arithmetic.
+
+\begin{lemma}[The real nine-point link]\label{lem:real-nine-link}
+Let $Q$ be nine distinct real projective points, no four collinear, with
+exactly ten three-point lines.  Then it has six ordinary lines, whose graph
+is
+\[
+ C_3\sqcup C_3\sqcup3K_1.
+\]
+Consequently ten such points, no four collinear, have at most twelve
+three-point lines, and eleven such points have at most sixteen.
+\end{lemma}
+
+\begin{proof}
+We first need the eight-point Orchard fact: eight noncollinear real
+projective points, no four collinear, have at most seven three-point lines.
+Indeed, eight such lines would leave four ordinary lines.  Local pair
+counting makes the ordinary lines a perfect matching and every point lie on
+three three-lines.  Label its four pairs $A,B,C,D$.  Pair ownership forces,
+up to relabelling, the eight triples
+\[
+\begin{gathered}
+A_0B_0C_0,\ A_1B_1C_1,\ A_0B_1D_0,\ A_1B_0D_1,\\
+A_0C_1D_1,\ A_1C_0D_0,\ B_0C_1D_0,\ B_1C_0D_1.
+\end{gathered}
+\]
+Normalize $A_0,A_1,B_0,B_1$ to a projective frame.  Writing the remaining
+four points with parameters $u,v,w,z$, four of the incidences give
+$vz=uw=vw=1$ and $u+u^{-1}=1$.  Thus $u^2-u+1=0$, impossible over $\R$.
+
+For the nine-point set, pair counting gives $t_2=6$.  If $k_v$ and $e_v$
+are the three-line and ordinary degrees at $v$, deleting $v$ and applying
+the preceding fact gives $k_v\ge3$, while
+\[
+ 8=2k_v+e_v.
+\]
+Hence three points have degree pair $(4,0)$ and six have $(3,2)$.  The
+ordinary graph is either $C_6\sqcup3K_1$ or the graph in \eqref{eq:real9}.
+We reject the first alternative directly.  Calling the isolated vertices
+$U_6,U_7,U_8$, the ten three-lines have one of the two distributions
+\[
+ (a_3,a_2,a_1,a_0)=(1,0,9,0),\qquad(0,3,6,1),
+\]
+according to the number of $U$-vertices on a line.  In the first case the
+nine $UVV$ lines force the three matchings
+\[
+ 02,14,35;\qquad03,15,24;\qquad04,13,25.
+\]
+Sending the $U$-line to infinity and using two independent directions
+reduces the last required parallelism to $2/\lambda=0$.  In the second
+case a projective frame at $U_6,U_7,U_8$ reduces the last three incidences
+to
+\[
+ \alpha\gamma=1,\qquad\beta\gamma=-1,\qquad
+ \alpha\beta=1,
+\]
+and hence $\beta^2=-1$.  Both are impossible over $\R$, proving
+\begin{equation}\label{eq:real9}
+\operatorname{Ord}(Q)=C_3\sqcup C_3\sqcup3K_1.
+\end{equation}
+
+If ten points had thirteen three-lines, their ordinary-degree multiset
+would be $(3,1^9)$, so the ordinary graph would be
+$K_{1,3}\sqcup3K_2$.  Delete its degree-three vertex.  The remaining
+ordinary graph is $C_6\sqcup3K_1$ and there remain ten three-lines,
+contrary to \eqref{eq:real9}.  Fourteen or more three-lines leave fewer
+than five ordinary pairs, contradicting the positive odd local ordinary
+degrees.  For eleven points, seventeen three-lines leave an ordinary
+$C_4$; deleting a cycle vertex gives the forbidden ten-point case.
+Eighteen leave one ordinary edge although every ordinary degree is even.
+This proves both ceilings.
+\end{proof}
+
+Use the circular lift
+\[
+ v(x,y)=[x^2+y^2:x:y:1]\in
+ \mathcal Q:\ XW-Y^2-Z^2=0\subset\PP^3(\R).
+\]
+The real quadric $\mathcal Q$ contains no real projective line.  A line or
+proper circle in the original plane is a plane section of $\mathcal Q$.
+
+\begin{lemma}[Trace dictionary]\label{lem:circle-lift-trace}
+Let a selected generalized block have lift plane $H_B$, and let $H$ be the
+plane of a selected proper circle $\Gamma$.  Then:
+\begin{enumerate}[label=\textup{(T\arabic*)}]
+\item $H_B\cap H$ is one trace line, containing every $\Gamma$-chord and
+every outsider-secant direction belonging to $B$.
+\item For a fixed outsider pair, its host chords on $\Gamma$ form a
+matching.  Two hosts determine their diagonal centre on the trace.
+\item Equal direction points cannot occur on adjacent outsider edges; a
+direction fibre is a matching.
+\item The three diagonal points of a complete quadrangle on a nonsingular
+real conic are distinct and noncollinear (indeed, self-polar).
+\end{enumerate}
+In particular, a block containing one point $\gamma_i\in\Gamma$ and three
+outsiders cannot have all three outsider edges double-hosted by chords
+avoiding $\gamma_i$.
+\end{lemma}
+
+\begin{proof}
+Plane sections give (T1).  If two hosts shared $\gamma$, they would both
+own the selected triple consisting of $\gamma$ and the outsider pair,
+proving (T2).  Equal directions on $xy,xz$ would put the three real quadric
+points $v_x,v_y,v_z$ on one real line, proving (T3).  In a conic frame
+$[t^2:t:1]$, the three diagonal points are the poles of the three diagonal
+sides, which proves (T4).  The final assertion would put all three diagonal
+points and $\gamma_i$ on the trace of one block.
+\end{proof}
+
+\begin{lemma}[Pentagon, golden axis, and polarity]\label{lem:pentagon-golden}
+Let $\mathcal F$ be a family of five-subsets of a ten-set, any two meeting
+in at most two points.
+\begin{enumerate}[label=\textup{(P\arabic*)}]
+\item $|\mathcal F|\le6$.  At equality every point has degree three and
+every pair of blocks meets in two points.  Up to relabelling the incidence
+design is
+\begin{equation}
+ 123,124,135,236,146,156,245,256,345,346.\label{eq:pentagon-design}
+\end{equation}
+Six such blocks cannot all be realized as generalized blocks of ten real
+points.
+\item Five two-edge matchings which partition $E(K_5)$ form, up to
+relabelling, the near-one-factorization
+\begin{equation}
+ 13|24,\ 02|34,\ 03|14,\ 04|12,\ 01|23.\label{eq:near-factor}
+\end{equation}
+\item Let five points lie on a real conic and let the centres in
+\eqref{eq:near-factor} be collinear.  After a projective normalization the
+modulus satisfies
+\begin{equation}
+ a=1-b=b^2,\qquad b^2+b-1=0.\label{eq:golden}
+\end{equation}
+The fifth centre is then on the same line.  The five opposite diagonal
+lines concur at its pole; no selected chord passes through the pole, and
+the tangent at an omitted point contains its opposite centre but no second
+centre omitting that point.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+For the incidence vectors $x_F$ put $y_F=x_F-\frac12\mathbf1$.  Then
+$\|y_F\|^2=5/2$ and $\langle y_F,y_G\rangle\le-1/2$.  The squared norm of
+$\sum_Fy_F$ gives $|\mathcal F|\le6$; equality forces all intersections and
+degrees stated in (P1).  Deleting one block, the degree-two points and the
+complements of the degree-three points are complementary five-cycles,
+which forces \eqref{eq:pentagon-design}.
+
+We make the geometric part of (P1) explicit.  Invert a putative real
+realization at the point labelled $123$.  Since equality makes every pair
+of blocks meet in two selected points, at most one of the six generalized
+blocks can be an original line.  The three blocks through $123$ have the
+distinct second intersections
+\[
+ A=124,\qquad B=135,\qquad C=236.
+\]
+Their images are therefore three pairwise nonparallel lines.  They cannot
+be concurrent, since their pairwise intersections $A,B,C$ are distinct;
+the possible original line through the inversion centre causes no
+exception.  Thus these lines form a nondegenerate triangle $ABC$.  Every
+nonincident block becomes a proper circle: a proper circle missing the
+pivot remains proper, while the sole possible original line missing the
+pivot becomes a proper circle through the inversion centre.  Inversion is
+injective away from the pivot, so the remaining nine selected points stay
+distinct.  Write
+\[
+ X=146,\quad Y=156,\quad U=245,\quad V=256,
+ \quad W=345,\quad Z=346.
+\]
+The three nonincident circles have supports
+\[
+ A,X,U,W,Z;\qquad B,Y,U,V,W;\qquad C,X,Y,V,Z.
+\]
+
+Use directed affine parameters on the triangle sides
+\[
+ \begin{array}{c|cccc}
+ AB&A=0&B=1&X=x&Y=y\\
+ AC&A=0&C=1&U=u&V=v\\
+ BC&B=0&C=1&W=w&Z=z
+ \end{array}
+\]
+and put $c^2=|AB|^2$, $b^2=|AC|^2$, and $a^2=|BC|^2$.
+Directed power at the three vertices, applied to the displayed circles,
+gives all six identities
+\begin{align*}
+ c^2(1-x)&=a^2wz,&
+ b^2(1-u)&=a^2(1-w)(1-z),\\
+ c^2y&=b^2uv,&
+ a^2(1-w)&=b^2(1-u)(1-v),\\
+ c^2xy&=b^2v,&
+ c^2(1-x)(1-y)&=a^2z.
+\end{align*}
+The side lengths are positive, and distinctness from the side vertices says
+that $x,y,u,v,w,z$ and all six complements
+$1-x,1-y,1-u,1-v,1-w,1-z$ are nonzero.  Hence the indicated divisions are
+legal.  Dividing the last-row identities by the corresponding identities
+above, and comparing the second and fourth identities, gives
+\[
+ x=u^{-1},\qquad 1-y=w^{-1},\qquad 1-z=(1-v)^{-1}.
+\]
+Set $R=b^2/c^2$ and $S=a^2/c^2$.  The first and third identities now give
+\[
+ R=\frac{w-1}{wuv},\qquad
+ S=\frac{(u-1)(v-1)}{uwv}.
+\]
+After division by $c^2$, the fourth identity is
+\[
+ S(1-w)=R(1-u)(1-v).
+\]
+Its two sides are respectively $-K$ and $K$, where
+\[
+ K=\frac{(u-1)(v-1)(w-1)}{uvw}\ne0.
+\]
+Thus $-K=K$ over the reals, a contradiction.  This proves the geometric
+nonrealizability in (P1).
+
+For (P2), fix the matching missing vertex $0$; its two edges force the next
+unused edge at each of the other four vertices, and four successive unused
+edge rows give \eqref{eq:near-factor}.  For (P3), put four conic points at
+$[1:0:0],[0:1:0],[0:0:1],[1:1:1]$ and the fifth at $[a:b:1]$.
+Collinearity of the first four matching centres gives
+$a=1-b=b^2$.  Direct substitution places the fifth centre on their line.
+Polarity sends that line to the common point of the five opposite sides.
+La Hire's theorem then gives the tangent statement; a second centre on the
+tangent would make one self-polar diagonal triangle collinear.
+\end{proof}
+
+\begin{lemma}[Five-conic trace rigidity]\label{lem:five-conic-rigidity}
+Let $\Gamma=\{\gamma_0,\ldots,\gamma_4\}$ be five cyclically ordered points
+on a nonsingular real conic.  Work in the trace-dictionary setting above
+and assume that $\Gamma$ is a maximum selected generalized five-block, with
+lift plane $\Pi$.  Thus every outsider lift lies outside $\Pi$, and no plane
+section of $\mathcal Q$ contains more than five selected lifts.  For each
+$i$, let $D_i$ be the diagonal triangle of
+$\Gamma-\{\gamma_i\}$, and let $\delta_i$ be the vertex opposite the unique
+side whose line meets the missing real arc at $\gamma_i$.
+Then the following hold.
+\begin{enumerate}
+\item[\textup{(K2.1)}] A one-$\Gamma$ block cannot contain an all-double outsider triangle.
+If exactly one edge is single and the other two are double, its host chord
+is one of
+\begin{equation}
+ \gamma_{i-1}\gamma_{i+1},\qquad
+ \gamma_{i-2}\gamma_{i+2}.\label{eq:cyclic-host}
+\end{equation}
+These five two-element chord classes partition the ten chords.  Consequently
+a fixed single-hosted outsider pair occurs in at most one such
+one-$\Gamma$ block.
+\item[\textup{(K2.4)}] An all-double outsider $K_5$ has exactly five centres, one omitting
+each colour; its trace is the golden axis.  The tangent separation in
+\cref{lem:pentagon-golden} forbids extending it by a one-colour page with
+two adjacent double edges omitting that colour.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+The all-double assertion in (K2.1) is the final clause of
+\cref{lem:circle-lift-trace}.  For the remaining assertion, in the conic frame
+$[t^2:t:1]$, the three diagonal sides of four cyclic points meet the missing
+arc in exactly one side, and its opposite matching is \eqref{eq:cyclic-host}.
+The five resulting two-chord classes are disjoint and exhaust the ten
+chords.  A fixed single outsider edge has one host chord, which belongs to
+exactly one of these classes; once its colour $i$ is fixed, triple ownership
+forbids two blocks containing the same triple $\gamma_i xy$.  This proves
+the fixed-single consequence.
+
+For (K2.4), the ten edges of an all-double outsider $K_5$ have matching
+direction fibres, so its trace contains at least five diagonal centres.
+The trace is not a $\Gamma$-chord: otherwise its block plane would contain
+the five outsiders and the two selected endpoints of that chord, contrary
+to maximality of $\Gamma$.  A nonchord trace meets each of the ten
+$\Gamma$-chords once.  Each diagonal centre uses two such chords, and two
+distinct centres on the trace cannot reuse one, so there are at most five.
+Equality partitions the ten chords into five two-edge matchings.
+By \cref{lem:pentagon-golden}(P2), these form the near-one-factorization
+\eqref{eq:near-factor}, with exactly one matching omitting each colour; by
+(P3), their trace is the golden axis and $\gamma_i\delta_i$ is its polar
+tangent.
+
+Now consider a one-colour page of colour $i$ with two adjacent double
+outsider edges.  Their direction points are distinct by the no-real-line
+clause of the trace dictionary.  Triple ownership makes both host matchings
+omit $i$, so both directions are vertices of $D_i$.  The direction of the
+edge lying in the outsider $K_5$ is its unique centre $\delta_i$ omitting
+$i$; the page trace is therefore the tangent $\gamma_i\delta_i$.  The
+second direction would be a second vertex of $D_i$ on that tangent,
+contrary to \cref{lem:pentagon-golden}(P3).
+\end{proof}
+
+\begin{lemma}[Six-marked conic and repetition events]
+\label{lem:six-conic-events}
+Let six cyclically ordered selected points lie on a proper circle $\Gamma$.
+For an outsider edge $e=xy$, let $q_e\le3$ be the number of circles through
+$x,y$ and a pair of points of $\Gamma$.
+\begin{enumerate}[label=\textup{(S\arabic*)}]
+\item There are at most four full signatures $q_e=3$; the support of each
+is a matching.  For any four outsiders $Y$,
+\begin{equation}\label{eq:U17}
+ \sum_{e\in\binom Y2}q_e\le17.
+\end{equation}
+On any fixed trace line lie the centres of at most three full signatures.
+\item Two disjoint edges carrying the same signature determine a unique
+maximal generalized host of their four endpoints.  If such a host contains
+$b$ outsiders and $R(H)$ repetition events, then
+\begin{equation}\label{eq:conic-event-cap}
+ R(H)\le \min\left\{2\binom b4,
+ 3\binom{\floor{b/2}}2\right\}.
+\end{equation}
+\item For five outsiders put $W=\sum q_e$.  A unique four-outsider host, or
+a five-outsider host disjoint from $\Gamma$, gives $W\le26$; equality has
+signature multiplicities $2,2,1,1$ or $2,2,2$, respectively.  A
+five-outsider host meeting $\Gamma$ gives $W\le20$.
+\item If $J$ counts incidences of outsiders with original lines carrying a
+pair of $\Gamma$ points, then $J\le14$; on one fixed line or circle,
+$J\le13$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+A real projectivity of the conic preserves or reverses cyclic order.  The
+only fixed-point-free involutions of six cyclic labels are
+$R_3,S_1,S_3,S_5$, proving the cap four.  If all four occur, they generate
+the rotation $R_1$; hence the six points form one orbit of a real
+projectivity of order six.  A projective coordinate on the conic may
+therefore normalize that orbit to $(0,1,3,\infty,-3,-1)$, which gives centres
+\[
+ (3,0,1),(3,3,-1),(-3,0,1),(-3,3,1),
+\]
+exactly three of which are collinear.  This also proves the trace-line cap.
+Matching support follows from \cref{lem:circle-lift-trace}.  If all six
+edges of a four-set were full, a repeated signature would put the three
+perfect-matching centres on one trace, contradicting the noncollinearity of
+the diagonal triangle.  Hence at least one edge has weight at most two,
+which is \eqref{eq:U17}.
+
+A repeated signature on $xy,zw$ puts their two lift secants and hence all
+four lifts in one plane; its pullback is the unique line or circle through
+the four endpoints.  Each four-set supports at most two events by U17, and
+on one trace there are at most three signatures, each supported on a
+matching of size at most $\floor{b/2}$.  These are the two bounds in
+\eqref{eq:conic-event-cap}.
+
+For five outsiders write $F$ for the number of full edges.  Then
+$W\le20+F$.  In a unique four-host, at most two signatures repeat, so
+$F\le2+2+1+1=6$.  On a five-host, at most three trace centres occur and
+each supports two edges, again $F\le6$.  If the host contains a selected
+$\gamma_i$, no full matching is possible because it would repeat a triple
+$\gamma_i xy$, giving $W\le20$.  Finally, every outsider carries at most
+three original chord lines.  Five degree-three outsiders would require five
+signatures, and on a fixed host at most three may have degree three.  This
+gives $J\le4\cdot3+2=14$ and $J\le3\cdot3+2\cdot2=13$.
+\end{proof}
+
+\subsection{The real grid and gallery modules}
+
+\begin{lemma}[Real $3\times3$ grid]\label{lem:real-grid}
+Let two triples of real projective lines form a $3\times3$ grid.  There are
+at most two further lines meeting three grid points with one point in each
+row and column.  If two exist, the grid is projectively the affine grid
+$\{-1,0,1\}^2$.  No point outside this grid lies on three ordinary grid
+secants.
+\end{lemma}
+
+\begin{proof}
+Send the line through the two pencil centres to infinity.  A transversal is
+the graph of an affine bijection between two real three-sets.  After one is
+made the identity, every other is an affine automorphism of a real
+three-set; a nonconstant affine map is determined by two values, and such a
+set has at most the identity and its reflection.  Equality normalizes both
+coordinate sets to $\{-1,0,1\}$.  In this frame the twelve ordinary grid
+secants are
+\[
+ x\pm y=\pm1,\qquad x\pm2y=\pm1,\qquad 2x\pm y=\pm1.
+\]
+At infinity their six directions are distinct and each occurs exactly
+twice, so no ideal point lies on three of them.  Now let a finite point
+$(u,v)$ lie on three.  If $uv\ne0$, it can lie on at most one line from
+each of the pairs with left sides $u\pm v$, $u\pm2v$, and $2u\pm v$.
+It must therefore use one from every pair.  The first two equations imply
+$|v|\in\{2,2/3\}$, while the first and third imply
+$|v|\in\{1,3,1/3\}$, a contradiction.  If $uv=0$, the displayed equations
+show directly that three incidences are possible only at a point of
+$\{-1,0,1\}^2$.  Thus an external point, finite or ideal, lies on at most
+two ordinary grid secants.
+\end{proof}
+
+\begin{lemma}[Gallery skeleton and its two completions]
+\label{lem:gallery-completions}
+There is no arrangement of twelve distinct real projective lines with
+\begin{equation}
+ (t_2,t_3,t_4)=(6,14,3)\label{eq:typeA-vector}
+\end{equation}
+and a distinguished line with complete word $3D+4T$.  Nor is there one
+with
+\begin{equation}
+ (t_2,t_3,t_5)=(7,13,2)\label{eq:M4-vector}
+\end{equation}
+and the same distinguished word.
+\end{lemma}
+
+\begin{proof}
+Melchior is sharp in either case, so the arrangement is simplicial and not
+a near-pencil.  We first make the gallery entrance explicit.  Two ordinary
+vertices cannot be adjacent on a line $\ell$: if they are
+$\ell\cap A$ and $\ell\cap B$, send $\ell$ to infinity.  The two triangular
+chambers along the intervening edge become opposite sectors bounded by
+$A,B$ at $A\cap B$.  Any further arrangement line not through $A\cap B$
+crosses one of those sectors (its direction cannot subdivide the chosen
+edge), hence cuts a chamber.  Thus every further line passes through
+$A\cap B$, the excluded near-pencil.  The three double vertices therefore
+separate the four triple vertices into positive cyclic gaps of sizes
+$2,1,1$, so the word is $TTDTDTD$.
+
+Send the distinguished line to infinity.  Its four triple directions give
+pairs $(a_i,b_i)$, $0\le i\le3$, and its three ordinary directions give
+$c_1,c_2,c_3$.  At a consecutive flag
+$T_{i-1}-D_i-T_i$, let $P^+,P^-$ be the other endpoints of the two edges of
+$c_i$ incident with $D_i$.  The four triangular chambers at this flag show
+that each $P^\pm$ lies on $c_i$, on one of the two lines through
+$T_{i-1}$, and on one of the two lines through $T_i$.  On opposite sides
+of a line germ at a transverse triple vertex the adjacent germs are the two
+different remaining lines.  Hence $P^+,P^-$ define a perfect matching
+between the two pairs.  The three flags form a path, so labels propagate
+without a monodromy choice and give
+\begin{equation}
+ A_i=\{a_{i-1},a_i,c_i\},\qquad
+ B_i=\{b_{i-1},b_i,c_i\}\quad(1\le i\le3),\label{eq:gallery-bases}
+\end{equation}
+together with the four rungs $\{a_i,b_i\}$.
+
+After deleting their used pairs, split the eleven labels as
+\[
+ L=\{a_0,a_1,b_0,b_1,c_1,c_2\},\qquad
+ R=\{a_2,a_3,b_2,b_3,c_3\}.
+\]
+The only residual within-side edges are
+\begin{equation}\label{eq:gallery-H}
+H=\{a_0b_1,a_0c_2,a_1b_0,b_0c_2,c_1c_2,
+       a_2b_3,a_3b_2\}.
+\end{equation}
+The left part is a tree and the right part a matching; hence every residual
+triangle uses exactly one edge of $H$.  If $e$ bases in \eqref{eq:gallery-bases}
+are upgraded by high vertices and those vertices consume $h$ edges of $H$,
+pair ownership gives the common budget
+\begin{equation}\label{eq:gallery-budget}
+ e+h\le13-t'_3,
+\end{equation}
+where $t'_3$ is the required number of triples after deleting the
+distinguished line.
+
+For \eqref{eq:typeA-vector}, deleting the distinguished line leaves
+$(t'_2,t'_3,t'_4)=(7,10,3)$.  A nonupgrading quadruple is a four-clique of
+the residual graph.  It has two labels on each side of the cut.  For the
+right edge $a_2b_3$ its common left neighbours are
+$\{a_0,b_0,b_1,c_1\}$, containing only the $H$-edge $a_0b_1$; for
+$a_3b_2$ they are $\{a_0,a_1,b_0,c_1\}$, containing only $a_1b_0$.
+Thus the only two nonupgrading quadruples are
+\[
+ \{a_0,a_2,b_1,b_3\},\qquad
+ \{a_1,a_3,b_0,b_2\},
+\]
+and each consumes two $H$-edges.  If $e$ of the three quadruples upgrade
+bases, the other $3-e$ consume at least $2(3-e)$ edges of $H$.
+Equation \eqref{eq:gallery-budget} then gives
+$e+2(3-e)\le3$, whence $e=3$ and no $H$-edge is consumed.
+
+Only $A_1,B_1,A_3,B_3$ can be upgraded without using $H$.  Track exchange
+$a\leftrightarrow b$ and gallery reversal act transitively on these four
+bases, so assume $B_3$ is omitted and write the upgrades as
+$A_1+x,B_1+y,A_3+z$.  Pair ownership gives
+\[
+ \begin{gathered}
+ x\in\{a_3,b_2,b_3,c_3\},\qquad
+ y\in\{a_2,a_3,b_3,c_3\},\\
+ z\in\{a_0,b_0,b_1,c_1\},\qquad x\ne y,\\
+ \neg(x\in\{a_3,c_3\}\land z\in\{a_0,c_1\}),\\
+ \neg(y\in\{a_2,a_3,c_3\}\land z\in\{b_0,b_1,c_1\}).
+ \end{gathered}
+\]
+Requiring only the two corner bundles $a_0b_1$ and $a_3b_2$ to remain
+nonempty gives the complete four-state propagation certificate
+\[
+\begin{array}{c|c}
+z& (x,y)\text{ still possible}\\ \hline
+a_0&(b_2,a_2),(b_2,c_3)\\
+b_0&(c_3,b_3)\\
+b_1&\varnothing\\
+c_1&(b_2,b_3).
+\end{array}
+\]
+The three states
+\[
+ (b_2,a_2,a_0),\qquad (b_2,b_3,c_1),\qquad(c_3,b_3,b_0)
+\]
+empty, respectively, the bundles at $a_2b_3,c_1c_2,b_0c_2$.  Hence only
+$(x,y,z)=(b_2,c_3,a_0)$ survives.  There all five left $H$-edges can be
+completed only through the two poles $a_3,b_3$.  After the mandatory
+triangles on the two right $H$-edges, their residual capacities are
+\[
+ (\floor{6/2}-1)+(\floor{7/2}-1)=4<5.
+\]
+This proves the first assertion by a fixed corner certificate.
+
+For \eqref{eq:M4-vector}, deletion leaves
+$(t'_2,t'_3,t'_5)=(8,9,2)$.  For a fivefold vertex $F$, let $e(F)$ be the
+number of bases it upgrades and let $h(F)$ be the number of edges of $H$
+among its pairs.  If $e(F)=0$, all ten pairs of $F$ lie in the residual
+graph.  Each side of the cut in \eqref{eq:gallery-H} is triangle-free, so
+$F$ has at most two labels on either side, contrary to $|F|=5$.  Hence
+$e(F)\ge1$.
+
+Two upgraded bases must be consecutive on the same rail:
+\[
+ A_1A_2,\quad A_2A_3,\quad B_1B_2,\quad B_2B_3.
+\]
+Indeed, these are the only base pairs whose union has size five; the
+apparent pair $A_i,B_i$ repeats two rungs, every other pair has union at
+least six, and three bases do not fit in five labels.  Thus $e(F)\le2$.
+
+Any five-set has at least
+$\binom22+\binom32=4$ within-side pairs.  A single middle base $A_2$ or
+$B_2$ absorbs only one of them; every other within-side pair is residual by
+pair ownership and hence belongs to $H$, so $h(F)\ge3$.  An end base absorbs
+three.  Equality $e(F)+h(F)=2$ is possible only when its two extra labels
+lie on the other side and form the unique available edge of $H$ in their
+common-neighbour set.  For example, the common neighbours of $A_1$ in $R$
+are $\{a_3,b_2,b_3,c_3\}$, whose unique $H$-edge is $a_3b_2$; rail exchange
+and end reflection give the four end stars
+\[
+\begin{aligned}
+ S_A^-&=A_1\cup\{a_3,b_2\},&
+ S_B^-&=B_1\cup\{a_2,b_3\},\\
+ S_A^+&=A_3\cup\{a_0,b_1\},&
+ S_B^+&=B_3\cup\{a_1,b_0\}.
+\end{aligned}
+\]
+If $F$ upgrades two bases, direct within-side pair counting gives
+$h(A_1\cup A_2)=h(B_1\cup B_2)=2$ and
+$h(A_2\cup A_3)=h(B_2\cup B_3)=0$.  Thus the first two unions have cost
+four and the equality unions are
+\[
+ P_A=A_2\cup A_3,\qquad P_B=B_2\cup B_3.
+\]
+Consequently every fivefold vertex satisfies
+\begin{equation}\label{eq:M4-cut-cost}
+ e(F)+h(F)\ge2,
+\end{equation}
+with equality exactly for the four end stars and $P_A,P_B$.
+
+For the two fivefold vertices, pair ownership makes their upgraded bases
+and consumed $H$-edges disjoint.  Since $9-(6-e)=3+e$ new triples are
+required and only $7-h$ edges of $H$ remain, \eqref{eq:gallery-budget} and
+\eqref{eq:M4-cut-cost} force equality for both vertices.  Directly comparing
+the six structural equality supports leaves the four-edge compatibility
+graph
+\[
+ (P_A,S_B^-),\quad(P_B,S_A^-),\quad
+ (S_A^-,S_B^-),\quad(S_A^+,S_B^+).
+\]
+For $(S_A^-,P_B)$, the $a_0c_2,c_1c_2$ bundles are empty and
+$a_3b_2$ is consumed, leaving four bundles for six triples; the other mixed
+pair is its reflection.  The two end-star pairs are mirror images, so take
+$(S_A^-,S_B^-)$.  All five residual triangles are forced:
+\[
+ \{a_0,b_1,c_3\},\ \{a_0,b_3,c_2\},\
+ \{a_1,b_0,c_3\},\ \{a_3,b_0,c_2\},\ \{c_1,c_2,c_3\}.
+\]
+The five lines of $S_A^-$ form a pencil $P$, those of $S_B^-$ a pencil
+$Q$, and their common line is $c_1=PQ$.  Send it to infinity.  Then
+$a_0,a_1,a_3,b_2$ are one parallel family, say $x=\text{constant}$, while
+$b_0,b_1,a_2,b_3$ are a second, say $y=\text{constant}$.  The final forced
+triple makes
+$c_2:y=mx+\beta$ and $c_3:y=mx+\beta'$ parallel.  Writing $x_1,x_3$ for
+the constants of $a_1,a_3$ and $y_2,y_0$ for those of $a_2,b_0$, the bases
+and forced triples give
+\[
+ y_2=mx_1+\beta,\quad y_0=mx_3+\beta,\quad
+ y_0=mx_1+\beta',\quad y_2=mx_3+\beta'.
+\]
+Hence $\beta'-\beta=y_0-y_2=y_2-y_0$, so $y_0=y_2$, contradicting the
+distinctness of $b_0,a_2$.  This proves the second assertion.
+\end{proof}
+
+\subsection{Eleven points: the local K1--K4 package}
+
+For a pivot $p$ in an eleven-point configuration whose blocks have size at
+most five, inversion gives the exact link equation
+\begin{equation}\label{eq:n11-link}
+ d_3(p)+3d_4(p)+6d_5(p)=45.
+\end{equation}
+The next lemma records the real part of this link geometry.
+
+\begin{lemma}[K3: inversion-link rigidity]\label{lem:n11-K3}
+Let $P$ be a real eleven-point configuration in which every maximal
+generalized block has size at most five, and let $p\in P$.  After
+inversion at $p$, the other ten marked points form a real linear space with
+line counts $(t_2,t_3,t_4)=(d_3,d_4,d_5)$, unique pair ownership, and two
+distinct link lines meeting in at most one marked point.  Under
+\eqref{eq:n11-link}, the following assertions hold.
+\begin{enumerate}[label=\textup{(K3.\arabic*)}]
+\item If $d_5=3$ and $d_3\in\{6,9\}$, two of the three four-point link
+lines cannot be disjoint.
+\item If $(d_3,d_4,d_5)=(9,4,4)$, the four four-point link lines form a
+complete quadrangle.  Their four residual three-lines have, up to
+relabelling, the private-pair graph ``triangle plus pendant.''  The four
+points left on each corresponding five-block form a harmonic quadruple.
+\item A five-block contains at most two pivots of type $(9,4,4)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+For (K3.1), three four-point link lines with one disjoint pair have
+intersection graph a path.  Indeed, the disjoint pair uses eight of the ten
+marked points.  The third four-point line contains at least two of those
+eight and meets either base in at most one marked point, so it meets both
+ exactly once.  Dualize.  Their private line families have
+ sizes $3,2,3$, so the three cross-edge classes have sizes $6,9,6$.
+ Denote the two connector lines by $x,y$ and the private families by
+ $A,B,D$, of sizes $3,2,3$.  The three intersections of $x$ with the lines
+ of $D$, and the three intersections of $y$ with the lines of $A$, are six
+ forced ordinary vertices.  Every other intersection is represented by an
+ edge of the complete tripartite graph on $A,B,D$.  The link equation gives
+ $(t_2,t_3,t_4)=(6,7,3)$ or $(9,6,3)$.
+ When $d_3=6$, seven triple vertices would have to decompose all three
+classes equally, impossible.  When $d_3=9$, six triples exhaust the two
+six-edge classes and leave three ordinary edges in the middle class.  The
+two middle lines then give two edge-disjoint transversals of a real
+$3\times3$ grid.  After one is diagonal and the coordinate set is
+$(0,1,t)$, the other has determinant
+$t^2-t+1>0$, a contradiction.
+
+For (K3.2), four base lines have sixteen incidences on ten points and at
+most six pairwise intersections.  Convexity forces degrees $2^6 1^4$:
+the complete quadrangle with private points $u_i$ and pair-points $v_{ij}$.
+A residual triple is either
+\[
+T_{ijk}=\{u_i,u_j,u_k\},\qquad
+S_{ij}=\{u_i,u_j,v_{kl}\},\quad\{i,j,k,l\}=[4].
+\]
+No two residual lines repeat a private pair.  Hence at most one $T$-line
+occurs.  If $T_{123}$ occurs, the other three lines are
+$S_{14},S_{24},S_{34}$.  With no $T$-line, the four distinct $S$-indices
+form a four-edge simple graph on four vertices, and pair ownership leaves
+only a four-cycle or a triangle with a pendant edge.
+
+Normalize the bases to $x=0,y=0,z=0,x+y+z=0$ and put
+\[
+u_1=(0,1,a),\ u_2=(1,0,b),\ u_3=(1,c,0),\\
+u_4=(1,d,-1-d).
+\]
+Since every $u_i$ is private, distinct from all three pair-intersections on
+its base, one has
+\[
+ a,b,c,d\notin\{0,-1\}.
+\]
+The seven relevant determinants are
+\[
+b+ac;\quad b-a,\ 1-ac,\ 1+d(1+a),\ b-c,\ 1+d+b,\ d-c.
+\]
+For the $T$-star, the three $S$-rows give
+$d=c$, $b=-1-c$, and $ac=b$; the $T$-row then becomes $2b=0$, contrary to
+nondegeneracy.  For a four-cycle the rows give $a=b=c=d$ and
+$a^2+a+1=0$, which has no real root.  For the triangle-pendant
+representative $S_{12},S_{13},S_{23},S_{14}$, they give $a=b=c$ and
+ $a^2=1$.  The value $a=-1$ is incompatible with the $S_{14}$ row, while
+ $a=1$ forces $d=-1/2$; substitution makes the other three candidate
+ determinants nonzero.  Explicitly, at
+ $(a,b,c,d)=(1,1,1,-1/2)$ the intended rows are
+ \[
+ S_{12}=S_{13}=S_{23}=S_{14}=0,
+ \]
+ while
+ \[
+ T_{123}=2,\quad T_{124}=1,\quad T_{134}=-1,\quad T_{234}=-2,\qquad
+ S_{24}=\frac32,\quad S_{34}=-\frac32.
+ \]
+ Thus this is the unique real survivor.  Its
+cross-ratio on every base is $-1$.  Inversion restricted to a generalized
+block through $p$ is a projectivity onto its image line, so this harmonic
+cross-ratio pulls back to the four points of the five-block other than $p$.
+
+For (K3.3), identify the carrier line or circle of a five-block with
+$\mathbb P^1(\mathbb R)$.  If three of its points $p,q,r$ had harmonic
+complements, send the two remaining points to $0,\infty$ and scale so that
+$p=1$.  The three harmonicity conditions say
+\[
+ p/q,\quad p/r,\quad q/r\in S:=\{-1,2,1/2\}.
+\]
+Since $S$ is closed under reciprocals, this puts the two distinct numbers
+$q,r$ in $S$.  But
+\[
+ ((S/S)\setminus\{1\})=\{-2,-1/2,4,1/4\}
+\]
+is disjoint from $S$.  This proves the cap.
+\end{proof}
+
+\begin{lemma}[K1: rebased five-block moment]\label{lem:n11-K1}
+Let $m=B_5$ and let $\Delta$ be a selected five-block.  Write $n_{ij}(\Delta)$
+for the number of other $i$-blocks meeting $\Delta$ in $j$ points and put
+\[
+H_\Delta=n_{42}+3n_{52},\qquad
+q_\Delta=n_{40}+3n_{50}.
+\]
+If $d_3(p)=6+3\omega_p$, $\Omega_\Delta=\sum_{p\in\Delta}\omega_p$,
+$S_{55}=\sum_p\binom{d_5(p)}2$, and
+$I_\omega=\sum_p\omega_pd_5(p)$, then
+\begin{align}
+H_\Delta&=57-N_4-2m-\Omega_\Delta+n_{52}+n_{40}+2n_{50},\label{eq:K1-local}\\
+\sum_\Delta H_\Delta
+&=(58-N_4-3m)m+2S_{55}-I_\omega+\sum_\Delta q_\Delta.\label{eq:K1-global}
+\end{align}
+For every $\Delta$, $H_\Delta\le30$.
+\end{lemma}
+
+\begin{proof}
+Equation \eqref{eq:n11-link} is equivalent to
+$d_4+2d_5=13-\omega$.  Sum it over the five points of $\Delta$ and group
+blocks by intersection size; eliminating $n_{41}$ and $n_{51}$ gives
+\eqref{eq:K1-local}.  Summing over $\Delta$, a pair of five-blocks meeting
+in $j=0,1,2$ points contributes through the identities
+$S_{55}=A_1+2A_2$ and $A_0+A_1+A_2=\binom m2$, which gives
+\eqref{eq:K1-global}.  Finally, $H_\Delta$ counts hosts over the fifteen
+outsider pairs.  Host chords form a matching on five points, so every pair
+has at most two hosts and $H_\Delta\le30$.
+\end{proof}
+
+\begin{lemma}[K4: rich lines and the added centre]\label{lem:n11-K4}
+In the $n=11$, maximum-circle-five branch with $C=40,L=14$, put $b=B_5$.
+Then
+\begin{equation}\label{eq:n11-K4-cut}
+ 7L_4+16L_5\le b+2.
+\end{equation}
+Consequently $L_5=0$, $L_4\in\{0,1\}$, and every row except
+$b=7,8$ is impossible by local moments and Kelly--Moser.
+\end{lemma}
+
+\begin{proof}
+For a maximal $m$-line with $q=11-m$ outsiders, let $x_s$ count proper
+circle owners whose outsider support has size $s=1,2,3$.  For a fixed
+outsider pair, its pairs on the $m$-line form a matching, and therefore
+\[
+x_1+2x_2+3x_3=\binom m2q,\qquad
+Q:=x_2+3x_3\le\floor{m/2}\binom q2.
+\]
+The $D=x_1+x_2=\binom m2q-Q$ owners are distinct, since a proper circle
+cannot contain two pairs from the same line.  Hence
+\[
+C\ge D\ge q\binom m2-\binom q2\floor{m/2}.
+\]
+For $m=6,7,8,9,10$ this is $45,66,72,68,45$, so all blocks have size at
+most five.
+
+We also print the five-block energy.  Deletion to $f(10)=33$ and the five
+disjoint ray pairs give $d_3(p)\le7+5=12$.  If five four-point link lines
+existed at a pivot, their twenty incidences on ten marked points would force
+the complete-pentagon incidence skeleton.  Every further line contains at
+most two of its pair-labelled points, whereas the link equation
+\(d_3+3d_4+6d_5=45\) and $d_3\le12$ require a three-point link line.
+Six four-point lines are excluded by convexity, since their twenty-four
+incidences give at least eighteen pairwise meetings, more than
+\(\binom62\).  Thus $d_5(p)\le4$ at every pivot, and
+\[
+5b=\sum_pd_5(p)\le44,
+\]
+so $b\le8$.
+
+The restored eleven-point set at a pivot is noncollinear: a carrier line
+through the restored centre would invert to an original line through the
+pivot, while one avoiding it would invert to a generalized circle through
+the pivot; either would contain all original points.  Thus restoration of
+the inversion centre and Melchior give
+\begin{equation}\label{eq:n11-K4-point}
+3\ell_3(p)+\sum_{s\ge4}s\ell_s(p)\le10+\sigma_p.
+\end{equation}
+Here the block equations are
+\[
+N_3=17+2b,\quad N_4=37-3b,\quad
+\sum_p\sigma_p=18+b.
+\]
+Summing \eqref{eq:n11-K4-point} gives \eqref{eq:n11-K4-cut}.  Since
+$b\le8$, it gives $L_5=0$ and $L_4\le1$.
+
+If $L_4=1$, let $\kappa_p$ be the local slack in
+\eqref{eq:n11-K4-point}; then $\sum\kappa_p=b-5$.  The congruence
+$d_5\equiv1-\ell_4-\kappa\pmod3$ now excludes $b=5,6$ as follows.
+
+For $b=5$, every slack vanishes.  Points on the four-line have
+$d_5\in\{0,3\}$, and points off it have $d_5\in\{1,4\}$.  If $a$ counts
+off-line degree-four points and $c$ on-line degree-three points, then
+\[
+ 7+3a+3c=25,\qquad a+c=6,\qquad a\ge2.
+\]
+Consequently
+\[
+ \sum_p\binom{d_5(p)}2=6a+3c=18+3a\ge24
+ >20=2\binom52,
+\]
+contrary to the two-point intersection bound for five-blocks.
+
+For $b=6$, exactly one pivot has slack one.  If it lies on the four-line,
+its five-degree is two; with the same notation,
+\[
+ a+c=7,\qquad c\le3,\qquad
+ \sum_p\binom{d_5(p)}2=1+6a+3c=22+3a>30.
+\]
+If the exceptional pivot lies off the line, its degree is
+$e\in\{0,3\}$, and
+\[
+ 3(a+c)+e=24,\qquad c\le4,\qquad a\ge3,\qquad
+ \sum_p\binom{d_5(p)}2=24+3a>30.
+\]
+Both contradict $2\binom62=30$.
+
+If $L_4=0$, the restored eleven-point set has
+$t_2=d_3+10-3\ell_3$.  Kelly--Moser gives $t_2\ge5$, and summing the
+resulting bounds over the fourteen triple lines gives
+$42\le28+2b$, hence $b\ge7$.  Thus only $b=7,8$ remain.
+\end{proof}
+
+\subsection{The eleven-point five-circle branch}
+
+\begin{lemma}[The low layers]\label{lem:n11-g5-low}
+In the $n=11$ maximum-circle-five branch one has $C\ge39$.  In particular
+$C=36,37,38$ are impossible.
+\end{lemma}
+
+\begin{proof}
+Deleting a point preserves admissibility unless the other ten points are
+collinear or concyclic.  In the first case the outsider pencil gives
+$\binom{10}{2}>40$ circles; in the second it gives
+$1+\binom{10}{2}-5=41$.  Thus deletion is legitimate below $41$.
+ By \cref{cor:pivot-lenchner}, Lenchner gives at least three ordinary proper
+ circles through every pivot, and \cref{prop:n10-value} gives $C\ge36$.
+
+For $C=36$, the global rows force
+\[
+B_3=23,\quad B_5=7,\quad L=12,\quad L_4=L_5=0,
+\quad C_3=11.
+\]
+Equality in the deletion sum gives $c_3(p)=3$ everywhere.  The congruence
+in \eqref{eq:n11-link}, Kelly--Moser, and the ray bound give
+$\ell_3(p)=3$ everywhere, so $3L_3=33$ although $L_3=12$.
+
+For $C=37$, the only aggregate rows are
+\[
+(B_5,B_3,L,K)=(7,23,11,1),\qquad(8,25,11,2).
+\]
+They have respectively one and three pivots with $d_3=9$.  Deletion forces
+$c_3(p)\le C-f(10)=4$ at every pivot.  Hence at a pivot with $d_3=9$,
+\[
+ \ell_3(p)=d_3(p)-c_3(p)\ge9-4=5.
+\]
+The local added-centre row
+$3\ell_3+4\ell_4+5\ell_5\le10+\sigma$ then has left side at least
+$15$, whereas $\sigma(p)\le K\le2$ makes its right side at most $12$.
+
+At $C=38$, put $k=B_5$ and $h=L_4$.  The exact reduction is
+\begin{equation}\label{eq:n11-C38-front}
+B_3=2k+13,\ B_4=38-3k,\ L_3=13-h,\ L_5=0,
+\quad k=5,6,7,8,\quad h=0\text{ unless }k=8.
+\end{equation}
+Every point has $d_3=6$ or $9$.  With
+$\kappa=10+\sigma-3\ell_3-4\ell_4$ one has
+$\sum\kappa=k-1-7h$.  When $h=0$, the least possible $\kappa$ at a high
+point ($d_3=9$) and a low point ($d_3=6$) is
+\[
+\begin{array}{c|ccccc}
+d_5&0&1&2&3&4\\ \hline
+\text{high}&1&0&2&1&0\\
+\text{low}&1&0&2&1&\text{forbidden}.
+\end{array}
+\]
+For $k=5$ there is one high point and ten low points.  The zero-cost
+baseline has degrees $(4,1^{10})$, of sum fourteen.  Supplying the remaining
+eleven incidences costs at least five upgrades $1\to3$ and one upgrade
+$1\to2$, hence at least $5+2=7>k-1=4$.  Thus $k=5$ is impossible.
+At $k=6,7$ equality in the same marginal-cost calculation forces,
+respectively,
+$(d_5)=(4^3,3^5,1^3)$ and $(4^5,3^4,2,1)$; the pair moments give
+\[
+\sum\binom{d_5}2=33>2\binom62=30,
+\qquad
+\sum\binom{d_5}2=43>2\binom72=42.
+\]
+At $k=8$, both $h=0,1$ force degrees $(4^7,3^4)$.  Rebase at a five-circle
+$\Gamma$.  Equations \eqref{eq:K1-local}--\eqref{eq:K1-global} force every
+outsider edge to be double-hosted.  A one-$\Gamma$ block with three
+outsiders is then forbidden by \cref{lem:circle-lift-trace}; hence no
+four- or five-block meets $\Gamma$ once.  The seven other five-blocks and
+all fourteen four-blocks therefore meet $\Gamma$ twice, so
+\[
+H_\Gamma=n_{42}+3n_{52}=14+3\cdot7=35,
+\]
+whereas the equality face of \eqref{eq:K1-global} gives
+$H_\Gamma=30$.  Hence $C=38$ is impossible.
+\end{proof}
+
+\input{sections/02a_c39_router_v2}
+
+\begin{lemma}[K2 routing of the $C=39$ layer]\label{lem:n11-C39}
+There is no $n=11$, maximum-circle-five configuration with $C=39$.
+\end{lemma}
+
+\begin{proof}
+By \cref{lem:n11-C39-front-v2}, all generalized blocks have size at most
+five and \(L\in\{12,15\}\).  The value \(L=15\) is excluded directly by
+the added-centre slack and harmonic cap in
+\cref{lem:n11-C39-L15-v2}.  If \(L=12\),
+\cref{lem:n11-C39-low-L12-v2} supplies a proper five-circle of host load at
+least \(26\).  Choose one of maximum load.  The host matching gives
+\(H\le30\), while \cref{lem:n11-C39-maxhost-v2} excludes every integer in
+that interval.  Hence \(C=39\) is impossible.
+\end{proof}
+
+\begin{lemma}[$C=40$ pivot spectrum]\label{lem:n11-C40-spectrum}
+Suppose that an admissible eleven-point set has forty proper circles and no
+proper circle larger than five.  At every point \(p\),
+\[
+ d_3(p)\in\{6,9,12\},\qquad d_5(p)\le4,\qquad
+ d_3(p)+1\ge2d_5(p).
+\]
+If, in addition, \(L=11\), then
+\begin{equation}\label{eq:C40-pivot-domains}
+\begin{array}{c|c}
+d_3(p)&\text{possible }d_5(p)\\ \hline
+6&1,2,3\\
+9&3,4.
+\end{array}
+\end{equation}
+Consequently, if \(k=B_5\) and \(n_i=\#\{p:d_3(p)=i\}\), then
+\begin{equation}\label{eq:C40-pivot-counts}
+ n_9=2k-9,\qquad n_6=20-2k .
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Write \(c_3(p)\) and \(\ell_3(p)\) for the numbers of three-circles and
+three-lines through \(p\).  The set \(P\setminus\{p\}\) is admissible:
+if its ten points were collinear, the remaining point would determine
+\(\binom{10}{2}=45\) distinct proper three-circles with pairs on that line;
+ten concyclic points would violate the assumed circle cap.  Deleting \(p\)
+destroys only the three-circles through it, so the ten-point theorem gives
+\[
+ c_3(p)\le C(P)-f(10)=40-33=7.
+\]
+The three-lines through \(p\) use disjoint pairs of the other ten points,
+and hence \(\ell_3(p)\le5\).  Thus \(d_3(p)\le12\).
+
+Invert about \(p\), and denote the image of \(P\setminus\{p\}\) by \(Q_p\).
+This set too is admissible.  Indeed, a line or circle containing all of
+\(Q_p\) inverts either to a ten-point line in \(P\), or to a circle
+containing all of \(P\); both alternatives contradict the preceding caps.
+The ordinary image lines are precisely the three-blocks through \(p\).
+Kelly--Moser therefore gives \(d_3(p)\ge5\), while the exact link equation
+\[
+ d_3(p)+3d_4(p)+6d_5(p)=45
+\]
+makes \(d_3(p)\) divisible by three.  Thus \(d_3(p)\ge6\), and this proves
+\(d_3(p)\in\{6,9,12\}\).
+
+By \cref{lem:n11-n12-outer-router}, every original line has at most five
+selected points; together with the circle cap, every image line therefore
+has at most four of the ten points.  Since
+\(4\le2|Q_p|/3\), Langer's incidence inequality applies and yields
+\[
+ 2d_3(p)+3d_4(p)+4d_5(p)\ge44.
+\]
+Subtracting the link equation gives
+\begin{equation}\label{eq:C40-pivot-langer}
+ d_3(p)+1\ge2d_5(p).
+\end{equation}
+
+It remains to prove the absolute cap \(d_5(p)\le4\).  Suppose first that
+five four-point image lines \(L_1,\ldots,L_5\) exist, and let \(r_x\) be
+the number of them through \(x\in Q_p\).  Then
+\[
+ \sum_x r_x=20,\qquad
+ \sum_x\binom{r_x}{2}\le\binom52=10.
+\]
+Convexity gives the reverse inequality, with equality only when
+\(r_x=2\) at all ten points.  Thus the points of \(Q_p\) are exactly the
+ten intersections \(L_i\cap L_j\), labelled by the two-subsets
+\(\{i,j\}\subset[5]\).  A further line distinct from all \(L_i\) contains
+at most two of these points: among three two-subsets of a five-set, either
+two share an index, in which case their joining line is the corresponding
+\(L_i\), or all three would have to be pairwise disjoint, which is
+impossible.  Hence a sixth four-point image line cannot exist.  If there
+are exactly five, the already proved range of \(d_3\) and the link equation
+give
+\[
+ d_4(p)=5-\frac{d_3(p)}3\ge1,
+\]
+but the resulting additional three-point image line is equally impossible.
+Therefore \(d_5(p)\le4\).
+
+Now assume \(L=11\).  There are \(B=C+L=51\) generalized blocks.  Under
+inversion, the circles of \(Q_p\) are in bijection with the blocks of \(P\)
+which avoid \(p\); hence
+\[
+ C(Q_p)=51-\beta(p)\ge f(10)=33,\qquad
+ \beta(p):=d_3(p)+d_4(p)+d_5(p)\le18.
+\]
+Eliminating \(d_4(p)\) by the link equation gives
+\begin{equation}\label{eq:C40-pivot-beta}
+ \beta(p)=15+\frac{2d_3(p)}3-d_5(p).
+\end{equation}
+For \(d_3=12\), this forces \(d_5\ge5\), already excluded.  For
+\(d_3=6\), \eqref{eq:C40-pivot-beta} and
+\eqref{eq:C40-pivot-langer} give \(1\le d_5\le3\); for \(d_3=9\) they give
+\(3\le d_5\le4\).  This is \eqref{eq:C40-pivot-domains}.
+
+Finally, the block equations give \(B_3=13+2k\).  Double-counting incidences
+with three-blocks and using \(n_6+n_9=11\), we obtain
+\[
+ 6n_6+9n_9=3B_3=39+6k,\qquad n_6+n_9=11,
+\]
+whose solution is \eqref{eq:C40-pivot-counts}.
+\end{proof}
+
+\begin{lemma}[$C=40,L=11$ singleton exclusion]
+\label{lem:n11-C40-no-singletons}
+In the $C=40,L=11$ layer, two distinct five-blocks meet in zero or two
+points, never in exactly one.
+\end{lemma}
+
+\begin{proof}
+Suppose two five-blocks meet only at $p$.  After inversion at $p$, their
+four-point link lines are disjoint.  The spectrum
+\eqref{eq:C40-pivot-domains} and $d_5(p)\ge2$ leave
+\[
+ (d_3,d_5)=(6,2),(6,3),(9,3),(9,4).
+\]
+Both degree-three cases are excluded by \cref{lem:n11-K3}(K3.1).  In the
+last case the link equation gives $d_4=4$, and (K3.2) makes the four base
+lines a complete quadrangle, so no pair is disjoint.
+
+It remains to exclude $(d_3,d_5)=(6,2)$, whose link profile is $(6,9,2)$.
+Dualize the two disjoint four-point lines.  The ten dual lines split into
+families of sizes $4,4,2$ through the two resulting fourfold points; after
+removing pairs already meeting there, the four pair classes have sizes
+\[
+ 16,\qquad8,\qquad8,\qquad1.
+\]
+The nine three-point link lines become nine triple vertices.  If none uses
+the sole pair in the last class, all nine require one edge from each
+eight-edge side class.  If one uses that pair, the other eight triples
+exhaust both side classes before the exceptional triple uses two further
+edges on one side.  Both alternatives are impossible.
+\end{proof}
+
+\begin{lemma}[The $C=40,L=11$ defect--harmonic faces]
+\label{lem:n11-C40-smallfaces}
+In the $n=11$, maximum-circle-five layer with $C=40$ and $L=11$, neither
+$B_5=5$ nor $B_5=6$ is possible.
+\end{lemma}
+
+\begin{proof}
+By \cref{lem:n11-C40-no-singletons}, two five-blocks meet in zero or two
+points.
+For a five-block $E$ put
+\[
+ \delta_E=\sum_{F\ne E}(2-|E\cap F|).
+\]
+Thus every summand is zero or two and
+\[
+ D:=\sum_{\{E,F\}}(2-|E\cap F|)
+   =2\binom{B_5}{2}-\sum_p\binom{d_5(p)}2
+\]
+is twice the number of disjoint block pairs.
+
+\smallskip
+\noindent\emph{Five blocks.}
+There are ten low points with $d_3=6$ and one high point with $d_3=9$.
+Let $a\in\{0,1\}$ indicate whether the high point has $d_5=4$, and let
+$n_i$ count low points with $d_5=i$ for $i=1,2$; all other low points have
+degree three.  The incidence and defect sums are
+\[
+ n_2+2n_1=a+8,\qquad D=3-a-n_1.
+\]
+Since $D$ is nonnegative and even, the complete set of faces is
+\[
+\begin{array}{c|c}
+D&(a,n_1,n_2)\\ \hline
+2&(0,1,6),(1,0,9)\\
+0&(0,3,2),(1,2,5).
+\end{array}
+\]
+If $c_E,d_E$ count in $E$ the points of degrees two and one and $a_E$
+indicates the degree-four high point, then the row sum gives
+\begin{equation}\label{eq:C40-five-row-defect}
+ \delta_E=c_E+2d_E-a_E-2.
+\end{equation}
+
+On the face $(a,n_1,n_2)=(1,0,9)$, the unique disjoint pair $F,G$
+satisfies $c_E-a_E=4$ at both ends.  A block containing the high point has
+$c_E-a_E\le3$, so the high point lies outside $F\cup G$.  Each of the two
+disjoint blocks would then need four degree-two points and the unique
+degree-three point, impossible.
+
+On the other $D=2$ face the degrees are $(3^4,2^6,1)$.  If $U$ is the
+degree-one point and $F,G$ the disjoint pair, \eqref{eq:C40-five-row-defect}
+forces, after exchanging $F,G$,
+\[
+ F:\ U,\ 2^2,\ 3^2,\qquad G:\ 2^4,\ 3.
+\]
+The fourth degree-three point $q$ lies outside $F\cup G$ and hence belongs
+to all three remaining blocks $A,B,C$; their other pairwise intersections
+are the three degree-three points in $F\cup G$.  Invert at $q$.  The images
+of $A,B,C$ are three four-lines, each split $2+2$ across the partition
+$F\sqcup G$.  If $q$ were low, the seven residual triple lines would each
+use two cross-pairs, but the three four-lines have already used twelve of
+the $25$ cross-pairs, leaving only thirteen instead of fourteen.  Thus $q$
+is the high point.
+
+Rebase now at $\Gamma=F$.  All its points are low, and
+\eqref{eq:C40-five-row-defect} gives
+\[
+ \sum_{p\in F}d_5(p)=11,\qquad
+ \sum_{p\in F}d_4(p)=5\cdot13-2\cdot11=43.
+\]
+No four-block is disjoint from $F$, since four points of $G\cup\{q\}$
+contain a triple of $G$.  Hence, if $n_{22},n_{13}$ count four-blocks
+meeting $F$ in two and one points,
+\[
+ n_{22}+n_{13}=23,\qquad2n_{22}+n_{13}=43,
+ \quad\text{so}\quad(n_{22},n_{13})=(20,3).
+\]
+The ten edges within $G$ receive seventeen hosts from the
+$2F+2G$ four-blocks and three from $A,B,C$, so every such edge is
+double-hosted.  The five $qG$ edges receive nine hosts; four are
+ double-hosted.  Each of the three $q+F+2G$ four-blocks therefore contains
+ a double edge of $G$ and an adjacent double $qG$ edge.  Both host matchings
+ omit the colour of the page: a host chord through that point would repeat
+ the triple already owned by the page.  This contradicts the
+ golden-separation clause \cref{lem:five-conic-rigidity}(K2.4).
+
+It remains to dispose of the two $D=0$ faces simultaneously.  Choose a
+five-block $\Gamma$ avoiding the high point.  Every point on $\Gamma$ is
+low, every other five-block meets it twice, and
+\[
+ \sum_{p\in\Gamma}d_5(p)=13,\qquad
+ \sum_{p\in\Gamma}d_4(p)=39.
+\]
+Let $t$ count four-blocks disjoint from $\Gamma$, and let $n_{22},n_{13}$
+count the other four-block types.  Triple ownership gives
+\begin{align}
+ n_{22}&=16+t,&n_{13}&=7-2t,\notag\\
+ H&=n_{22}+3\cdot4=28+t,&
+ n_{12}&=4t-2,\qquad n_{03}=9-2t.\label{eq:C40-five-routing}
+\end{align}
+Here $H$ is the host load on the fifteen outsider edges, and $n_{12},n_{03}$
+count triple blocks of the indicated types.  Host matching gives $H\le30$,
+while $n_{12}\ge0$, so $t=1$ or $2$.  The graph of double-hosted outsider
+edges is then $K_6$ minus one edge, with sixteen triangles, or $K_6$, with
+twenty.  By \cref{lem:five-conic-rigidity}(K2.1), every such triangle is
+owned either by one of the four $2\Gamma+3X$ five-blocks or by a block
+disjoint from $\Gamma$.  Their total triangle capacity is only
+\[
+ 4+(n_{03}+4t)=13+2t,
+\]
+namely fifteen or seventeen.  Both faces are impossible.
+
+\smallskip
+\noindent\emph{Six blocks.}
+There are eight low and three high points.  Let $a$ count high points with
+$d_5=4$, and again let $n_i$ count low points of degree $i$.  Then
+\[
+ n_2+2n_1=a+3,\qquad D=3-a-n_1,
+\]
+so the complete face list is
+\[
+\begin{array}{c|c}
+D&(a,n_1,n_2)\\ \hline
+2&(0,1,1),(1,0,4)\\
+0&(1,2,0),(2,1,3),(3,0,6).
+\end{array}
+\]
+If $h_E,c_E,d_E$ count in $E$ the points of degrees four, two, and one,
+respectively, then
+\begin{equation}\label{eq:C40-six-row-defect}
+ \delta_E=c_E+2d_E-h_E.
+\end{equation}
+For $(0,1,1)$ the two ends of the disjoint pair require total defect four,
+but all degree-two and degree-one points have total weight only three in
+\eqref{eq:C40-six-row-defect}.  For $(1,2,0)$, zero defect would give
+$2d_E=h_E$ in every block; with only one high point this forces
+$d_E=h_E=0$, so no block could contain either degree-one point.
+
+Consider $(1,0,4)$.  Its degrees are $(4,3^6,2^4)$.  Equality at the
+disjoint pair $F,G$ places the high point $h$ outside their union, all four
+degree-two points inside it, and two in each block.  The other four
+five-blocks are precisely the blocks through $h$.  After inversion at $h$
+they are four lines in complete-quadrangle position, with six pair-points
+$v_{ij}$ of degree three and four private points $u_i$ of degree two;
+$F,G$ partition these ten points.  Colour $ij$ and $i$ by $F$ when
+$v_{ij}$ and $u_i$ lie in $F$.  The equality
+\[
+ \deg_F(i)+\mathbf1_{\{u_i\in F\}}=2
+\]
+and $|F|=5$ show that the $F$-edges form a Hamilton path and its two private
+points are the endpoints; the $G$-data are complementary.  If $ij$ is the
+endpoint pair and $kl$ the internal pair of this path, then the residual
+triples $S_{ij}=\{u_i,u_j,v_{kl}\}$ and
+$S_{kl}=\{u_k,u_l,v_{ij}\}$ lie in $F$ and $G$.  The triangle-plus-pendant
+conclusion of \cref{lem:n11-K3}(K3.2) selects at least one of the two
+complementary indices.  That triple would then belong both to $F$ or $G$
+and to a distinct four-block through $h$, violating triple ownership.
+
+For $(2,1,3)$ the degrees are $(4^2,3^5,2^3,1)$.  Let the high points be
+$h_1,h_2$ and the degree-one point be $U$.  Equation
+\eqref{eq:C40-six-row-defect} forces the block $Z$ through $U$ to contain
+both high points and no degree-two point.  The cap
+\cref{lem:n11-K3}(K3.3), followed by the incidence and pair rows, forces
+one further common block $W$ and four side blocks.  Relabeling their
+supports gives
+\begin{equation}
+\begin{array}{c|l}
+Z&h_1,h_2,U,m,n\\
+W&h_1,h_2,r,\ell_1,\ell_2\\
+A_1&h_1,m,r,\ell_3,s\\
+A_2&h_1,n,\ell_1,s,t\\
+B_1&h_2,n,r,\ell_3,t\\
+B_2&h_2,m,\ell_2,s,t.
+\end{array}\label{eq:C40-harmonic-skeleton}
+\end{equation}
+For clarity, the support is forced without a catalogue: $Z$ has the two
+high points; among the other five blocks their remaining six high
+incidences split as one double and four single incidences.  Pair ownership
+then places the three degree-two incidences and successively the five
+degree-three incidences, yielding the displayed crossed pattern.
+
+Invert first at $h_1$ and then at $h_2$.  In either link, K3.2 gives the
+unique real triangle-plus-pendant orientation.  On the common block $W$,
+the first orientation says that $h_2$ is the harmonic conjugate of $r$
+with respect to the unordered pair $\{\ell_1,\ell_2\}$; the second says the
+same of $h_1$.  A harmonic conjugate is unique, so $h_1=h_2$, a
+contradiction.
+
+Finally, on $(3,0,6)$ the degrees are $(4^3,3^2,2^6)$.  Zero row defect and
+K3.3 imply that every block contains exactly two high, two degree-two, and
+one degree-three point.  Calling the highs $h_1,h_2,h_3$, each high pair
+labels two blocks:
+\[
+ X_0,X_1\supset h_1h_2,\qquad
+ Y_0,Y_1\supset h_1h_3,\qquad
+ Z_0,Z_1\supset h_2h_3.
+\]
+The two degree-three points choose, after relabeling, the triples
+$X_0Y_0Z_0$ and $X_1Y_1Z_1$; the six opposite-index block pairs own the six
+degree-two points.  Invert at $h_1$ with bases $X_0,X_1,Y_0,Y_1$.  The two
+complementary residual triples satisfy
+\[
+ S_{X_0Y_0}\subset Z_1,\qquad S_{X_1Y_1}\subset Z_0.
+\]
+The complement of the triangle-plus-pendant graph in K3.2 is a pair of
+adjacent edges, so it cannot omit both complementary indices.  One of
+these two triples is therefore also owned by a four-block through $h_1$,
+again contradicting triple ownership.  All nine faces are excluded.
+\end{proof}
+
+\begin{lemma}[Seven five-blocks]\label{lem:n11-seven-five}
+In the \(n=11\), maximum-circle-five layer with \(C=40\) and \(L=14\),
+the row \(B_5=7\) is impossible.
+\end{lemma}
+
+\begin{proof}
+Let \(F_1,\ldots,F_7\) be the five-blocks and put \(d(p)=d_5(p)\).  Since
+two distinct maximal blocks meet in at most two points,
+\[
+ \sum_p d(p)=35,\qquad
+ I:=\sum_p\binom{d(p)}2
+   =\sum_{i<j}|F_i\cap F_j|\le42.
+\]
+With \(x_p=d(p)-3\), these identities become
+\begin{equation}\label{eq:seven5-moment}
+ \sum_p x_p=2,\qquad I=38+\frac12\sum_p x_p^2,
+ \qquad \sum_p x_p^2\le8.
+\end{equation}
+By \cref{lem:n11-C40-spectrum}, \(0\le d(p)\le4\); degree zero alone would
+contribute nine to the last sum, so \(1\le d(p)\le4\).  If \(a,b,c,e\)
+count the points of degrees \(4,3,2,1\), respectively, then
+\[
+ a-c-2e=2,\qquad c+3e\le3.
+\]
+Thus either \(e=0\) and \(c=0,1,2,3\), or \(e=1,c=0\).  This gives exactly
+\begin{equation}\label{eq:seven5-profiles-lemma}
+\begin{array}{c|c|c}
+ & (d(p):p\in P)&D:=42-I\\ \hline
+A&4^2\,3^9&3\\
+B&4^3\,3^7\,2&2\\
+C&4^4\,3^5\,2^2&1\\
+D&4^5\,3^3\,2^3&0\\
+E&4^4\,3^6\,1&0.
+\end{array}
+\end{equation}
+This is an algebraic exhaustion, not a search over supports.
+
+The triple partition gives \(B_3=31\) and \(B_4=16\).  If
+\(u=\#\{p:d_3(p)=12\}\), the spectrum lemma and
+\(\sum_p d_3(p)=3B_3=93\) give
+\begin{equation}\label{eq:seven5-d3-counts}
+ n_6=u+2,\qquad n_9=9-2u,\qquad n_{12}=u,\qquad0\le u\le4.
+\end{equation}
+
+\smallskip
+\noindent\emph{The external-trace obstruction.}
+Fix \(H\) with \(d(H)=4\).  Remove \(H\) from its four five-blocks and,
+on the remaining ten points, let \(r_x\) be the number of the resulting
+four-sets through \(x\).  Then
+\[
+ \sum_xr_x=16,\qquad \sum_x\binom{r_x}{2}\le6.
+\]
+Convexity gives the reverse inequality.  Equality therefore holds: there
+are four private points \(u_i\) and six pair-points \(v_{ij}\), one for
+each pair of the four bases.
+
+Let \(G\) be one of the three five-blocks avoiding \(H\), and suppose that
+it contains \(k\) pair-points.  It contains \(5-k\) private points, and its
+total intersection with the four bases is \(5+k\).  Each base meets \(G\)
+at most twice, while only four private points exist; hence
+\(1\le k\le3\).  Let \(U\subset[4]\) index the private points in \(G\), and
+let \(E_G\subset\binom{[4]}2\) index its pair-points.  Some
+\(kl\in E_G\) has complementary pair \(\{i,j\}\subset U\).  Indeed, this
+is immediate for \(k=1\).  For \(k=2\), otherwise the two edges of \(E_G\)
+would be a matching on the three indices in \(U\); for \(k=3\), otherwise
+three edges would have to use the total residual capacity two of the two
+indices in \(U\).  Consequently
+\begin{equation}\label{eq:seven5-external-R}
+ R_{ij}:=\{u_i,u_j,v_{kl}\}\subset G,\qquad\{i,j,k,l\}=[4].
+\end{equation}
+The three external blocks give three distinct \(R_{ij}\), since two
+maximal blocks cannot share a triple.
+
+If \(H\) had \((d_3,d_5)=(9,4)\), then
+\cref{lem:n11-K3}(K3.2) would select four of the six \(R_{ij}\), in the
+triangle-plus-pendant pattern, as traces of four-blocks through \(H\).
+A four-subset and a subset of at least three among six candidates intersect.
+The corresponding triple would belong both to such a four-block and to an
+external five-block, contrary to triple ownership.  Thus no point has type
+\((9,4)\).  Since \eqref{eq:C40-pivot-langer} forbids \((6,4)\), every
+degree-four point has type \((12,4)\), and there are at most four of them.
+
+We shall also use the following two immediate carrier facts.  A degree-four
+point cannot carry a singleton intersection: its four bases form the
+complete quadrangle just obtained, so every two share a second point.
+A degree-three point carries at most one singleton, since two singleton
+pairs among its three bases would make their three four-point traces occupy
+at least \(4+4+4-1=11\) of the ten link points.  Finally,
+\cref{lem:n11-K3}(K3.1) says that a degree-three singleton carrier cannot
+have \(d_3=6\) or \(9\).  Hence
+\begin{equation}\label{eq:seven5-singleton-carrier}
+ d_5(p)=3\text{ and \(p\) carries a singleton}\quad\Longrightarrow\quad
+ d_3(p)=12.
+\end{equation}
+
+\smallskip
+\noindent\emph{Three immediate profiles.}
+A disjoint pair is impossible in profile \(A\).  Indeed, if \(a_F\) counts
+degree-four points on \(F\), its row defect is
+\[
+ \delta_F:=\sum_{G\ne F}(2-|F\cap G|)=2-a_F.
+\]
+The two ends of a disjoint pair would both have \(a_F=0\), although their
+ten-point union cannot omit both degree-four points.  Thus \(D=3\) consists
+of three singleton pairs.  By \eqref{eq:seven5-singleton-carrier} their
+three distinct carriers have \(d_3=12\); together with the two degree-four
+points this contradicts \(u\le4\).
+
+In profile \(C\), the unique defect is one singleton.  Its carrier cannot
+have degree four, and by \eqref{eq:seven5-singleton-carrier} it cannot have
+degree three, for the four degree-four points already exhaust \(u\le4\).
+Call the carrier \(q\), and call the other degree-two point \(r\).  If
+\(a_F\) counts the degree-four points of \(F\), the row identity is
+\[
+ a_F=2+\mathbf1_{\{r\in F\}}.
+\]
+The two blocks through \(r\) therefore contain \(r\) and three of the four
+degree-four points; they share at least three points, a contradiction.
+Profile \(D\) is still shorter: its five degree-four points would all have
+\(d_3=12\), again contradicting \(u\le4\).
+
+\smallskip
+\noindent\emph{The path residue \(B\).}
+Here the row defect is
+\(\delta_F=2-a_F+c_F\), where \(c_F\) records the unique degree-two point.
+The same ten-point-union argument excludes a disjoint pair.  The two units
+of defect are therefore singleton pairs.  At most one is carried by the
+degree-two point; \eqref{eq:seven5-singleton-carrier} and the three
+degree-four points force equality in \eqref{eq:seven5-d3-counts}:
+\[
+ u=4,
+\]
+with three points of type \((12,4)\), one singleton carrier of type
+\((12,3)\), and the degree-two point carrying the other singleton.
+
+Label the seven blocks by a set \(V\).  Let \(T_i\) be the three-element
+complement in \(V\) of the support of the \(i\)-th \((12,4)\) point, and
+let \(E,Q\in\binom V2\) be the two singleton pairs, carried respectively
+by the degree-three and degree-two points.  Pair multiplicity and the row
+defect give, if \(t_v=\#\{i:v\in T_i\}\),
+\begin{equation}\label{eq:seven5-path-row}
+ t_v=1+\deg_{E\cup Q}(v)-\mathbf1_{\{v\in Q\}}.
+\end{equation}
+Thus precisely the two ends of \(E\) have \(T\)-degree two and all other
+labels have degree one.  Moreover \(|T_i\cap T_j|\le1\): at a degree-four
+pivot the six complete-quadrangle pair-points are distinct, so two
+complement triples cannot reuse a pair of block labels.  The three linear
+triples consequently form a path;
+after relabelling,
+\[
+ T_1=\{a,x_1,x_2\},\qquad
+ T_2=\{a,b,y\},\qquad
+ T_3=\{b,z_1,z_2\},\qquad E=\{a,b\}.
+\]
+Because \(Q\) is itself a singleton, it meets every \(T_i\).
+The two-point transversals of this path, apart from \(E\), allow us to take
+\(Q=\{a,z_1\}\).
+
+Writing \(w\) for the third block through the carrier of \(E\), pair
+multiplicity leaves, up to the path reflections, \(w=x_1,y,z_2\).
+The choice \(w=y\) forces both \(ax_1z_2,ax_2z_2\) and leaves the pair
+\(by\) uncovered; the choice \(w=z_2\) forces
+\(az_2x_1,yz_2x_2\) and then reuses \(x_2y\).  Hence \(w=x_1\), and all
+positive residual pair degrees force the six supports
+\begin{equation}\label{eq:seven5-path-six}
+ ayz_2,\quad ax_2z_2,\quad bx_1z_2,\quad
+ x_1yz_1,\quad byx_2,\quad bx_2z_1.
+\end{equation}
+At the middle pivot the four forbidden \(S\)-indices are
+\[
+ x_1x_2,\quad x_1z_1,\quad x_2z_2,\quad z_1z_2,
+\]
+a four-cycle; the only safe indices are the matching
+\(\{x_1z_2,x_2z_1\}\).  A \((12,4)\) pivot has three further local
+three-lines, each of type \(T\) or \(S\), and at most one is of type \(T\).
+With no \(T\), three safe \(S\)'s are required, but only two exist.  With
+one \(T\), the other two safe \(S\)'s must meet its complementary vertex,
+whereas the safe matching has degree one at every vertex.  Profile \(B\)
+is impossible.
+
+\smallskip
+\noindent\emph{The degree-one residue \(E\).}
+Let \(q\) be the degree-one point, \(E\) its five-block, and
+\(D_1,\ldots,D_4\) the four points of type \((12,4)\).  Zero defect gives
+\[
+ E=\{q,D_1,D_2,D_3,D_4\}.
+\]
+Index the other six blocks by the edges of \(K_4\).  The residual pair
+multigraph on these six labels has multiplicity two on the three pairs of
+opposite edges and multiplicity one on the twelve adjacent pairs.  Its six
+degree-three supports each contain exactly one opposite pair.  Grouping
+the labels into the three opposite pairs \(A,B,C\), all four cross-edges
+between any two groups must be assigned in one direction: assignments in
+both directions would repeat one cross-edge and omit another.  Since every
+group anchors two triples, these directions form a directed three-cycle.
+Up to reversal and relabelling, the six supports are therefore
+\begin{equation}\label{eq:seven5-directed-six}
+\begin{split}
+&\{12,34,13\},\ \{12,34,24\},\
+  \{13,24,14\},\ \{13,24,23\},\\
+&\{14,23,12\},\ \{14,23,34\}.
+\end{split}
+\end{equation}
+This derived orientation has two consequences visible directly in
+\eqref{eq:seven5-directed-six}: at each \(D_i\) the forbidden \(S\)-indices
+form the triangle on the three bases other than \(E\), and the complements
+of the six incidence triples cover all fifteen pairs of the six
+degree-three points.
+
+Since \(d_3(D_i)=12\) and \(d_5(D_i)=4\), the link equation gives
+\(d_4(D_i)=3\).  Avoiding the forbidden triangle forces its three
+four-blocks to be either the \(S\)-star centred at \(E\), or one \(T\) and
+two edges of that star.  Every such \(T/S\) completion contains exactly one
+of the four points \(D_i\); hence it is counted at only one pivot.  Thus each
+\(D_i\) supplies three distinct four-blocks, at least two through \(q\).
+These are twelve distinct blocks
+and exhaust all four-block incidences with the \(D_i\).  Globally
+\(B_4=16\), while the link equation gives \(d_4(q)\le11\).  Hence among the
+four remaining four-blocks at least one avoids both \(q\) and all \(D_i\);
+it consists of four of the six degree-three points.  Its complementary pair
+is contained in the complement of one incidence triple by the covering
+property above.  Equivalently, one of the five-blocks in
+\eqref{eq:seven5-directed-six} shares three points with this four-block,
+contrary to triple ownership.  Profile \(E\), and hence every row in
+\eqref{eq:seven5-profiles-lemma}, is impossible.
+\end{proof}
+
+\begin{lemma}[The $C=40$ endpoint dispatch]\label{lem:n11-C40}
+There is no $n=11$, maximum-circle-five configuration with $C=40$.
+\end{lemma}
+
+\begin{proof}
+Put $k=B_5$ and $B=C+L=40+L$.  The block and triple partitions give
+\[
+ N_3+N_4+k=B,\qquad N_3+4N_4+10k=165,
+\]
+and hence
+\begin{equation}\label{eq:C40-global-router}
+ 3N_4+9k=125-L,\qquad L\equiv2\pmod3.
+\end{equation}
+Moreover
+\[
+ \sum_p\beta(p)=3N_3+4N_4+5k
+               =\frac{8L+485}{3}-k,
+\]
+where $\beta(p)$ is the number of blocks through $p$.  Inversion at $p$
+turns precisely the $B-\beta(p)$ blocks avoiding $p$ into proper circles
+of the admissible ten-point image.  Thus
+$B-\beta(p)\ge f(10)=33$, so $\beta(p)\le L+7$.  Summing over the eleven
+pivots yields
+\begin{equation}\label{eq:C40-inversion-router}
+ 25L+3k\ge254.
+\end{equation}
+By \cref{lem:n11-C40-spectrum}, $5k=\sum_pd_5(p)\le44$, hence $k\le8$;
+therefore \eqref{eq:C40-inversion-router} and
+\eqref{eq:C40-global-router} give $L\ge11$.
+
+On the other hand, the line-pair partition and Melchior give
+\[
+ 3L+4L_4+9L_5\le52,
+\]
+so $L\le17$.  The congruence in \eqref{eq:C40-global-router} leaves
+$L\in\{11,14,17\}$.  If $L=17$, the last inequality forces
+$L_4=L_5=0$, hence $L_3=17$, contrary to the eleven-point ceiling
+$L_3\le16$ in \cref{lem:real-nine-link}.  Consequently
+\[
+ L\in\{11,14\}.
+\]
+For $L=11$ the four mutually exclusive rows are
+\begin{equation}
+\begin{array}{c|c|c}
+B_5&(n_6,n_9,n_{12})&(N_3,N_4,N_5)\\ \hline
+5&(10,1,0)&(23,23,5)\\
+6&(8,3,0)&(25,20,6)\\
+7&(6,5,0)&(27,17,7)\\
+8&(4,7,0)&(29,14,8).
+\end{array}\label{eq:C40-L11}
+\end{equation}
+The cases $B_5=5,6$ are excluded by
+\cref{lem:n11-C40-smallfaces}.  For $B_5=7$, let $a$ be the number of
+points of type $(d_3,d_5)=(9,4)$, and put
+\[
+ b=\sum_{p:d_3(p)=6}(3-d_5(p)).
+\]
+The domains in \cref{lem:n11-C40-spectrum} and $\sum_pd_5(p)=35$ give
+$a-b=2$.  By K3.3, double-counting harmonic certificates over the seven
+five-blocks gives $4a\le14$.  Hence $(a,b)=(2,0)$ or $(3,1)$, with degree
+multisets
+\[
+(4^2,3^9)\quad\text{or}\quad(4^3,3^7,2).
+\]
+Put
+\[
+ D=2\binom72-\sum_p\binom{d_5(p)}2.
+\]
+The two displayed profiles give respectively $D=3$ and $D=2$.
+By \cref{lem:n11-C40-no-singletons}, the first profile cannot realize its
+odd defect.
+
+In the second profile, the same lemma says that the defect must be one
+disjoint pair $F,G$.  If $a_E$ and $c_E$ count the degree-four and
+degree-two points in a block $E$, its row defect is
+\[
+ \delta_E=\sum_{J\ne E}(2-|E\cap J|)=2-a_E+c_E.
+\]
+The disjoint pair exhausts the total defect, so
+$\delta_F=\delta_G=2$ and $a_F=c_F$, $a_G=c_G$.  Since $F,G$ are disjoint
+and there is only one degree-two point, their union contains at most one of
+the three degree-four points.  But $|F\cup G|=10$ misses only one of the
+eleven points and therefore contains at least two, a contradiction.
+
+For $B_5=8$, the profile is
+\[
+7(9,4,4)+4(6,7,3).
+\]
+Thus
+\[
+ S_{55}=7\binom42+4\binom32=54,
+ \qquad I_\omega=7\cdot4=28.
+\]
+Since $58-N_4-3B_5=20$, \eqref{eq:K1-global} becomes
+\[
+ \sum_\Delta H_\Delta=240+\sum_\Delta q_\Delta.
+\]
+The bounds $H_\Delta\le30$ and $q_\Delta\ge0$ force
+$H_\Delta=30$ and $q_\Delta=0$ for every five-block $\Delta$.  Choose a
+proper five-circle $\Gamma$.  By
+\cref{lem:five-conic-rigidity}(K2.1), the all-double triangle obstruction gives
+$n_{41}=n_{51}=0$, while $q_\Gamma=0$ gives $n_{40}=n_{50}=0$.  Hence
+$n_{42}=14,n_{52}=7$ and
+$H_\Gamma=14+3\cdot7=35$, contradiction.  This closes all of
+\eqref{eq:C40-L11}.
+
+Now let $L=14$.  By \cref{lem:n11-K4}, only $B_5=7,8$ remain.
+The seven-block row is excluded by \cref{lem:n11-seven-five}.  For
+$B_5=8$, write $u=n_{12}$.  The pivot equations give
+\[
+ (n_6,n_9,n_{12})=(u,11-2u,u).
+\]
+Points with $d_3=6$ have $d_5\le3$, and all points have $d_5\le4$.
+If $a$ counts the points of type $(d_3,d_5)=(9,4)$, the degree sum
+$\sum d_5=40$ gives $a\ge7-u$.  The harmonic cap K3.3 gives
+$4a\le2B_5=16$, so $u\ge3$; the degree maximum $44-u\ge40$ gives
+$u\le4$.  Equality in these bounds forces in both cases the common degree
+row
+\[
+ (d_5(p))_{p\in P}=(4^7,3^4),
+\]
+and every degree-three point has $d_3\in\{6,9\}$.
+
+ The total intersection defect is
+ $2\binom82-(7\binom42+4\binom32)=2$.  A singleton pair is impossible.
+ Indeed, if its carrier has degree four, delete that carrier from its four
+ incident bases and let $r_x$ be the resulting multiplicity of each of the
+ other ten points.  The sixteen incidences give
+ \[
+  \binom42\ge\sum_x\binom{r_x}{2}
+  \ge\sum_x(r_x-1)_+\ge16-10=6.
+ \]
+ Thus equality holds throughout and every pair of those four bases has a
+ second intersection point, contradicting singleton intersection.  A
+ degree-three carrier is excluded by K3.1.  If instead the defect were one
+ disjoint pair $F,G$, and $a_E$
+counted degree-four points in $E$, then
+\[
+ \delta_E=\sum_{J\ne E}(2-|E\cap J|)=4-a_E.
+\]
+The disjoint pair exhausts the defect, so $a_F=a_G=2$.  Their ten-point
+union would contain only four of the seven degree-four points although it
+can omit only one.  This contradiction excludes $B_5=8$ and closes the
+$L=14$ layer.
+\end{proof}
+
+\subsection{The eleven-point six-circle branch}
+
+\begin{lemma}\label{lem:n11-gamma6}
+If eleven admissible points have a largest proper circle of size six, then
+$C\ge41$.
+\end{lemma}
+
+\begin{proof}
+Fix the six-circle $\Gamma$ and let $X$ be the five outsiders.  The rich-line
+bound excludes lines of size at least six.  For a block type $(g,x)$ write
+$c_{gx},\ell_{gx}$, and let $N_s$ count blocks with $s$ outsiders.  Apart
+from $\Gamma$, the full type universe is
+\[
+ \mathcal U=\{(0,3),(0,4),(0,5),(1,2),(1,3),(1,4),(1,5),
+                 (2,1),(2,2),(2,3),(2,4)\},
+\]
+with one circle and one line variable for each type (the already excluded
+six-line variables may harmlessly be retained as zeros).  Triple ownership
+gives the exact rows
+\begin{align}
+c_{60}&=1,\notag\\
+\sum_{\mathcal U}\binom{x}{3}(c_{gx}+\ell_{gx})&=10,\notag\\
+\sum_{\mathcal U}g\binom{x}{2}(c_{gx}+\ell_{gx})&=60,\label{eq:n11-g6-triple-rows}\\
+\sum_{\mathcal U}\binom g2x(c_{gx}+\ell_{gx})&=75.\notag
+\end{align}
+Each outsider triple has a unique owner block, whose footprint on $X$ has
+ size three, four, or five.  The collections of three-subsets contained in
+ distinct footprints are disjoint, by triple ownership.  Two four-subsets
+ of the five-set $X$ share a triple, so at most one four-footprint occurs;
+ a five-footprint contains all ten triples and excludes every other
+ footprint.  Consequently the ten outsider triples have exactly one of the
+ three profiles
+\[
+(N_3,N_4,N_5)=(10,0,0),(6,1,0),(0,0,1),
+\]
+ called A, B, C.  Put
+\[
+ W=c_{22}+3c_{23}+6c_{24}
+   =\sum_{e\in\binom X2}q_e.
+\]
+The nonnegative slacks used below are, explicitly,
+\begin{align}
+\sigma_6={}&30-(2\ell_{12}+3\ell_{13}+4\ell_{14}+5\ell_{15}
+ +2\ell_{21}+4\ell_{22}+6\ell_{23}+8\ell_{24}),\notag\\
+\sigma_{10}={}&3c_{03}+2c_{12}+c_{21}-15,\notag\\
+\sigma_{17}={}&52-(3\ell_{03}+7\ell_{04}+12\ell_{05}
+ +3\ell_{12}+7\ell_{13}+12\ell_{14}+18\ell_{15}\notag\\
+&\hspace{38mm}
+ +3\ell_{21}+7\ell_{22}+12\ell_{23}+18\ell_{24}),\label{eq:n11-g6-slacks}\\
+\sigma_{63}={}&28-W,\notag\\
+\sigma_L={}&2-(\ell_{03}+\ell_{13}+\ell_{23}
+ +2\ell_{04}+2\ell_{05}+2\ell_{14}+2\ell_{15}+2\ell_{24}).\notag
+\end{align}
+Here $\sigma_6$ is the unused capacity among the thirty
+$\Gamma$--outsider pairs in line blocks, $\sigma_{10}$ is the summed
+ordinary-block inequality over the outsider group, and $\sigma_{17}$ is
+ the global Melchior slack.  More explicitly, the pivot bridge
+ \cref{cor:pivot-lenchner} supplies at least three proper three-circles
+ through each outsider.
+Summing over the five outsiders counts a $c_{03}$ block three times, a
+$c_{12}$ block twice, and a $c_{21}$ block once.  Hence
+\[
+ 3c_{03}+2c_{12}+c_{21}\ge15,
+\]
+which proves $\sigma_{10}\ge0$.
+
+For $\sigma_L$, consider the outsider footprints of maximal lines which
+contain at least three points of $X$.  Distinct footprints meet in at most
+one point.  On a five-set, a footprint of size four or five therefore
+excludes every other such footprint.  If two three-footprints occur, they
+meet in one point and have union $X$; a third three-footprint would meet one
+of them in at least two points.  Assigning weight one to a three-footprint
+and weight two to a footprint of size at least four gives total weight at
+most two, exactly the inequality $\sigma_L\ge0$ printed above.
+
+Finally U17 on each of the five four-subsets of $X$ gives
+$3W\le5\cdot17$, hence the integral bound $W\le28$ and
+$\sigma_{63}\ge0$.
+
+The triple rows, Melchior rows, and U17 give the following exact
+nonnegative-slack identity:
+\begin{align}
+C-\left(32+\frac9{10}N_3+\frac35N_4\right)
+={}&\frac{\sigma_6}{2}+\sigma_{63}+\sigma_L+c_{12}+2c_{24}\notag\\
+&+\ell_{04}+\ell_{05}+\ell_{12}+\frac32\ell_{13}
++3\ell_{14}+\frac72\ell_{15}+\ell_{24}.\label{eq:n11-g6-F1}
+\end{align}
+In footprint C, where $N_4=0$ and $N_5=1$, there is the second exact
+identity
+\begin{align}
+C-\frac{467}{12}
+={}&\frac{\sigma_6}{8}+\frac{\sigma_{10}}2
++\frac{\sigma_{17}}{12}+2c_{04}+\frac32c_{13}+2c_{14}\notag\\
+&+\frac34\ell_{03}+\frac{19}{12}\ell_{04}
++\frac12\ell_{12}+\frac{35}{24}\ell_{13}
++\frac52\ell_{14}+\frac98\ell_{15}\notag\\
+&+\frac1{12}\ell_{22}+\frac34\ell_{23}
++\frac32\ell_{24}.\label{eq:n11-g6-F2}
+\end{align}
+For a coefficientwise certificate, denote the first and third partition
+rows in \eqref{eq:n11-g6-triple-rows} by $T_0,T_2$.  The complete multiplier
+data are
+\[
+\begin{array}{c|ccc|ccccc}
+&\multicolumn{3}{c|}{\text{inequality slacks}}
+ &c_{60}&T_0&T_2&N_3&N_4\\ \hline
+\mathrm{F1}&\frac12\sigma_6&\sigma_{63}&\sigma_L
+ &1&\frac1{10}&1&\frac9{10}&\frac35
+\end{array}
+\]
+For F2, after imposing the footprint-C row
+$N_4+6(N_5-1)=0$, the multiplier data are
+\[
+\begin{array}{c|ccc|ccccc}
+&\multicolumn{3}{c|}{\text{inequality slacks}}
+ &c_{60}&T_0&T_2&N_4&N_5\\ \hline
+\mathrm{F2}&\frac18\sigma_6&\frac12\sigma_{10}&\frac1{12}\sigma_{17}
+ &1&-\frac12&\frac12&1&6.
+\end{array}
+\]
+Expanding these fixed linear combinations over the displayed universe
+$\mathcal U$ gives exactly the nonnegative residues printed in
+\eqref{eq:n11-g6-F1} and, in footprint C, \eqref{eq:n11-g6-F2}; thus the
+identities are directly
+checkable without a type search.  Therefore A gives $C\ge41$, B gives
+$C\ge38$, and C gives
+$C\ge39$.  At $C=38$ equality in B would give, on writing
+$y=c_{13},q=c_{14},f=\ell_{22},w=\ell_{23}$ and $z=c_{23}$,
+\[
+ 3y+6q+2f+6w=4.
+\]
+The remaining exact rows give
+\[
+\begin{gathered}
+ c_{04}=1-q,\quad c_{03}=4-y-z,\quad \ell_{03}=2-w,\\
+ c_{21}=4+3z,\quad c_{22}=28-3z,\quad
+ \ell_{21}=15-2f-3w.
+\end{gathered}
+\]
+Substitution in \eqref{eq:n11-g6-slacks} yields
+$\sigma_{10}=1-3y\ge0$ and $\sigma_{17}=1-f\ge0$.  Hence
+$y\le1/3$, $f\le1$, and the integer $r=q+w$ satisfies
+\[
+ \frac16\le r=\frac{4-3y-2f}{6}\le\frac23,
+\]
+which is impossible.
+
+It remains to treat $C=39,40$.  In footprint B,
+\eqref{eq:n11-g6-F1}, after substituting
+$\sigma_{63}=28-W$, reads exactly
+\begin{align}
+C+W-66={}&\frac{\sigma_6}{2}+\sigma_L+c_{12}+2c_{24}
+ +\ell_{04}+\ell_{05}+\ell_{12}+\frac32\ell_{13}\notag\\
+&+3\ell_{14}+\frac72\ell_{15}+\ell_{24}.
+\label{eq:n11-g6-B-boundary}
+\end{align}
+The unique four-host clause of \cref{lem:six-conic-events} gives $W\le26$.
+For $C=39$, \eqref{eq:n11-g6-B-boundary} instead requires $W\ge27$.
+For $C=40$, both inequalities are equalities.  Thus $W=26$ and every
+summand on the right of \eqref{eq:n11-g6-B-boundary} vanishes; in particular,
+\[
+ \sigma_6=\ell_{12}=\ell_{13}=\ell_{14}=\ell_{15}=\ell_{24}=0.
+\]
+The definition of $\sigma_6$ now reduces to
+\[
+ 2\ell_{21}+4\ell_{22}+6\ell_{23}=30.
+\]
+Since $\ell_{24}=0$, the left side divided by two is precisely the incidence
+number $J$ of outsiders with original lines carrying a pair of points of
+$\Gamma$.  Hence
+\[
+ J=\ell_{21}+2\ell_{22}+3\ell_{23}=15,
+\]
+contrary to $J\le14$ in \cref{lem:six-conic-events}.
+
+For footprint C at $C=39$, multiplying \eqref{eq:n11-g6-F2} by $24$ gives
+\[
+2=3\sigma_6+12\sigma_{10}+2\sigma_{17}
++12\ell_{12}+27\ell_{15}+2\ell_{22}.
+\]
+All quantities are nonnegative integers, so
+\[
+ \sigma_6=\sigma_{10}=\ell_{12}=\ell_{15}=0,
+ \qquad \sigma_{17}+\ell_{22}=1.
+\]
+There are no three- or four-outsider blocks in footprint C.  Consequently
+the tight $\sigma_6$ row gives
+\[
+ \ell_{21}=15-2\ell_{22},
+\]
+and the definition of the Melchior slack becomes
+\[
+ \sigma_{17}=52-(12\ell_{05}+3\ell_{21}+7\ell_{22})
+              =7-12\ell_{05}-\ell_{22}.
+\]
+Adding $\ell_{22}$ and using $\sigma_{17}+\ell_{22}=1$ yields
+$12\ell_{05}=6$, impossible for an integer block count.
+
+It remains to exclude footprint C at $C=40$.  Here the left side of
+$24\,$\eqref{eq:n11-g6-F2} is $26$.  Its coefficient $27$ excludes an
+$\ell_{15}$ host, so the unique five-outsider host has type
+$c_{15}$, $\ell_{05}$, or $c_{05}$.  Put
+\[
+ a=c_{12},\quad b=c_{21},\quad c=c_{22}=W,
+ \qquad d=\ell_{12},\quad e=\ell_{21},\quad f=\ell_{22}.
+\]
+Only these six inner variables can occur.  The $\Gamma$--outsider line-pair
+capacity, namely $\sigma_6\ge0$, gives
+\begin{equation}
+ d+e+2f\le15.\label{eq:n11-g6-row6}
+\end{equation}
+For each outsider, invert at that point.  The remaining ten points are
+noncollinear: otherwise restoring the pivot would put all eleven original
+points on one generalized block, contrary to the established size cap.
+Thus \cref{thm:kelly-moser} supplies at least five ordinary
+lines.  Summing over the five outsiders counts each generalized three-block
+once for each outsider on it.  Since footprint C has no three-outsider
+block, this gives the second structural row
+\begin{equation}
+ 2a+b+2d+e\ge25.\label{eq:n11-g6-row26}
+\end{equation}
+
+Suppose first that the host is $c_{15}$.  Circle count and the two mixed
+triple rows in \eqref{eq:n11-g6-triple-rows} become
+\begin{equation}
+ a+b+c=38,\qquad a+2c+d+2f=50,
+ \qquad b+2c+e+2f=75.\label{eq:n11-g6-c15-rows}
+\end{equation}
+Substitution in \eqref{eq:n11-g6-row26} and
+\eqref{eq:n11-g6-row6}, respectively, gives
+\[
+ 175-6c-6f\ge25,\qquad 87-3c-2f\le15;
+\]
+equivalently, $c+f\le25$ and $3c+2f\ge72$.  Since
+$3c+2f=c+2(c+f)$, we get $W=c\ge22$.  But this host contains a point of
+$\Gamma$, so \cref{lem:six-conic-events} gives $W\le20$.
+
+If the host is $\ell_{05}$, it already owns all ten outsider pairs in the
+line-pair row, whence $d=f=0$.  The exact rows are
+\[
+ a+b+c=39,\qquad a+2c=60,
+ \qquad b+2c+e=75.
+\]
+Thus $b=c-21$ and
+\[
+ J=e=96-3c=96-3W.
+\]
+The disjoint-host bound $W\le26$ now gives $J\ge18$, contrary to the global
+bound $J\le14$ in \cref{lem:six-conic-events}.
+
+Finally suppose that the host is $c_{05}$.  The three exact rows are
+\begin{equation}
+ a+b+c=38,\qquad a+2c+d+2f=60,
+ \qquad b+2c+e+2f=75.\label{eq:n11-g6-c05-rows}
+\end{equation}
+Substitution in \eqref{eq:n11-g6-row26} and
+\eqref{eq:n11-g6-row6} gives
+\[
+ 195-6c-6f\ge25,\qquad 97-3c-2f\le15,
+\]
+or $c+f\le85/3$ and $3c+2f\ge82$.  Hence
+$c\ge76/3$, and integrality together with the disjoint-host bound forces
+$W=c=26$.  The circle row gives $a+b=12$, while
+$\sigma_{10}\ge0$ (here $c_{03}=0$) says $2a+b\ge15$; hence $a\ge3$.
+The last row of \eqref{eq:n11-g6-c05-rows} now yields
+\[
+ J=e+2f=75-b-2c=11+a\ge14.
+\]
+All five outsiders lie on one fixed proper circle, so the localized clause
+of \cref{lem:six-conic-events} gives $J\le13$, the final contradiction.
+Thus all footprints and both boundary values are excluded.
+\end{proof}
+
+\begin{proposition}\label{prop:n11-value}
+One has $f(11)=41$.
+\end{proposition}
+
+\begin{proof}
+Assume $C\le40$.  By \cref{lem:n11-n12-outer-router}, the largest proper
+circle has size five or six.  The five-circle branch is excluded by
+\cref{lem:n11-g5-low,lem:n11-C39,lem:n11-C40}, and the six-circle branch by
+\cref{lem:n11-gamma6}.  Construction \ref{con:circle-centre} attains $41$.
+\end{proof}
+
+\subsection{Twelve points: the five-circle branch}
+
+We first isolate the scalar spine.  Its role is only to route the proof;
+all geometric equality cases will be discharged explicitly afterwards.
+
+\begin{lemma}[Five-circle spine at twelve points]\label{lem:n12-g5-spine}
+Suppose that $|P|=12$, the largest proper circle has size five, and
+$C\le50$.  Put $B_s=C_s+L_s$ and
+\[
+ \sigma_p=d_3(p)-3-d_5(p)-2d_6(p),\qquad
+ K=\sum_p\sigma_p.
+\]
+Then every block has size $3,4,5$, or $6$, every six-block is a line,
+$B_5\le12$, and
+\begin{align}
+B_3+4B_4+10B_5+20B_6&=220,\label{eq:n12-g5-triples}\\
+12B_4+35B_5+72B_6&=624-K,\label{eq:n12-g5-block}\\
+4L&=256-4C-B_5-4B_6+K,\label{eq:n12-g5-lines}\\
+9B_5&\ge1776-36C+5K+72B_6.\label{eq:n12-g5-added}
+\end{align}
+At every point,
+\begin{equation}\label{eq:n12-g5-local}
+d_3+3d_4+6d_5+10d_6=55,\qquad
+3d_4+7d_5+12d_6=52-\sigma,\qquad d_5\le6.
+\end{equation}
+If $B_6=L_5=0$, write
+\begin{equation}\label{eq:n12-q-definition}
+d_3=7+3j,\quad \epsilon=\ell_4,\quad
+u=5-\ell_3-\ell_4,\quad q=u+2j+2-d_5.
+\end{equation}
+Then $j,u,q\ge0$.  Moreover,
+\begin{equation}\label{eq:n12-d5-caps}
+j=0\Longrightarrow d_5\le4,\qquad
+j=1\Longrightarrow d_5\le5,\qquad
+j\ge2\Longrightarrow d_5\le6.
+\end{equation}
+In addition, the two local types
+\begin{equation}\label{eq:n12-grid-forbidden-types}
+(j,u,\epsilon,q,d_5)=(2,0,0,0,6),\qquad(2,1,0,1,6)
+\end{equation}
+do not occur.
+\end{lemma}
+
+\begin{proof}
+The line cap in \cref{lem:n11-n12-outer-router} leaves only blocks of the
+stated sizes, and a six-block cannot be a proper circle.  Triple ownership
+gives \eqref{eq:n12-g5-triples}.  Summed Melchior after inversion gives
+\[
+ K=3B_3-36-5B_5-12B_6.
+\]
+Eliminating $B_3$ proves \eqref{eq:n12-g5-block}; adding
+$C+L=\sum_sB_s$ proves \eqref{eq:n12-g5-lines}.  Finally, the summed
+added-centre inequality is
+\[
+ 5L_3+12L_4+20L_5+28L_6\le4C-124+C_5.
+\]
+Its left side is at least $5L+23B_6$, while $C_5\le B_5$; substitution of
+\eqref{eq:n12-g5-lines} gives \eqref{eq:n12-g5-added}.
+
+For a five-block $F$, let
+$y_F=\mathbf1_F-\frac5{12}\mathbf1$.  These vectors lie in the
+eleven-dimensional space $\mathbf1^\perp$, and distinct ones satisfy
+\[
+ \langle y_F,y_G\rangle=|F\cap G|-\frac{25}{12}\le-\frac1{12}.
+\]
+A nonzero obtuse family in $\R^{11}$ has at most twelve members, proving
+$B_5\le12$.
+
+The first local equality in \eqref{eq:n12-g5-local} partitions the pairs
+of the other eleven points; eliminating $d_3$ gives the second.  If seven
+five-blocks passed through $p$, deleting $p$ would leave seven four-sets
+on eleven points, pairwise meeting in at most one point.  Their $28$
+incidences have pair moment at least
+\[
+ 6\binom32+5\binom22=23>\binom72,
+\]
+which is impossible.  Hence $d_5\le6$.
+
+Assume now $B_6=L_5=0$.  Kelly--Moser after inversion and the congruence
+in \eqref{eq:n12-g5-local} give $d_3=7+3j$ with $j\ge0$.  The arms of the
+rich lines through $p$ are disjoint, so $u\ge0$.  The added-centre slack is
+\begin{equation}\label{eq:n12-kappa-q}
+ \kappa=3(u+j)-\epsilon-d_5\ge0.
+\end{equation}
+If $j=0$, then $\sigma\ge0$ gives $d_5\le4$.  To prove the middle cap and
+record its two later equality adapters, suppose $d_5=6$ and invert at $p$.
+The six resulting four-lines have multiplicities $m_x$ on the remaining
+eleven selected points.  Pair ownership gives
+\[
+ \sum_xm_x=24,\qquad \sum_x\binom{m_x}{2}\le\binom62=15.
+\]
+Writing $z_x=m_x-2$, we have $\sum z_x=2$ and
+\[
+ \sum_x\binom{m_x}{2}=14+\frac12\sum_xz_x^2\ge15.
+\]
+Thus equality holds: the profile is $(3,3,2^9)$ and every pair of the six
+lines meets at a selected point.  On each four-line,
+$\sum_{x\text{ on the line}}(m_x-1)=5$, so it contains exactly one of the
+two triple points.  The six lines are therefore two three-line pencils,
+and their other nine intersections form a $3\times3$ grid.  Every further
+three-point image line avoids the pencil centres by pair ownership and is
+a grid transversal.  Every image of an original line through $p$ is a
+two-secant through the inversion centre $o$; apart from the possible line
+through the two pencil centres, it is an ordinary grid secant.
+
+If $j=1$, \eqref{eq:n12-g5-local} gives $d_4=3$, hence three grid
+transversals, contrary to \cref{lem:real-grid}.  This proves
+$d_5\le5$.  For the first type in \eqref{eq:n12-grid-forbidden-types}, the
+local equations give $(d_3,d_4,\ell_3)=(13,2,5)$; the two transversals
+normalize the grid, while at least four ordinary grid secants concur at
+$o$.  For the second they give $(13,2,4)$ and at least three such secants.
+Both contradict the final clause of \cref{lem:real-grid}.  The last cap in
+\eqref{eq:n12-d5-caps} is the already proved $d_5\le6$.
+
+It remains to check $q\ge0$.  For $j=0$, the cap settles $u\ge2$, while
+\eqref{eq:n12-kappa-q} gives $d_5\le3u$ for $u\le1$.  For $j=1$, the cap
+settles $u\ge1$, and \eqref{eq:n12-kappa-q} settles $u=0$.  For $j\ge2$,
+$d_5\le6\le u+2j+2$.  This proves every assertion.
+\end{proof}
+
+We shall use once the following parity consequence of the local line
+arrangement.  After inversion and restoration of the centre, dualize the
+twelve-point configuration.  The product of the twelve defining linear
+forms two-colours the faces.  Counting edge--face incidences shows that the
+two colour sums of $|F|-3$ are congruent modulo three.  Consequently the
+total Melchior excess cannot equal one; in the notation above,
+\begin{equation}\label{eq:n12-even-cell}
+ \kappa_p\ne1\qquad\text{for every }p.
+\end{equation}
+
+\begin{lemma}[The nonnegative $q$-front]\label{lem:n12-g5-qfront}
+Assume the hypotheses of \cref{lem:n12-g5-spine}, and in addition
+$B_6=L_5=0$ and $K=B_5=k$.  Put $h=L_4$.  Then
+\begin{equation}\label{eq:n12-q-sums}
+ \sum j=2k-16,\qquad
+ \sum u=3C-132-h,\qquad
+ \sum q=3C-140-k-h.
+\end{equation}
+In particular $k\ge8$ and $k+h\le3C-140$.
+\end{lemma}
+
+\begin{proof}
+Equations \eqref{eq:n12-g5-triples}--\eqref{eq:n12-g5-lines} give
+\[
+ B_3=12+2k,\qquad B_4=52-3k,\qquad L=64-C.
+\]
+Now sum the four definitions in \eqref{eq:n12-q-definition}, using
+$\sum d_3=3B_3$, $\sum d_5=5k$, $\sum\ell_3=3(L-h)$, and
+$\sum\epsilon=4h$.  This gives \eqref{eq:n12-q-sums}.  Its first and last
+members are sums of nonnegative integers.
+\end{proof}
+
+\begin{lemma}[Twelve-point five-circle closure]\label{lem:n12-gamma5}
+If twelve admissible points contain a proper five-circle and no larger
+proper circle, then $C\ge51$.
+\end{lemma}
+
+\begin{proof}
+Suppose $C\le50$.  From \eqref{eq:n12-g5-added} and $B_5\le12$,
+\[
+108\ge1776-36C+5K+72B_6.
+\]
+Thus $C\ge47$.  Moreover \eqref{eq:n12-g5-block} gives
+$B_5\equiv K\pmod {12}$.  At $C=47$ the preceding inequality and
+$1\le B_5\le12$ leave only
+$K=B_6=0,B_5=12$, and \eqref{eq:n12-g5-lines} then gives $L=14$.  For
+$r_p=\sum_{s=3}^6\ell_s(p)$, the pointwise added-centre row gives
+\[
+ r_p\le3+\left\lceil\frac{\sigma_p}{3}\right\rceil,\qquad
+ \sum_pr_p\le36+K.
+\]
+But $\sum_pr_p\ge3L=42$, a contradiction.
+
+At $C=48$, the inequality is
+$48+5K+72B_6\le9B_5\le108$.  Hence $B_6=0$, $K\le12$, and the congruence
+$B_5\equiv K\pmod {12}$ gives the complete list
+\[
+ (K,B_5,B_6,L)=(0,12,0,13),\qquad(12,12,0,16).
+\]
+In the first row $\sigma=0$ pointwise, so
+\eqref{eq:n12-g5-local} modulo three and $d_5\le6$ give
+$d_5\in\{1,4\}$.  Thus $\sum d_5\le48<60=5B_5$.  In the second row the
+total added-centre slack is
+\[
+ Q=\sum_p\kappa_p=-7L_4-16L_5.
+\]
+Hence $L_4=L_5=0$, and \cref{lem:n12-g5-qfront} gives
+$\sum q=144-140-12=-8$, impossible.
+
+At $C=49$, the corresponding inequality is
+$12+5K+72B_6\le9B_5\le108$, so $B_6\le1$.  If $B_6=1$, the congruence
+leaves only $K=0,B_5=12$; if $B_6=0$, it leaves that endpoint and
+$K=B_5=k$, $3\le k\le12$.  The two $K=0,B_5=12$ endpoints are
+excluded by the same congruence and degree sum.  Every remaining endpoint
+has
+\[
+ B_6=0,\qquad K=B_5=k,\quad3\le k\le12,\qquad L=15,
+\]
+and total added-centre slack
+\[
+ Q=k-3-7L_4-16L_5\ge0.
+\]
+Thus $L_5=0$.  The two nonnegative sums in
+\eqref{eq:n12-q-sums} say simultaneously $k\ge8$ and $k+L_4\le7$, a
+contradiction.
+
+We turn to $C=50$.  Here
+$-24+5K+72B_6\le9B_5\le108$, hence $B_6\le1$.  Splitting the single
+congruence $B_5\equiv K\pmod {12}$ over $1\le B_5\le12$ gives exactly five
+families:
+\begin{equation}\label{eq:n12-C50-five-fronts}
+\begin{array}{c|c|c|c}
+B_6&K&B_5&L\\ \hline
+0&k&k\ (1\le k\le12)&14\\
+0&0&12&11\\
+0&B_5+12&9\le B_5\le12&17\\
+1&0&12&10\\
+1&12&12&13.
+\end{array}
+\end{equation}
+The two $K=0$ rows again fail the congruence degree sum.  In the last row,
+$Q=-7L_4-16L_5$, so $L_3=12,L_6=1$ and $\kappa=0$ pointwise.  It follows
+that $\sigma=1$ at every point.  Equation \eqref{eq:n12-g5-local} then
+gives $d_5\in\{0,3\}$ on the six-line and
+$d_5\in\{0,3,6\}$ off it, whence
+$\sum d_5\le6\cdot3+6\cdot6=54<60$.
+
+In the $L=17$ row, write $k=B_5$.  The total slack forces
+$L_4=L_5=0$.  The definitions in \eqref{eq:n12-q-definition}, with the
+corresponding shifted value of $K$, give
+\[
+ \sum j=2k-12,\qquad \sum u=9,\qquad \sum q=9-k.
+\]
+Thus $k=9$, $Q=0$, all $q$ and $\kappa$ vanish, and exactly three points have
+$(j,u,d_5)=(2,0,6)$; all others have $(j,u,d_5)=(0,1,3)$.  At any of the
+three former points $\epsilon=q=0$, so this is the first forbidden type in
+\eqref{eq:n12-grid-forbidden-types}.  We are left with
+\begin{equation}\label{eq:n12-C50-main-front}
+ B_6=0,\qquad K=B_5=k,\qquad L=14.
+\end{equation}
+
+We next remove a possible five-line.  The total slack in
+\eqref{eq:n12-C50-main-front} is
+$6+k-7L_4-16L_5$.  Hence $L_5>0$ would force
+$L_5=1,L_4=0$ and $k\in\{10,11,12\}$.  Put
+\[
+ z_p=\ell_5(p),\qquad d_3(p)=7+3j_p,\qquad
+ u_p=5-\ell_3(p)-2z_p,\qquad
+ \widehat q_p=u_p+2j_p+2+z_p-d_5(p).
+\]
+Here $z_p\in\{0,1\}$.  The eleven-point inversion link is noncollinear by
+the established block caps, so Kelly--Moser and the link congruence give
+$j_p\ge0$; the line-pencil partition gives $u_p\ge0$.  The degree caps in
+\eqref{eq:n12-d5-caps} require only $B_6=0$, not $L_5=0$.  Indeed, for
+$j_p=0$ they follow from $\sigma_p=4-d_5(p)\ge0$, and for $j_p\ge2$ from
+the universal bound $d_5(p)\le6$.  If $j_p=1$ and $d_5(p)=6$, the six
+four-point lines in the inversion link have equality profile
+$(3,3,2^9)$, exactly as in the proof of \eqref{eq:n12-d5-caps}; they form
+two three-line pencils and a real $3\times3$ grid.  The local equations give
+$d_4(p)=3$, hence three grid transversals, contrary to
+\cref{lem:real-grid}.  This argument is unchanged if one of the six base
+lines is the image of the unique five-line.  Thus the three caps are valid
+throughout the present branch.
+
+Restored-centre Melchior gives the nonnegative slack
+\[
+ \widehat\kappa_p=3(u_p+j_p)+z_p-d_5(p)\ge0.
+\]
+If $j_p=0$, the degree-four cap settles $u_p\ge2$, while
+$\widehat\kappa_p\ge0$ settles $u_p\le1$.  If $j_p=1$, the degree-five cap
+settles every case except $u_p=z_p=0$, which is again covered by
+$\widehat\kappa_p\ge0$.  If $j_p\ge2$, use $d_5(p)\le6$.  Consequently
+$\widehat q_p\ge0$ for every point.  On the other hand,
+\[
+ \sum_pz_p=5,\quad \sum_pu_p=11,\quad
+ \sum_pj_p=2k-16,\quad \sum_pd_5(p)=5k,
+\]
+and therefore
+\[
+ \sum_p\widehat q_p
+ =11+2(2k-16)+24+5-5k=8-k<0.
+\]
+This contradiction proves $L_5=0$.
+
+Set $h=L_4$ and retain $q$ from \eqref{eq:n12-q-definition}.  The exact
+sums now are
+\begin{equation}\label{eq:n12-C50-six-sums}
+\sum j=2k-16,\quad \sum u=18-h,\quad
+\sum q=10-k-h,\quad \sum\epsilon=4h,\quad
+\sum\kappa=6+k-7h.
+\end{equation}
+Their nonnegativity leaves precisely
+\[
+ (h,k)=(0,8),(0,9),(0,10),(1,8),(1,9),(2,8).
+\]
+Eliminating $d_5$ between $q$ and \eqref{eq:n12-kappa-q} gives
+\begin{equation}\label{eq:n12-low-defect-identities}
+d_5=u+2j+2-q,\qquad
+\kappa=2u+j+q-\epsilon-2.
+\end{equation}
+Using \eqref{eq:n12-even-cell}, the caps
+\eqref{eq:n12-d5-caps}, and the two exclusions
+\eqref{eq:n12-grid-forbidden-types}, these identities imply
+\begin{equation}\label{eq:n12-low-defect-table}
+\begin{array}{c|c}
+\text{local condition}&\text{forced conclusion}\\ \hline
+\epsilon=0,q=0&j=0\\
+\epsilon=0,q=1&j\le1\\
+q=0,\epsilon=1&(j,u,d_5,\kappa)=(1,1,5,0)\\
+q=0,\epsilon=2&(j,u,d_5,\kappa)=(0,2,4,0).
+\end{array}
+\end{equation}
+For completeness, in the first two rows $j\ge1$ reduces either to
+$\kappa=1$ or to $(j,u,q,d_5)=(2,0,0,6)$ or $(2,1,1,6)$; the latter two
+are \eqref{eq:n12-grid-forbidden-types}.  In the last two rows,
+\eqref{eq:n12-low-defect-identities} and $\kappa\ge0$ leave the displayed
+value directly.
+
+Now $(0,10)$ contradicts $\sum j=4$ and the first row of
+\eqref{eq:n12-low-defect-table}; $(0,9)$ contradicts $\sum j=2$ because
+only the unique point with $q=1$ can have $j>0$; $(1,9)$ puts $j=1$ at all
+four points of the four-line although $\sum j=2$; and $(1,8)$ would require
+positive $q$ at all four line points although $\sum q=1$.  At $(2,8)$,
+$j=q=0$ pointwise, so every point of either four-line must have
+$\epsilon=2$; the two distinct lines would have the same support.
+
+Only $(h,k)=(0,8)$ remains.  Here $j=\epsilon=0$ pointwise,
+$\sum q=2$, and $\sum u=18$.  At least ten points have $q=0$; at each of
+them \eqref{eq:n12-low-defect-identities} and $d_5\le4$ force
+$u\in\{1,2\}$.  If all had $u=2$, their contribution to $\sum u$ would
+already be twenty.  Hence some point has
+\[
+ (j,u,\epsilon,q,d_5,\kappa)=(0,1,0,0,3,0).
+\]
+Inversion, restoration of the centre, and duality turn this point into a
+twelve-line arrangement with multiplicity vector
+$(t_2,t_3,t_4)=(6,14,3)$ and distinguished word $3D+4T$.  This is the first
+forbidden completion in \cref{lem:gallery-completions}.  The last endpoint,
+and therefore the entire five-circle branch, is impossible.
+\end{proof}
+
+\subsection{Twelve points: the six-circle branch}
+
+\begin{lemma}[Universal six-circle spine]\label{lem:n12-g6-spine}
+Assume $|P|=12$, $C\le50$, and the largest proper circle has size six.  Put
+\[
+ m=B_6,\quad k=B_5,\quad h=L_4,\quad g=L_5,\quad r=L_6,\quad e=50-C,
+\]
+and define
+\[
+ \sigma_p=d_3(p)-3-d_5(p)-2d_6(p),\qquad
+ \kappa_p=11+\sigma_p-3\ell_3(p)-4\ell_4(p)
+             -5\ell_5(p)-6\ell_6(p).
+\]
+If $K=\sum_p\sigma_p$ and $Q=\sum_p\kappa_p$, then, for an integer
+$s\ge0$,
+\begin{align}
+K&=k+12s,\label{eq:n12-g6-K}\\
+B_3&=12+4m+2k+4s,&
+B_4&=52-6m-3k-s,\notag\\
+B&=64-m+3s,&
+L&=14-m+3s+e,\label{eq:n12-g6-normalization}\\
+Q&=6+9m+k-15s-9e-7h-16g-27r.\label{eq:n12-g6-Q}
+\end{align}
+Moreover $1\le m\le4$, $m+k\le12$, and
+\begin{equation}\label{eq:n12-g6-gram-caps}
+m=4\Rightarrow k=0,\qquad
+m=3\Rightarrow k\le3,\qquad
+m=2\Rightarrow k\le8,\qquad
+m=1\Rightarrow k\le11.
+\end{equation}
+Pointwise,
+\begin{equation}\label{eq:n12-g6-residues}
+3d_4+7d_5+12d_6=52-\sigma,\qquad
+\sigma\equiv1-d_5\pmod3,\qquad
+\kappa\equiv\ell_5-d_5-\ell_4\pmod3,
+\end{equation}
+where $\sigma,\kappa\ge0$ and $\kappa\ne1$.
+\end{lemma}
+
+\begin{proof}
+The selected circle gives $m\ge1$, and the outer router bounds every block
+by six.  For a six-block $A$ and a five-block $F$, set
+\[
+y_A=\mathbf1_A-\frac12\mathbf1,\qquad
+z_F=\mathbf1_F-\frac5{12}\mathbf1.
+\]
+Distinct maximal blocks meet in at most two points, so
+\[
+\begin{array}{c|ccc}
+&\|\cdot\|^2&\text{same-size inner product}&
+ \text{mixed inner product}\\ \hline
+y&3&\le-1&\le-\frac12\\
+z&\frac{35}{12}&\le-\frac1{12}&\le-\frac12.
+\end{array}
+\]
+Thus all $m+k$ vectors form an obtuse family in $\mathbf1^\perp$, giving
+$m+k\le12$.  In particular $k\le11$.  Triple ownership and summed
+Melchior give $K\equiv k\pmod {12}$; hence
+$K=k+12s$ with $s\ge0$.  Substitution in the triple equation and the
+circle--line count gives \eqref{eq:n12-g6-normalization}; summing the
+definition of $\kappa$ gives \eqref{eq:n12-g6-Q}.
+
+For the six-block vectors alone,
+\[
+0\le\left\|\sum_Ay_A\right\|^2\le m(4-m),
+\]
+so $m\le4$.  More sharply, applying constant positive coefficients to the
+two size classes majorizes their Gram form by
+\begin{equation}\label{eq:n12-two-class-gram}
+G(m,k)=
+\begin{pmatrix}
+m(4-m)&-mk/2\\
+-mk/2&k(36-k)/12
+\end{pmatrix}.
+\end{equation}
+Because the off-diagonal entries are nonpositive, copositivity forces the
+relevant determinant to be nonnegative.  For $m=3,2,1$ the determinants
+factor, respectively, as
+\[
+ \frac{k(36-10k)}4,\qquad
+ \frac{k(36-4k)}3,\qquad
+ \frac{k(36-2k)}4.
+\]
+Together with $m+k\le12$ this gives all bounds in
+\eqref{eq:n12-g6-gram-caps}, except that $m=2$ initially permits $k=9$.
+At that null endpoint equality forces every rich-block intersection to
+have size two and
+\[
+ 9(y_{A_1}+y_{A_2})+4\sum_Fz_F=0,\qquad
+ 4d_5(p)+9d_6(p)=24.
+\]
+The two six-blocks meet in two points, leaving eight points with $d_6=1$;
+there $4d_5=15$, impossible.  When $m=4$, the first diagonal entry of
+\eqref{eq:n12-two-class-gram} is zero, so its negative mixed entry forces
+$k=0$.
+
+Finally, the pair partition at a pivot and the definitions of the slacks
+give \eqref{eq:n12-g6-residues}.  The assertion $\kappa\ne1$ is precisely
+the even-cell argument preceding \cref{lem:n12-g5-qfront}; it depends only
+on the parity of the twelve-line dual arrangement, not on the selected
+circle size.
+\end{proof}
+
+\begin{lemma}[Ordinary-direction inequality]\label{lem:n12-direction}
+Under the hypotheses of \cref{lem:n12-g6-spine}, suppose $L_6=0$.  At every
+point lying on a six-block,
+\begin{equation}\label{eq:n12-direction}
+ \sigma_p\ge2d_5(p)+6d_6(p)-8.
+\end{equation}
+If also $d_5(p)=\ell_4(p)=\ell_5(p)=\ell_6(p)=\kappa_p=0$ and the branch
+under consideration has $d_6(p)\le2$, then $d_6(p)=2$, $\sigma_p\ge4$,
+and $\ell_3(p)\ge5$.
+\end{lemma}
+
+\begin{proof}
+Invert at $p$, restore the inversion centre, and dualize the resulting
+twelve-point configuration.  A chosen proper six-block through $p$ becomes
+a five-point line not containing the restored centre, hence supplies a
+fivefold vertex $v$ of the dual twelve-line arrangement.  Let $t_i$ be the
+number of its $i$-fold vertices, let
+\[
+ \delta=\sum_{w\notin\operatorname{star}(v)}
+              (\operatorname{mult}(w)-1)
+        =t_2+2t_3+3t_4+4(t_5-1)-35,
+\]
+and let
+\[
+ R=\#\{\text{vertices on the distinguished line}\}
+   =\ell_2(p)+\ell_3(p)+\ell_4(p)+\ell_5(p).
+\]
+The distinguished line misses $v$.  Its intersections with the five lines
+of $\operatorname{star}(v)$ are therefore distinct, and every further
+vertex on it contributes at least one unit to the off-star defect.  Thus
+$\delta\ge R-5$.
+
+For completeness, the inversion dictionary at $p$ is
+\[
+ \begin{aligned}
+ t_2&=d_3-\ell_3+\ell_2,&
+ t_3&=d_4-\ell_4+\ell_3,\\
+ t_4&=d_5-\ell_5+\ell_4,&
+ t_5&=d_6+\ell_5,
+ \end{aligned}
+\]
+while the pointwise pair partitions are
+\[
+ \ell_2+2\ell_3+3\ell_4+4\ell_5=11,
+ \qquad
+ d_3+3d_4+6d_5+10d_6=55.
+\]
+(All local quantities in these two displays are evaluated at $p$.)
+Substituting these identities and
+$\sigma_p=d_3(p)-3-d_5(p)-2d_6(p)$ gives the exact integral identity
+\begin{equation}\label{eq:n12-direction-defect}
+ \delta-(R-5)
+ =\frac{11+\sigma_p-2d_5(p)-6d_6(p)}3.
+\end{equation}
+
+Equality $\delta=R-5$ is impossible.  Indeed, equality says that every
+off-star vertex is ordinary and lies on the distinguished line.  Send $v$
+to infinity and dualize back: the five lines in its star become five marked
+directions, and every remaining join passes through the point dual to the
+distinguished line.  Deleting that point leaves six distinct real points
+whose joins use only those five directions.  They are noncollinear.  A
+sixfold vertex on the distinguished line would correspond before inversion
+to a six-line, excluded by $L_6=0$; a sixfold vertex away from it would
+correspond to a proper seven-circle, excluded by maximality of the selected
+six-circle.  This contradicts \cref{thm:ungar-six}.  Hence the integral
+left-hand side of \eqref{eq:n12-direction-defect} is at least one, and
+\eqref{eq:n12-direction} follows.
+
+For the final assertion, the same inversion dictionary gives
+\[
+ t_2=d_3-\ell_3+\ell_2
+    =3+d_5+2d_6+\kappa+\ell_4+\ell_5+\ell_6.
+\]
+Under the clean hypotheses this is $t_2=3+2d_6$.  Kelly--Moser gives
+$t_2\ge6$, so $d_6(p)\ge2$; the branch hypothesis makes $d_6(p)=2$.  Now
+\eqref{eq:n12-direction} gives $\sigma_p\ge4$, and $\kappa_p=0$ reads
+$11+\sigma_p=3\ell_3(p)$.
+\end{proof}
+
+\begin{lemma}[Four six-blocks]\label{lem:n12-g6-m4}
+The branch $B_6=4$ is impossible when $C\le50$.
+\end{lemma}
+
+\begin{proof}
+By \cref{lem:n12-g6-spine}, $k=0$.  Equality in
+$\|\sum_Ay_A\|^2\le m(4-m)=0$ says that every pair of six-blocks meets in
+two points and $\sum_Ay_A=0$; coordinatewise, $d_6(p)=2$ at all twelve
+points.  Equation \eqref{eq:n12-g6-residues} gives
+$\sigma_p=1+3j_p$, so $s\ge1$.
+Two distinct six-lines meet in only one point, whereas every pair of the
+four six-blocks meets in two; consequently $r\le1$.
+
+If $r=0$, \cref{lem:n12-direction} gives $\sigma_p\ge4$ everywhere and
+therefore $s\ge4$.  On the other hand
+$Q=42-15s-9e-7h-16g\ge0$ gives $s\le2$.
+
+If $r=1$, nonnegativity in \eqref{eq:n12-g6-Q} forces
+\[
+s=1,\quad e=h=g=Q=0,\quad C=50,\quad L_3=12,\quad L_6=1.
+\]
+The residues force $\sigma_p=1$ and $\kappa_p=0$ at every point.  At a
+point off the six-line the exact local data are
+\[
+(d_3,d_4,d_5,d_6)=(8,9,0,2),\qquad
+(\ell_2,\ell_3,\ell_4,\ell_5,\ell_6)=(3,4,0,0,0).
+\]
+After inversion and duality this is a twelve-line arrangement with
+$(t_2,t_3,t_5)=(7,13,2)$ and distinguished word $3D+4T$, the second
+forbidden completion in \cref{lem:gallery-completions}.
+\end{proof}
+
+\begin{lemma}[Three six-blocks]\label{lem:n12-g6-m3}
+The branch $B_6=3$ is impossible when $C\le50$.
+\end{lemma}
+
+\begin{proof}
+Write $k=B_5$.  The Gram cap gives $0\le k\le3$.  The three six-blocks
+have total incidence eighteen.  Since their union has at most twelve
+points,
+\[
+ \sum_p(d_6(p)-1)_+\ge6,
+\]
+whereas pairwise intersection at most two gives
+$\sum_p\binom{d_6(p)}2\le6$.  Since
+$\binom d2\ge(d-1)_+$, equality holds throughout and
+\begin{equation}\label{eq:n12-m3-d6}
+ d_6=(2^6,1^6).
+\end{equation}
+The scalar equation is
+\[
+ K=k+12s,\qquad
+ Q=33+k-15s-9e-7h-16g-27r,
+\]
+so $s\in\{0,1,2\}$.
+
+For $s=0$, the degree rows follow from one scalar defect.  For $k=2,3$ let
+$T$ be the total deficit from intersection size two among all rich-block
+pairs.  Expanding the centred norm gives
+\[
+ 0\le3-\frac{k^2}{12}-2T,
+\]
+so the integer $T$ is at most one.  If $r_p=d_5(p)+d_6(p)$, then
+$\sum r_p=18+5k$ and
+\[
+ \sum r_p^2=\sum r_p+2\bigl(2\tbinom{3+k}{2}-T\bigr).
+\]
+For $k=2$, the value $T=1$ would give $66$, below the balanced minimum
+$68$ for total degree $28$ on twelve points; for $k=3$ it would give
+$91<93$, the balanced minimum for total degree $33$.  Thus $T=0$.
+Taking first and second moments now gives the following degree rows and
+minimum residue costs:
+\[
+\begin{array}{c|c|c}
+k&(d_5(p))_{p\in P}&\min\sum_p\sigma_p\\ \hline
+0&(0^{12})&12\\
+1&(1^5,0^7)&7\\
+2&(2^2,1^6,0^4)&8\\
+3&(2^6,1^3,0^3)&15.
+\end{array}
+\]
+The first two rows are immediate.  In the last column we used the least
+nonnegative value in the class $1-d_5\pmod3$; every entry is larger than
+$K=k$, excluding $s=0$.
+
+For $s=1,2$, nonnegativity of $Q$ forces $r=0$.  Summing
+\eqref{eq:n12-direction} and using
+$\sum d_5=5k$, $\sum d_6=18$ gives
+\begin{equation}\label{eq:n12-m3-direction-sum}
+ K\ge10k+12.
+\end{equation}
+At $s=1$ this forces $k=0$; then \eqref{eq:n12-m3-d6}, the direction
+bound, and the residue give $K\ge6\cdot4+6\cdot1=30>12$.
+At $s=2$, \eqref{eq:n12-m3-direction-sum} gives $k\le1$.  The case $k=0$
+again costs at least thirty.  If $k=1$, the minimum sigma cost is twenty
+five and equality forces the unique five-block to use five of the six
+points with $d_6=1$.  Here $e=h=g=r=0$ and $Q=4$; those five points have
+$\kappa\equiv-1\pmod3$, hence $Q\ge10$, a contradiction.
+\end{proof}
+
+\begin{lemma}[Two six-blocks]\label{lem:n12-g6-m2}
+The branch $B_6=2$ is impossible when $C\le50$.
+\end{lemma}
+
+\begin{proof}
+Put $k=B_5$; by \cref{lem:n12-g6-spine}, $0\le k\le8$ and
+$s\in\{0,1,2\}$.  Let $I\le2$ be the intersection size of the two
+six-blocks.
+
+First take $s=0$.  If $r=0$, sum \eqref{eq:n12-direction} over the union
+of the six-blocks.  If $A,B,D$ denote the sums of $d_5$ on the classes
+$d_6=2,1,0$, respectively, then $D\le Ik$ and
+\[
+ k=K\ge2(A+B)+8I-24.
+\]
+Since $A+B=5k-D$, this gives, for $I=0,1,2$ respectively,
+\begin{equation}\label{eq:n12-m2-s0-three}
+ k\ge10k-24,\qquad k\ge8k-16,\qquad k\ge6k-8.
+\end{equation}
+All three fail for $k\ge3$.  If $k=0$, the sigma residue costs at least
+twelve; if $k=1$, $(d_5)=(1^5,0^7)$ costs at least seven.  For $k=2$, the
+five-block pair moment and the sigma budget force
+\[
+ d_5=(1^{10},0^2),\qquad \sigma=(0^{10},1^2).
+\]
+A point with $d_6=2$ violates \eqref{eq:n12-direction}, so $I=0$; then
+$\sum d_5d_6=10>4k$, although the four mixed block pairs meet in at most
+two points each.
+
+If $s=0$ and $r=1$, \eqref{eq:n12-g6-Q} gives
+$e=h=g=0$, $k\ge3$, and $Q=k-3$.  Counting triples with two points on the
+six-line, while \eqref{eq:n12-g6-normalization} gives
+\[
+(C_3,C_4,C_5,C_6)=(9+2k,40-3k,k,1),\qquad L_3=11.
+\]
+Hence
+\[
+90\le C_3+2C_4+3C_5+4C_6=93-k,
+\]
+so $k=3$ and equality holds.  Every proper circle then meets the six-line
+twice.  Among the twenty triples off the line, the three five-circles
+cover at most three, the proper six-circle at most four, and the eleven
+triple-lines at most eleven.  Thus at most $3+4+11=18$ can be owned, a
+contradiction.
+
+Next let $s=1$.  Here $r=0$ and
+\begin{equation}\label{eq:n12-m2-s1-spine}
+ K=k+12,\qquad Q=k+9-9e-7h-16g.
+\end{equation}
+When $g=0$, the residue for $\kappa$ implies pointwise
+\begin{equation}\label{eq:n12-m2-defect}
+ \kappa_p+2\binom{d_5(p)}2\ge2d_5(p)-2\ell_4(p).
+\end{equation}
+It is immediate for $d_5\ge3$ and follows from the three residues for
+$d_5=0,1,2$.  Since
+$\sum_p\binom{d_5(p)}2\le k(k-1)$, summing gives
+\begin{equation}\label{eq:n12-m2-scalar-defect}
+ 2k^2-11k+9-9e+h\ge0.
+\end{equation}
+This removes $k=2,3,4$ in the core $e=g=0$ for every allowed $h$, and
+$k=1,\ldots,5$ when $(e,h,g)=(1,0,0)$.
+
+Here is the complete scalar routing, recorded to make exhaustiveness
+transparent.  Since $k\le8$, \eqref{eq:n12-m2-s1-spine} gives
+\[
+\begin{array}{c|c}
+\text{nonzero parameter}&\text{only values not already killed by
+\eqref{eq:n12-m2-scalar-defect}}\\ \hline
+g=1&(e,h,k)=(0,0,7)\\
+e=1,h=1&(g,k)=(0,7)\\
+e=1,h=0&g=0,\ k\in\{0,6,7,8\}\\
+e=g=0&h\in\{0,1,2\},\ 0\le k\le8.
+\end{array}
+\]
+Indeed $g\ge2$, $e\ge2$, or $h\ge3$ makes $Q<0$; in the first two rows
+$k=8$ would give the forbidden value $Q=1$.  Thus $k=6,7,8$ below cover
+every rich scalar row, $k=5$ covers the sole remaining middle gap, and the
+clean argument for $k=0,1$ covers all tiny rows.
+
+For $k\ge5$, the two six-blocks must meet twice.  Indeed $I=0$ would give
+$\sum d_5d_6=5k>4k$.  If $I=1$, the three degree-class sums satisfy
+\[
+A+B+D=5k,\qquad2A+B\le4k,\qquad D\le k.
+\]
+Hence $D-A\ge k$, so necessarily $D=k,A=0,B=4k$.  Summing the direction
+inequality on the ten middle points gives $k+12\ge2B-20$, which forces
+$k\le4$.  Thus $I=2$ for
+$k\ge5$.  On the classes of sizes $2,8,2$ we then have
+\begin{equation}\label{eq:n12-m2-groups}
+A+B+D=5k,\qquad D-A\ge k,\qquad B\le\frac{k+28}{2}.
+\end{equation}
+Let $\Phi_t(S)$ be the balanced minimum of
+$\sum_{i=1}^t\binom{x_i}{2}$ over nonnegative integers of sum $S$.
+Writing $S=qt+r$, $0\le r<t$, balancing gives
+\[
+ \Phi_t(S)=t\binom q2+rq,\qquad
+ \Phi_t(S+1)-\Phi_t(S)=\floor{S/t}.
+\]
+Convexity and \eqref{eq:n12-m2-groups} give
+\[
+\begin{array}{c|c|c|c}
+k&(A,B,D)&\Phi_2(A)+\Phi_8(B)+\Phi_2(D)&k(k-1)\\ \hline
+8&(7,18,15)&70&56\\
+7&(5,17,13)\text{ or }(6,16,13)&50&42\\
+6&(4,16,10)&30&30.
+\end{array}
+\]
+Here is a supporting-slope certificate for the three minima.  Write
+$(A,B,D)=(A_0+a,B_0+b,D_0+c)$ at the displayed row, so
+$a+b+c=0$.  For $k=8$, the active constraints are
+$b\le0$ and $b+2c\ge0$; the three supporting slopes are $3,2,7$, and the
+increase is at least
+\[
+ 3a+2b+7c=-b+4c\ge0.
+\]
+For $k=7$, use the first displayed minimizer.  The constraints are
+$b\le0$ and $b+2c\ge-1$, while slopes $2,2,6$ give an increase at least
+$4c$.  Thus $c\ge0$; when $c=0$, only $b=0,-1$ are possible, giving exactly
+the two displayed minimizers.  For $k=6$, the constraints are
+$b\le1$ and $b+2c\ge0$.  Slopes $2,2,5$ give an increase at least $3c$.
+If $c=0$, the only point besides the displayed minimizer has
+$(a,b,c)=(-1,1,0)$ and objective $31$; if $c<0$, the two constraints
+conflict.  This proves the table without an integer search.
+The first two rows are impossible.  Equality at $k=6$ forces
+$d_5=(2^{10},5^2)$; every point then has minimum sigma two, so
+$K\ge24>18$.  This also disposes of the only scalar five-line case
+$(g,k)=(1,7)$ and the only positive-$e$ or positive-$h$ cases not already
+removed by \eqref{eq:n12-m2-scalar-defect}.
+
+For $k=5$, necessarily $e=g=0$.  Set
+\[
+G_p=\kappa_p+2\binom{d_5(p)}2-2d_5(p)+2\ell_4(p)\ge0.
+\]
+Equations \eqref{eq:n12-m2-s1-spine} and the pair moment give
+$\sum G_p\le4+h\le6$.  If $h\le1$, any $d_5\ge4$ has $G_p\ge6$, exceeding
+the relevant bound; if $h=2$, then $Q=0$ and the residue improves this to
+$G_p\ge8$.  Hence $d_5\le3$ everywhere.  In
+\eqref{eq:n12-m2-groups}, $D\le6$ and $D-A\ge5$, so $A+D\le7$ and
+$B\ge18>(5+28)/2$, impossible.
+
+Only $k=0,1$ remain.  If $h=1$, every point of the four-line contributes
+at least two to $Q$, whereas \eqref{eq:n12-m2-s1-spine} gives $Q=2$ or
+$3$.  In the clean core $e=g=h=0$, the $k=0$ row has at least nine points
+with $d_5=\kappa=0$, and the $k=1$ row has seven; the clean clause of
+\cref{lem:n12-direction} would put all of them in the at most two-point
+intersection of the six-blocks.  The sole extra row
+$(e,h,g,k)=(1,0,0,0)$ has all twelve points clean and is identical.
+This exhausts $s=1$.
+
+Finally let $s=2$.  The scalar formula forces
+\[
+e=h=g=r=0,\qquad k\in\{6,7,8\},\qquad Q=k-6.
+\]
+The value $k=7$ has forbidden total slack one.  For $k=8$, summing
+\eqref{eq:n12-direction} on the six-block union gives, according as
+$I=1$ or $2$, $K\ge8k-16=48$ or $K\ge6k-8=40$, while $K=32$;
+$I=0$ already violates the mixed moment.  For $k=6$, $Q=0$ makes every
+$d_5$ a multiple of three.  Writing $d_5=3a$ and using the pair moment,
+\[
+ \sum a=10,\qquad
+ \frac{9\sum a^2-30}{2}\le30,
+\]
+so $d_5=(3^{10},0^2)$.  The direction and residue costs are made explicit
+by
+\[
+\begin{array}{c|ccc}
+&d_6=0&d_6=1&d_6=2\\ \hline
+d_5=3&1&4&10\\
+d_5=0&1&1&4.
+\end{array}
+\]
+If the two six-blocks meet in $I=0,1,2$ points, the $d_6$ classes have
+sizes $I,12-2I,I$ in the order $2,1,0$.  Were all twelve points of
+five-degree three, their minimum sigma cost would be $48+3I$.  Placing the
+two zero-degree points optimally saves at most
+$6I+3(2-I)=6+3I$.  Thus the actual cost is at least $42>30=K$, and
+$s=2$ is impossible as well.
+\end{proof}
+
+\begin{lemma}[One six-block]\label{lem:n12-g6-m1}
+The branch $B_6=1$ is impossible when $C\le50$.
+\end{lemma}
+
+\begin{proof}
+Let $\Gamma$ be the unique six-block and put $k=B_5$.  It is a proper
+circle, so $r=0$.  The scalar spine becomes
+\begin{equation}\label{eq:n12-m1-spine}
+K=k+12s,\qquad Q=15+k-15s-9e-7h-16g,\qquad s\in\{0,1\}.
+\end{equation}
+Write $A=\sum_{p\in\Gamma}d_5(p)$.  Every five-block has an outsider
+footprint of size three, four, or five.  Distinct footprint families own
+disjoint outsider triples.  A size-five footprint is unique and excludes
+all size-four footprints; otherwise the complements of the size-four
+footprints are disjoint pairs, hence form a matching of size at most three.
+Consequently there is $u\in\{0,1,2,3\}$ such that
+\begin{equation}\label{eq:n12-m1-footprint}
+A=2k-u,\qquad \sum_{p\notin\Gamma}d_5(p)=3k+u.
+\end{equation}
+
+At a point of $\Gamma$, the direction inequality and the sigma residue
+give the lower envelope
+\begin{equation}\label{eq:n12-m1-envelope}
+\sum_{p\in\Gamma}\sigma_p\ge f(A),\qquad
+f(A)=\begin{cases}6-A,&A\le6,\\2A-12,&A\ge6.
+\end{cases}
+\end{equation}
+For $k\ge5$, equations \eqref{eq:n12-m1-footprint}--
+\eqref{eq:n12-m1-envelope} give $K\ge4k-18$.  Hence
+\begin{equation}\label{eq:n12-m1-kcaps}
+s=0\Rightarrow k\le6,\qquad s=1\Rightarrow k\le10.
+\end{equation}
+
+The two boundary values are already contradictory.  At $(s,k)=(0,6)$,
+equality forces $A=9,u=3$ and uses the entire sigma budget on $\Gamma$.
+The six outsider degrees, all $1$ modulo three, sum to $21$ and have pair
+moment at least $30$; the six positive degrees on $\Gamma$, of sum nine,
+add at least three.  This exceeds $k(k-1)=30$.  At $(s,k)=(1,10)$ one has
+$A=17,u=3$, and discrete convexity gives
+\[
+ \sum_p\binom{d_5(p)}2
+ \ge\Phi_6(17)+\Phi_6(33)=16+75>90=k(k-1).
+\]
+
+We next remove five-lines.  The local ordinary-point identity is
+\begin{equation}\label{eq:n12-m1-t2}
+t_2(p)=3+d_5(p)+2\mathbf1_{p\in\Gamma}+\kappa_p
+       +\ell_4(p)+\ell_5(p).
+\end{equation}
+If $g=1$, necessarily $s=0$.  Set
+\[
+b_p=\frac{d_5(p)+\ell_4(p)+\kappa_p-\ell_5(p)}3.
+\]
+The residue makes $b_p$ integral, and Kelly--Moser applied to
+\eqref{eq:n12-m1-t2} gives $b_p\ge1$, except possibly at the at most two
+points of $\Gamma$ on the five-line.  Thus $\sum b_p\ge10$, while
+\[
+ \sum b_p=2k-2-3e-h.
+\]
+Together with $k\le6$, this forces $k=6,e=h=0$, the boundary value already
+excluded.  Two five-lines make $Q<0$.  Hence
+\begin{equation}\label{eq:n12-m1-gzero}g=0.\end{equation}
+
+Define the integer and the convex energy
+\[
+a_p=\frac{d_5(p)+\ell_4(p)+\kappa_p}{3},\qquad
+H(d)=\frac{(d-4)(d-5)}2=\binom d2-4d+10.
+\]
+By \eqref{eq:n12-m1-t2} and Kelly--Moser,
+\begin{equation}\label{eq:n12-m1-a}
+a_p\ge1,\qquad
+\sum_pa_p=2k+5-5s-3e-h.
+\end{equation}
+If $N_1=|\{p:a_p=1\}|$, then
+\begin{equation}\label{eq:n12-m1-N1}
+N_1\ge19+5s+3e+h-2k.
+\end{equation}
+The five-block pair moment gives
+\begin{equation}\label{eq:n12-m1-energy}
+E:=\sum_p\bigl(\sigma_p+H(d_5(p))\bigr)
+ \le k^2-20k+120+12s.
+\end{equation}
+
+There is one apparent exception to the useful pointwise lower bound.  If
+$p\notin\Gamma$ and
+\begin{equation}\label{eq:n12-typeA-local}
+(d_5,\ell_4,\ell_5,\kappa,\sigma)=(3,0,0,0,1),
+\end{equation}
+then inversion and duality give
+$(t_2,t_3,t_4)=(6,14,3)$ with distinguished word $3D+4T$.  The first part
+of \cref{lem:gallery-completions} excludes this Type-A pivot.  In its
+absence, $a_p=1$ implies
+\begin{equation}\label{eq:n12-m1-local-energy}
+ \sigma_p+H(d_5(p))\ge5.
+\end{equation}
+Indeed $d_5\le1$ gives $H\ge6$; $d_5=2$ forces
+$(\ell_4,\kappa)=(1,0)$ and $\sigma\ge2$; and $d_5=3$ forces
+$\ell_4=\kappa=0$, where \cref{lem:n12-direction} gives $\sigma\ge4$ on
+$\Gamma$ and \eqref{eq:n12-typeA-local} is the only smaller off-circle
+residue.  Combining \eqref{eq:n12-m1-N1}--
+\eqref{eq:n12-m1-local-energy} yields the single inequality
+\begin{equation}\label{eq:n12-m1-master}
+ (k-5)^2\ge13s+15e+5h.
+\end{equation}
+
+For $s=0$, \eqref{eq:n12-m1-a} gives $2k\ge7+3e+h$.  With the boundary
+$k=6$ gone, \eqref{eq:n12-m1-master} leaves only
+$k\in\{4,5\}$ and $e=h=0$.  Let $z$ count the $a=1$ points with
+$(d_5,\kappa)=(3,0)$.  Every other $a=1$ point has energy at least six, so
+\[
+ z\ge6N_1-E.
+\]
+For $k=4$, \eqref{eq:n12-m1-N1}--\eqref{eq:n12-m1-energy} give
+$N_1\ge11,E\le56,z\ge10$; for $k=5$ they give
+$N_1\ge9,E\le45,z\ge9$.  Each of these $z$ points has $\sigma\ge4$ by
+the exclusion of Type A, contradicting $K=k$.
+
+For $s=1$, \eqref{eq:n12-m1-a} gives $k\ge6$, and the boundary $k=10$ is
+gone.  Inequality \eqref{eq:n12-m1-master} leaves only
+\[
+k=9,\qquad e=h=g=0,\qquad K=21,\qquad Q=9.
+\]
+Here $\sum a_p=18$.  Equations \eqref{eq:n12-m1-N1}--
+\eqref{eq:n12-m1-energy} force exactly six points with $a=1$ and six with
+$a=2$.  Let $q_i$ be the sum of $\kappa$ on the class $a=i$; then
+$q_1+q_2=9$.  Since $d_5=3i-\kappa$, one checks
+\[
+a=1:\ 2H(d_5)\ge2+5\kappa,\qquad
+a=2:\ 2H(d_5)\ge2-\kappa;
+\]
+the difference in either inequality is $\kappa(\kappa-2)\ge0$.
+Consequently
+\[
+2\sum H(d_5)\ge15+6q_1,\qquad
+\sum H(d_5)\le k(k-1)-60=12.
+\]
+If $q_1>0$, then $q_1\ge2$ and these bounds conflict.  Thus $q_1=0$;
+all six $a=1$ points have $(d_5,\kappa)=(3,0)$ and, with Type A excluded,
+contribute at least $24>K$ to the sigma sum.  This closes $s=1$ and the
+one-six-block branch.
+\end{proof}
+
+\begin{lemma}[Twelve-point six-circle closure]\label{lem:n12-gamma6}
+If twelve admissible points have largest proper circle of size six, then
+$C\ge51$.
+\end{lemma}
+
+\begin{proof}
+Assume $C\le50$.  By \cref{lem:n12-g6-spine},
+$B_6\in\{1,2,3,4\}$.  These four values are excluded respectively by
+\cref{lem:n12-g6-m1,lem:n12-g6-m2,lem:n12-g6-m3,lem:n12-g6-m4}.
+\end{proof}
+
+
+\begin{proposition}\label{prop:n12-value}
+One has $f(12)=51$.
+\end{proposition}
+
+\begin{proof}
+Assume $C\le50$.  By \cref{lem:n11-n12-outer-router}, the largest proper
+circle has size five or six.  These alternatives are excluded by
+\cref{lem:n12-gamma5,lem:n12-gamma6}.  Construction
+\ref{con:circle-centre} attains $51$.
+\end{proof}
+
+\begin{theorem}\label{thm:finite-n10-n12}
+The three remaining finite values are
+\[
+ f(10)=33,\qquad f(11)=41,\qquad f(12)=51.
+\]
+\end{theorem}
+
+\begin{proof}
+Combine \cref{prop:n10-value,prop:n11-value,prop:n12-value}.
+\end{proof}

@@ -1,0 +1,969 @@
+\section{The thirteen-point case and the direct large range}
+\label{sec:n13-infinity}
+
+Write
+\[
+  F(n)=1+\binom{n-1}{2}-\floor{\frac{n-1}{2}}.
+\]
+We finish the finite range at $n=13$ and then prove the lower bound
+$C\geq F(n)$ directly for every $n\geq14$.  The large-range argument is
+not recursive: it uses neither a value at a preceding integer nor a
+distinguished base value.
+
+For a point set $P$, let $C_s$ and $L_s$ be the numbers of maximal proper
+circle blocks and maximal line blocks of size $s$, respectively, and put
+$B_s=C_s+L_s$ and $C=\sum_s C_s$.  Every triple has a unique maximal
+generalized-block owner.  We shall repeatedly use
+\begin{align}
+ \mathsf T&:=\sum_{s\geq3}\binom{s}{3}B_s=\binom n3,
+                                                        \label{eq:large-T}\\
+ \mathsf P&:=\sum_{s\geq3}s(4-s)B_s\geq3n,             \label{eq:large-P}\\
+ \mathsf D&:=\sum_{s\geq3}s(s-4)C_s
+       +\sum_{s\geq3}2s(s-2)L_s\leq n(n-4).           \label{eq:large-D}
+\end{align}
+Indeed, inversion at a selected point followed by Melchior's inequality
+gives
+\[
+ \sigma_p=d_3(p)-3-\sum_{s\geq5}(s-4)d_s(p)\geq0.
+\]
+Summing this inequality gives \eqref{eq:large-P}.  Applying Melchior once
+more after restoring the centre of inversion gives
+\(\sum_s s\ell_s(p)\leq n-1+\sigma_p\); summing over $p$ and eliminating
+the $\sigma_p$ gives \eqref{eq:large-D}.  These are geometric consequences
+of the real projective-plane inequality of Melchior~\cite{Melchior1940},
+not merely formal identities.
+
+\subsection{The complete thirteen-point dispatch}
+
+Suppose, towards a contradiction, that $|P|=13$ and $C\leq60$.  Let $m$
+be the largest size of a proper circle block.
+
+\begin{lemma}[Outer routing at thirteen points]
+\label{lem:n13-outer}
+Under the preceding assumptions, $m\in\{5,6\}$.  Moreover every line block
+has size at most six.
+\end{lemma}
+
+\begin{proof}
+If a line has $s$ selected points and $q=13-s$, the rich-line pencil gives
+\begin{equation}
+ q\binom{s}{2}-\binom q2\floor{\frac s2}.           \label{eq:n13-line-pencil}
+\end{equation}
+For $7\leq s\leq12$ its minimum is $66$.  Thus no such line occurs, while
+$s=13$ is excluded by noncollinearity.
+For a proper $m$-circle, the corresponding Bonferroni pencil is
+\begin{equation}
+ 1+q\left(\binom m2-\floor{\frac m2}\right)
+   -\binom q2\floor{\frac m2},\quad q=13-m.          \label{eq:n13-circle-pencil}
+\end{equation}
+For $m=7,8,9,10,11,12$ this equals, respectively,
+\[
+ 64,81,105,106,96,61,
+\]
+so $m\geq7$ is impossible.  The case $m=13$ is excluded by the standing
+non-concyclicity hypothesis.
+
+It remains to exclude $m\leq4$.  Besides \eqref{eq:large-T} and
+\eqref{eq:large-P}, global Melchior for line blocks gives
+\[
+ \mathsf G:=3L_3+\sum_{s\geq4}
+ \left(\binom s2+s-3\right)L_s\leq\binom{13}{2}-3.
+\]
+Since line sizes are at most six, the fixed combination
+\[
+ \frac14\mathsf T+\frac7{60}\mathsf P-\frac15\mathsf G
+\]
+has coefficients
+\[
+\begin{array}{c|cc|rrrr}
+ &C_3&C_4&L_3&L_4&L_5&L_6\\ \hline
+ &3/5&1&0&-2/5&-29/60&0.
+\end{array}
+\]
+It is therefore at most $C$, whereas its numerical lower bound is
+\[
+ \frac14\binom{13}{3}+\frac7{60}(3\cdot13)
+ -\frac15\left(\binom{13}{2}-3\right)
+ =\frac{1221}{20}>60.
+\]
+Thus $m\leq4$ is impossible as well.
+\end{proof}
+
+\subsubsection{The six-circle branch}
+
+Fix a six-point circle $\Gamma$ and let $X=P\setminus\Gamma$, so
+$|X|=7$.  If $e=xy\in\binom X2$, let $w_e$ be the number of proper
+circles through $x,y$ and two points of $\Gamma$, and put
+\begin{equation}
+ W=\sum_{e\in\binom X2}w_e
+   =\sum_j\binom j2c(2,j).                          \label{eq:n13-W}
+\end{equation}
+Here $c(i,j)$ counts nonselected circle blocks meeting $\Gamma$ in $i$
+points and $X$ in $j$ points; $l(i,j)$ denotes the analogous number of
+line blocks.
+For either class $Y\in\{\Gamma,X\}$, define its pivot row by
+\begin{equation}
+ M_Y=\sum_B |B\cap Y|(4-|B|),                       \label{eq:n13-class-pivot}
+\end{equation}
+where the sum is over all maximal blocks, including $\Gamma$.
+Summing the pointwise Melchior slack over $p\in Y$ gives
+\[
+ M_Y=3|Y|+\sum_{p\in Y}\sigma_p.
+\]
+Consequently
+\begin{equation}
+ M_\Gamma\geq18,\quad M_X\geq21.                    \label{eq:n13-class-pivot-bounds}
+\end{equation}
+
+\begin{lemma}[The opening inequality]
+\label{lem:n13-gamma6-opening}
+If $C\leq60$, then $W\geq48$.
+\end{lemma}
+
+\begin{proof}
+For thirteen points, \eqref{eq:large-D} reads $\mathsf D\leq117$.
+Let $O=3C_3$ be ordinary-circle incidence.  For every pivot $p$, the
+inverted arrangement in \cref{cor:pivot-lenchner} has
+$q=13-1=12\neq6$ lines.
+Thus at least three ordinary proper circles pass through each pivot.
+Summing over the thirteen pivots, and using
+\eqref{eq:n13-class-pivot-bounds}, gives
+\[
+ O\geq39,\quad M_X\geq21.
+\]
+Weight the four triple partitions, in order of their number of
+$\Gamma$-points, by
+\[
+ (141,340,539,141).
+\]
+Add $79O+199M_X$ and subtract $1344C+414W$.  For a nonselected block
+write $g=|B\cap\Gamma|$, $x=|B\cap X|$, and $s=g+x$.  Its coefficient is
+\begin{align*}
+ A(g,x)={}&141\binom x3+340g\binom x2
+  +539\binom g2x+199x(4-s)\\
+ &+237\mathbf{1}_{\{B\text{ is a }3\text{-circle}\}}
+  -1344\mathbf{1}_{\{B\text{ is a circle}\}}\\
+ &-414\mathbf{1}_{\{B\text{ is a circle and }g=2\}}\binom x2.
+\end{align*}
+Direct factorisation, recorded in
+\cref{subsec:n13large-certificates}, gives $A(g,x)\leq123D_B$ for every
+geometrically possible block, including equality at the selected circle.
+Since the four triple totals are $35,126,105,20$, summing gives
+\begin{equation}
+ 123\mathsf D\geq33810-414W.                       \label{eq:n13-opening-dual}
+\end{equation}
+Together with $\mathsf D\leq117$, this first yields $W\geq47$.
+
+At $W=47$, retaining every nonnegative slack in the same calculation gives
+\[
+ R+79(O-39)+199(M_X-21)+1344(60-C)\leq39,
+\]
+where every positive local residual contributing to $R$ is at least $96$.
+Thus all four terms vanish.  For the zero-residual circle types
+\[
+ c(0,3),c(1,2),c(1,5),c(2,1),c(2,2),c(2,3),
+\]
+write their multiplicities, in order, as $(a,b,q,d,e,f)$.  The three
+zero-residual line types and their multiplicities are
+\[
+\begin{array}{c|ccc}
+\text{type}&l(0,3)&l(1,2)&l(2,1)\\ \hline
+\text{multiplicity}&p_0&p_1&p_2.
+\end{array}
+\]
+The circle count, ordinary-circle count, $W$, and the three triple
+partitions reduce to
+\begin{gather*}
+ a+b+d=13,\quad q+e+f=46,\quad e+3f=47,\quad q=2f-1,\\
+ p_0=45-a-21f,\quad p_1=42-b-20f,\quad p_2=11-d+3f.
+\end{gather*}
+Consequently
+\[
+ M_X=3a+2b+d+3p_0+2p_1+p_2-10q-3f=240-123f.
+\]
+The equality $M_X=21$ would force $f=73/41$, a contradiction.
+\end{proof}
+
+We now invoke the six-marked-conic interface
+\cref{lem:six-conic-events}.  In the present notation, its first clause
+gives $w_e\leq3$ and at most four projective involution signatures for the
+\emph{full} edges $w_e=3$.  Each signature support is a matching in $X$,
+and at most three full-signature centres lie on one trace line.  A pair of
+support edges of the same signature is a \emph{repetition event}.
+The trace dictionary \cref{lem:circle-lift-trace} and the second clause of
+\cref{lem:six-conic-events} give every event a unique maximal
+line-or-circle host.  If that host has $b$ outsider points, its event
+capacity is
+\begin{equation}
+ k_0(b)=\min\left\{2\binom b4,
+       3\binom{\floor{b/2}}2\right\};\quad
+ k_0(4),k_0(5),k_0(6)=2,3,9.                        \label{eq:n13-host-cap}
+\end{equation}
+This is exactly the capacity \eqref{eq:conic-event-cap}.  The host cannot be
+a line meeting $\Gamma$ or a circle meeting $\Gamma$ once.  A host circle
+meeting $\Gamma$ in two points is admissible only for the signature
+containing that marked pair.  These assertions follow by uniqueness of the
+lift plane in \cref{lem:circle-lift-trace} and by the fact that two proper
+circles sharing three points coincide.
+
+\begin{lemma}[Capacity-gap lemma]
+\label{lem:n13-capacity-gap}
+Put $r=W-48$.  Then $0\leq r\leq6$.  If $R_{\rm rep}$ is the number of
+repetition events, there is a nonnegative integer
+\[
+ E=2h+3k+9A_6+2\ell+2g,
+\quad
+ (h,k,A_6,\ell,g)=(c(0,4),c(0,5),c(0,6),l(0,4),c(2,4)),
+\]
+such that
+\begin{equation}
+ R_{\rm rep}\leq E,\quad 4E\leq6r+7+8A_6,\quad A_6=0.
+                                                               \label{eq:n13-capacity-gap}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+By \cref{lem:n13-gamma6-opening}, $W\geq48$.  If $F_3$ denotes the number
+of full edges, then
+\[
+ W\leq2\binom72+F_3.
+\]
+The four signature supports are matchings of size at most three, so
+$F_3\leq12$ and hence $W\leq54$.  This proves $0\leq r\leq6$.
+
+Two possible host types must first be removed explicitly.  Write
+$\lambda_5=l(0,5)$ and $\lambda_6=l(0,6)$.  On a line of type $l(0,x)$,
+the second-dual residual is $x(x-3)(14-x)$, hence it is $90$ at $x=5$
+and $144$ at $x=6$.  Before forced-zero variables are suppressed, the
+full second added-centre slack inequality therefore contains
+\[
+ 90\lambda_5+144\lambda_6+\text{other nonnegative terms}
+ \leq12+6r\leq48.
+\]
+Hence $\lambda_5=\lambda_6=0$.  Host uniqueness and admissibility now leave
+only
+\[
+ c(0,4),\ c(0,5),\ c(0,6),\ l(0,4),\ c(2,4).
+\]
+Their capacities from \eqref{eq:n13-host-cap} are respectively
+$2,3,9,2,2$, so this exhaustive list gives $R_{\rm rep}\leq E$.
+
+For the numerical inequality, introduce
+\[
+ \begin{gathered}
+ y=c(1,3),\ z=c(1,4),\ f=c(2,3),\quad
+ w=l(1,3),\ t=l(2,2),\ p=l(2,3),\\
+ d=60-C,\quad j=C_3-13,\quad
+ u=M_X-21,\quad v=M_\Gamma-18,
+ \end{gathered}
+\]
+all nonnegative integers.  The second added-centre calculation has the
+exact retained-slack budget
+\begin{align}
+ &12h+26k+36A_6+3y+5z+2f+40\ell+31w+22t+48p
+       +6u+3v+36d\leq12+6r.                       \label{eq:n13-second-budget}
+\end{align}
+Let $N=j+y+z$, $a=y+z$, and define
+\begin{align*}
+ K_0={}&N+2u+v+4h+8k+12A_6+10\ell+8d+4t+7w,\\
+ Q_0={}&N+u+4h+8k+12A_6+8\ell+8d+2t+5w+7p.
+\end{align*}
+The eight conservation rows displayed in
+\cref{subsec:n13large-certificates} give an integer $\mu\geq0$ and
+$\delta=7\mu-4j$ satisfying
+\begin{align}
+ K_0+7j-2r&=14\mu,& Q_0+4\mu-2j&\leq3+2r,
+                                                               \label{eq:n13-mu}\\
+ 3\delta&\leq6-k-5\ell-6d-5t-5w-24p.             \label{eq:n13-delta}
+\end{align}
+They also give, with
+\[
+ J=21+18r-(24g+24h+36k+84A_6+24\ell),
+\]
+the exact identity
+\begin{align}
+7J={}&49f+12j-60\delta+14a+7y+63u+14v+105k
+ +168\ell+252d-161p+42t+189w.                    \label{eq:n13-J}
+\end{align}
+ Its right side is nonnegative.  If $p>0$, \eqref{eq:n13-delta} gives
+\[
+ \delta\leq2-8p,\quad
+ -60\delta-161p\geq319p-120\geq199>0.
+\]
+Thus the only apparently negative pair of terms is already positive before
+the remaining nonnegative terms are restored.
+If $p=0$ and $\delta\leq0$, this is immediate.  For $\delta=1$, the
+congruence $\delta=7\mu-4j$ gives $j\equiv5\pmod7$, hence
+$12j-60\geq0$.  For $\delta=2$, \eqref{eq:n13-delta} forces
+$k=\ell=d=t=w=0$ and $j\equiv3\pmod7$.  If $j\geq10$, then
+$12j-120\geq0$.  For $j=3$ one has $\mu=2$, and
+\eqref{eq:n13-mu} gives
+\[
+ a+u+4h+12A_6\leq2r-2.
+\]
+The two eliminated conservation identities then read $v\geq6-u$ and
+\[
+ f=(y-a)-2\bigl(v-(6-u)\bigr).
+\]
+Since $f\geq0$ and $y\leq a$, equality holds throughout:
+$f=0$, $y=a$, and $v=6-u$.  The right side of
+\eqref{eq:n13-J} is therefore $21a+49u\geq0$.  Hence $J\geq0$ in every
+case.
+
+Since
+\[
+ 12E-24A_6=24g+24h+36k+84A_6+24\ell,
+\]
+$J\geq0$ is precisely the middle inequality of
+\eqref{eq:n13-capacity-gap}.
+
+It remains to remove $A_6$.  A first fixed added-centre row gives
+\[
+ 2388A_6\leq453+414r,
+\]
+and hence $A_6=0$ for $0\leq r\leq4$.  For $r=5,6$, the number of full
+edges is at least $6+r\geq11$.  Four matching supports, each of size at
+most three, must therefore all have size at least two.  If a six-outsider
+circle existed, every other event host would share at least three of its
+six outsider points and hence would coincide with it.  All four signature
+centres would then lie on its trace line, contradicting the three-centre
+cap.  Thus $A_6=0$ also for $r=5,6$.
+\end{proof}
+
+The number $F_3$ of full outsider edges satisfies
+\(W\leq2\binom72+F_3\), so $F_3\geq6+r$.  Balancing these edges among four
+matching supports of capacity three gives
+\begin{equation}
+ R_{\rm rep}\geq\rho(r),\quad
+\begin{array}{c|rrrrrrr}
+r&0&1&2&3&4&5&6\\ \hline
+\rho(r)&2&3&4&6&8&10&12.
+\end{array}                                        \label{eq:n13-rho}
+\end{equation}
+Together, \eqref{eq:n13-capacity-gap} and \eqref{eq:n13-rho} immediately
+exclude $r=0,4,5,6$.  At $r=1$, \eqref{eq:n13-second-budget} forces
+$k=A_6=\ell=0$, so $E=2(h+g)$ is even; the capacity gap gives $E\leq3$,
+and hence $E\leq2<\rho(1)$.  Only $r=2,3$ remain.
+
+\begin{lemma}[Three-residue terminal]
+\label{lem:n13-three-residue}
+The equality layers $r=2$ and $r=3$ are empty.
+\end{lemma}
+
+\begin{proof}
+For $r=2$, \eqref{eq:n13-rho} and the capacity gap give
+\[
+ 4\leq E\leq\floor{\frac{19}{4}}=4;
+\]
+for $r=3$ they give
+\[
+ 6\leq E\leq\floor{\frac{25}{4}}=6.
+\]
+Thus $E=4,6$, respectively.  Since $A_6=0$, the definition of $J$ becomes
+$J=21+18r-12E$, and hence $J=9$ for $r=2$ and $J=3$ for $r=3$.
+
+We next justify the reduction of variables.  At $r=2$, the right side of
+\eqref{eq:n13-second-budget} is $24$; its coefficients force
+\[
+ k=\ell=d=w=p=0.
+\]
+At $r=3$, its right side is $30$, so
+$\ell=d=w=p=0$ and $k\leq1$.  But here
+\[
+ E-3k=2(h+g)
+\]
+is even, whereas $E=6$; hence $k$ cannot equal one and again $k=0$.
+Together with $A_6=0$, this leaves precisely the nonnegative integers
+$a,y,u,v,h,t,f,j,\mu$, with $0\leq y\leq a$.  They satisfy
+\begin{align}
+ \delta&=7\mu-4j,                                  \label{eq:n13-res-delta}\\
+ v&=2\delta+2r-a-2u-4h-4t,\nonumber\\
+ f&=2j+\mu+y-v+4h-5t-2r,                           \label{eq:n13-res-vf}\\
+ a+u+4h+2t+4\mu-j&\leq3+2r,                       \label{eq:n13-res-budget}\\
+ J&=7a+48h+90j-123\mu-24r-9t+19u+8y.             \label{eq:n13-res-J}
+\end{align}
+The capacity inequality gives $\delta\leq2$.  Negative $\delta$ is
+impossible: for $r=3$, the term $-60\delta$ in the uneliminated identity
+\eqref{eq:n13-J} already exceeds $7J=21$; for $r=2$, the value
+$\delta=-1$ forces $j\equiv2\pmod7$, and then
+$-60\delta+12j\geq84>63=7J$.  More negative values only increase this
+lower bound.  Thus $\delta\in\{0,1,2\}$.
+
+Moreover,
+\[
+ 4\mu-j=\frac{4\delta+9j}{7}.
+\]
+Dropping the other nonnegative terms in \eqref{eq:n13-res-budget} gives
+$4\delta+9j\leq49$ for $r=2$ and at most $63$ for $r=3$.  The congruence
+$j\equiv5\delta\pmod7$ therefore leaves
+\begin{equation}
+ (\delta,j,\mu)\in\{(0,0,0),(1,5,3),(2,3,2)\}.    \label{eq:n13-three-residues}
+\end{equation}
+For completeness, the sole apparent extra triple is $(0,7,4)$ when
+$r=3$, but then the nonnegative right side of \eqref{eq:n13-J} contains
+$12j=84>21$.
+
+For $(0,0,0)$, the two inequalities $v,f\geq0$ give
+\[
+ a+2u+4h+4t\leq2r,\quad
+ a+y+2u+8h-t\geq4r.
+\]
+Since $y\leq a$, subtraction yields
+\[
+ 2r\leq y+4h-5t\leq a+4h-5t\leq2r-2u-9t.
+\]
+Hence $u=t=0$, $y=a=2r-4h$, and
+$J=6r-12h$.  The pairs $(r,J)=(2,9),(3,3)$ would respectively make
+$h=1/4,5/4$.
+
+For $(1,5,3)$, the two relevant rows become
+\begin{align*}
+ a+u+4h+2t&\leq2r-4,\\
+ J+24r-81&=7a+48h-9t+19u+8y.
+\end{align*}
+When $r=2$, the budget makes every variable zero, whereas the left side
+of the identity is $-24$.  When $r=3$, the budget is two: for $t=0$ the
+right side is nonnegative, and for $t=1$ it equals $-9$, while the left
+side equals $-6$.
+
+Finally, for $(2,3,2)$,
+\begin{align*}
+ a+u+4h+2t&\leq2r-2,\\
+ J+24r-24&=7a+48h-9t+19u+8y. 
+\end{align*}
+For $r=2$ the left side is $33$ and the budget is two.  Thus $h=0$.
+If $t=1$, the right side is $-9$; if $t=0$, parity forces
+$a+u=1$, and the right side is at most $19$.
+
+For $r=3$ the left side is $51$ and the budget is four.  The value $h=1$
+gives $48$, while $t=2$ gives $-18$ and $t=1$ gives at most $29$.
+Thus $h=t=0$.  Parity leaves $a+u\in\{1,3\}$.  The first value gives at
+most $19$; for the second, substituting $u=3-a$ gives
+$4(2y-3a)=-6$.  This is impossible.
+\end{proof}
+
+\begin{proposition}
+\label{prop:n13-gamma6}
+If a thirteen-point set has a largest proper circle of size six, then
+$C\geq61$.
+\end{proposition}
+
+\begin{proof}
+Assume $C\leq60$.  The capacity-gap lemma places
+$r=W-48$ in $\{0,\ldots,6\}$ and excludes $r=0,1,4,5,6$, while
+\cref{lem:n13-three-residue} excludes $r=2,3$.
+\end{proof}
+
+It remains to close the five-circle value left by \cref{lem:n13-outer}.
+
+\begin{lemma}[The five-circle transfer]
+\label{lem:n13-gamma5}
+If a thirteen-point set has no proper circle larger than five, then
+$C\geq61$.
+\end{lemma}
+
+\begin{proof}
+Assume $C\leq60$.  By \eqref{eq:n13-line-pencil}, every line has size at
+most six, so only $B_3,B_4,B_5,B_6$ occur and $B_6=L_6$.  Set
+\begin{align*}
+ K&=\sum_{p\in P}\sigma_p,\quad
+ Q=3B_3-5B_5-12B_6=39+K,\\
+ S&=3L_3+4L_4+10L_5+12L_6,\\
+ A&=5L_3+12L_4+20L_5+28L_6.
+\end{align*}
+The triple partition and the two applications of Melchior described above
+give
+\begin{align}
+ B_3+4B_4+10B_5+20B_6&=286,                       \label{eq:g5-triples}\\
+ 12B_4+35B_5+72B_6&=819-K,                         \label{eq:g5-block}\\
+ A&\leq4C-169+C_5,\quad A\geq\frac53S,             \label{eq:g5-A}\\
+ 24\cdot286+27Q&\leq35(S+3C).                     \label{eq:g5-transfer}
+\end{align}
+The last inequality is coefficientwise:
+\[
+\begin{array}{c|rrrr}
+s&3&4&5&6\\ \hline
+\text{left side}&105&96&105&156\\
+\text{right side, circle}&105&105&105&--\\
+\text{right side, line}&105&140&350&420.
+\end{array}
+\]
+The dash records $C_6=0$ in this branch.  Thus, on every type that can
+occur, no separation or optimisation theorem is hidden in
+\eqref{eq:g5-transfer}.
+
+From \eqref{eq:g5-block}, $C_5\leq B_5\leq23$.  Equations
+\eqref{eq:g5-A}--\eqref{eq:g5-transfer} now give
+\[
+ 377-5C\leq A\leq4C-146,
+\]
+and hence $C\geq523/9$, so only $C=59,60$ remain.
+
+For these two endpoints let $L=\sum_{s=3}^6L_s$.  Exact elimination from
+\eqref{eq:g5-triples}--\eqref{eq:g5-A} gives
+\begin{align}
+ 4L&=325-4C-B_5-4B_6+K,                            \label{eq:g5-L}\\
+ 9B_5&\geq2301-36C+5K+72B_6.                      \label{eq:g5-B5}
+\end{align}
+Combining \eqref{eq:g5-block}, $B_4\geq0$, and \eqref{eq:g5-B5} yields
+\[
+ \begin{array}{ll}
+ C=59:&23K+396B_6\leq147,\\
+ C=60:&46K+792B_6\leq609.
+ \end{array}
+\]
+Thus $B_6=0$.  Reducing \eqref{eq:g5-block} modulo $12$, then using
+\eqref{eq:g5-B5} and $B_4\geq0$, gives exactly
+\begin{equation}
+ (B_3,B_4,B_5,B_6)=(48+2K, 7-3K, 21+K, 0),
+ \quad K\in\{0,1,2\}.                              \label{eq:g5-three-endpoints}
+\end{equation}
+At every point $p$, pair partition and the definition of $\sigma_p$ give
+\begin{equation}
+ 7d_5(p)+3d_4(p)=63-\sigma_p.                      \label{eq:g5-point}
+\end{equation}
+
+If $K=0$, \eqref{eq:g5-point} and $d_4(p)\leq B_4=7$ force
+$d_4(p)\in\{0,7\}$.  Since $\sum_p d_4(p)=4B_4=28$, four points lie in
+all seven four-blocks, making two distinct maximal blocks share four
+points.  If $K=1$, twelve zero-slack points have $(d_5,d_4)=(9,0)$ and
+the remaining point has $(8,2)$; hence $\sum_p d_5(p)=116$, rather than
+$5B_5=110$.  Finally, if $K=2$, any point with positive slack must have
+$d_4(p)\geq2$, while \eqref{eq:g5-three-endpoints} gives $B_4=1$.
+All three cases are impossible.
+\end{proof}
+
+\begin{theorem}\label{thm:n13-value}
+The thirteen-point value is
+\[
+ f(13)=61.
+\]
+\end{theorem}
+
+\begin{proof}
+For a hypothetical set with $C\leq60$, \cref{lem:n13-outer} leaves only
+$m=5$ and $m=6$.  These are excluded by \cref{lem:n13-gamma5} and
+\cref{prop:n13-gamma6}, respectively.  Hence $C\geq61=F(13)$.  The
+circle-with-centre construction from the foundational section has exactly
+$F(13)$ proper circles, proving equality.
+\end{proof}
+
+\subsection{A uniform half-cap and one master for
+  \texorpdfstring{$n\geq15$}{n >= 15}}
+
+\begin{lemma}[Uniform half-cap]
+\label{lem:large-half-cap}
+Let $n\geq15$ and suppose $C\leq F(n)-1$.  Every maximal line or proper
+circle block then has size at most
+\[
+ H=\floor{\frac n2}.
+\]
+\end{lemma}
+
+\begin{proof}
+Let a block have size $s$, put $q=n-s\geq1$, and write
+$h=\floor{s/2}$.  The rich-circle and rich-line pencils are
+\begin{align}
+ R(n,s)&=1+q\left(\binom s2-h\right)-\binom q2h,   \label{eq:large-rich-circle}\\
+ Q(n,s)&=q\binom s2-\binom q2h=R(n,s)-1+qh.        \label{eq:large-rich-line}
+\end{align}
+We show $R(n,s)\geq F(n)$ whenever $s\geq H+1$.  The following four rows
+cover all parity choices; in each row $c\geq0$.
+\[
+\begin{array}{c|c|c|l}
+s&q&\text{parameter relation}&R(n,s)-F(n)\\ \hline
+2a&2b&a=b+1+c&
+(4b-2)c^2+(6b^2-3b)c+2b^3-5b^2+b\\
+2a&2b+1&a=b+1+c&
+b\{4c^2+(6b-1)c+2b^2-5b-3\}\\
+2a+1&2b&a=b+c&
+(4b-2)c^2+(6b^2-7b+2)c+2b^3-7b^2+4b\\
+2a+1&2b+1&a=b+1+c&
+b\{4c^2+(6b+3)c+2b^2-b-1\}.
+\end{array}                                                    \tag{*}
+\]
+The condition $n\geq15$ is, row by row,
+\(2b+c\geq7,6,7,6\).  For $b\geq3$ all relevant coefficients in the
+first three rows are nonnegative, and the fourth row is nonnegative for
+every $b\geq1$.  The remaining possibilities reduce to
+\[
+\begin{array}{c|cc}
+&b=1&b=2\\ \hline
+\text{row 1}&2c^2+3c-2\ (c\geq5)&6c^2+18c-2\ (c\geq3)\\
+\text{row 2}&4c^2+5c-6\ (c\geq4)&2(4c^2+11c-5)\ (c\geq2)\\
+\text{row 3}&2c^2+c-1\ (c\geq5)&6c^2+12c-4\ (c\geq3),
+\end{array}
+\]
+all strictly positive.  In the two odd-$q$ rows, $b=0$ gives equality
+$R=F$.  Thus a circle of size $s\geq H+1$ already determines at least
+$F(n)$ circles.  Equation \eqref{eq:large-rich-line} and $qh\geq1$ give
+the same conclusion for a line.  Either conclusion contradicts
+$C\leq F(n)-1$.
+\end{proof}
+
+Under the cap $s\leq M$, inversion leaves at most $M-1$ collinear images.
+For $M=\floor{n/2}$,
+\[
+ M-1\leq\frac{2(n-1)}3.
+\]
+The Langer--de Zeeuw inequality \cref{thm:langer}, applied after each
+inversion and summed over all centres, therefore gives
+\begin{equation}
+ \mathsf L:=\sum_{s\geq3}s(s-1)B_s
+ \geq\frac{n(n-1)(n+2)}3.                          \label{eq:large-L}
+\end{equation}
+
+\begin{lemma}[The $S_M$ master]
+\label{lem:large-SM}
+Assume every maximal block has size at most $M\geq3$ and that
+\eqref{eq:large-L} holds.  Then
+\begin{equation}
+ C\geq A(n,M):=
+ \frac{\binom n3}{2M}+\frac{n(M+3)}{6M}
+ +\frac{(M-2)n(n-1)(n+2)}{36M}-\frac{n(n-4)}9.
+                                                               \label{eq:large-A}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Consider the single functional
+\begin{equation}
+ \mathsf S_M=\frac{\mathsf T}{2M}
+ +\frac{M+3}{18M}\mathsf P
+ +\frac{M-2}{12M}\mathsf L-\frac19\mathsf D.      \label{eq:large-SM}
+\end{equation}
+If $k_C(s)$ and $k_L(s)$ are its coefficients on an $s$-circle and an
+$s$-line, respectively, direct factorisation gives
+\begin{align}
+ 1-k_C(s)&=\frac{(M-s)(s-4)(s-3)}{12M},            \label{eq:large-circle-slack}\\
+ k_L(s)&=\frac{s(s-3)(-7M+3s-12)}{36M}.            \label{eq:large-line-slack}
+\end{align}
+Thus $k_C(3)=k_C(4)=1$, $k_C(s)\leq1$ for $5\leq s\leq M$, and
+$k_L(s)\leq0$ for every $3\leq s\leq M$.  Hence
+$\mathsf S_M\leq C$.  Substitution of
+\eqref{eq:large-T}, \eqref{eq:large-P}, \eqref{eq:large-D}, and
+\eqref{eq:large-L}, with attention to the negative coefficient of
+$\mathsf D$, gives \eqref{eq:large-A}.
+\end{proof}
+
+Taking $M=\floor{n/2}$ in \eqref{eq:large-A} yields
+\begin{align}
+ A(2r,r)-F(2r)&=\frac{(2r-1)(r^2-9r+13)}9,
+                                                               \label{eq:large-even-gap}\\
+ A(2r+1,r)-F(2r+1)&=
+ \frac{4r^4-32r^3+37r^2+9}{18r}.                  \label{eq:large-odd-gap}
+\end{align}
+The first is positive for $r\geq8$; after $r=8+t$ its quadratic factor is
+$t^2+7t+5$.  In the second, after $r=7+t$, the numerator is
+\[
+ 4t^4+80t^3+541t^2+1302t+450,
+\]
+so it is positive for $r\geq7$.  Together with
+\cref{lem:large-half-cap,lem:large-SM}, this proves $C\geq F(n)$ for
+every $n\geq15$.
+
+\subsection{The exact dichotomy at fourteen points}
+
+\begin{proposition}[Seven-circle dichotomy]
+\label{prop:n14-dichotomy}
+Every admissible fourteen-point set determines at least $73$ proper
+circles.
+\end{proposition}
+
+\begin{proof}
+Assume $C\leq72$.  The pencil bounds
+\eqref{eq:large-rich-circle}--\eqref{eq:large-rich-line} show that proper
+circle blocks have size at most seven and line blocks have size at most
+six.  If $C_7=0$, all blocks have size at most six.  Every inverted line
+then contains at most five of the thirteen image points, and
+$5\leq2\cdot13/3$, so \cref{thm:langer} supplies \eqref{eq:large-L}.
+The $S_M$ master with $M=6$ gives
+\[
+ C\geq A(14,6)=\frac{3899}{54}>72.
+\]
+
+It remains to consider a selected seven-circle $\Gamma$ with seven-point
+complement $X$.  For every block put
+$g=|B\cap\Gamma|$, $x=|B\cap X|$, and $s=g+x$, and define
+\begin{equation}
+ W=\sum_{\substack{B\text{ a proper circle}\\g=2}}\binom x2.
+                                                               \label{eq:n14-W}
+\end{equation}
+The four triple totals according to their number of $\Gamma$-points are
+$\binom7i\binom7{3-i}$.  Put
+\[
+ M_\Gamma=\sum_B g(4-s),\quad M_X=\sum_B x(4-s),
+\]
+where the sums include the selected block.  Summed pivot Melchior over each
+of the two seven-point classes gives $M_\Gamma,M_X\geq21$, while
+\eqref{eq:large-D} gives $\mathsf D\leq140$.
+
+For every block set
+\begin{align*}
+ A_B={}&6\binom x3+9g\binom x2+12\binom g2x+6\binom g3
+ +(3g+6x)(4-s)\\
+ &-36\mathbf{1}_{\{B\text{ is a circle}\}}
+ -6\mathbf{1}_{\{B\text{ is a circle and }g=2\}}\binom x2.
+\end{align*}
+For a nonselected block one has $g\leq2$, and the residual $4D_B-A_B$
+factors as
+\begin{equation}
+\begin{array}{c|ccc}
+&g=0&g=1&g=2\\ \hline
+\text{circle}&(x-3)(-x^2+10x-12)&
+ (5-x)(x-2)(2x-3)/2&(4-x)(x-2)(x-1)\\
+\text{line}&x(14-x)(x-3)&
+ (x-2)(-2x^2+21x+17)/2&(x-1)(-x^2+7x+12).
+\end{array}                                                     \label{eq:n14-residuals}
+\end{equation}
+Under the block caps every line residual is nonnegative; a negative circle
+residual has magnitude at most $3\binom x3$.  Outsider triples have unique
+owners, so the total correction is at most $3\binom73$.  The selected
+seven-circle contributes the remaining defect $27$.  Summing the block
+inequality and using $C\leq72$ gives
+\begin{align*}
+ 6W\geq{}&3\binom73+9\cdot7\binom72
+ +12\binom72\cdot7+6\binom73+3\cdot21+6\cdot21\\
+ &-36\cdot72-4\cdot140-27=412.
+\end{align*}
+Hence $W\geq69$.  On the other hand, for a fixed outsider pair the
+$\Gamma$-pairs used by circles counted in $W$ are disjoint.  It contributes
+at most $\floor{7/2}=3$, and therefore
+\[
+ W\leq3\binom72=63,
+\]
+a contradiction.
+\end{proof}
+
+\begin{theorem}\label{thm:large-range}
+For every integer $n\geq14$,
+\[
+ f(n)=F(n)=1+\binom{n-1}{2}-\floor{\frac{n-1}{2}}.
+\]
+\end{theorem}
+
+\begin{proof}
+The lower bound for $n=14$ is \cref{prop:n14-dichotomy}.  For $n\geq15$,
+\cref{lem:large-half-cap} supplies the common block cap, Langer supplies
+\eqref{eq:large-L}, and the one functional in \cref{lem:large-SM} gives
+the strict contradictions \eqref{eq:large-even-gap} and
+\eqref{eq:large-odd-gap} under $C\leq F(n)-1$.  The foundational
+circle-with-centre construction attains $F(n)$ for every $n\geq14$.
+\end{proof}
+
+\subsection{Fixed-certificate appendix and verification boundary}
+\label{subsec:n13large-certificates}
+
+For clarity, we record which parts of this section are fixed arithmetic
+certificates and which parts are mathematical inputs.
+
+\paragraph{The opening certificate.}
+In \cref{lem:n13-gamma6-opening}, the residual
+$123D_B-A(g,x)$ has the following line residuals:
+\begin{align*}
+ R_L(0,x)&=\frac{x(x-3)(890-47x)}2,\\
+ R_L(1,x)&=\frac{(x-2)(-47x^2+597x+246)}2,\\
+ R_L(2,x)&=\frac{x(x-1)(304-47x)}2.
+\end{align*}
+The circle residuals are
+\begin{align*}
+ R_C(0,x)&=237+\frac{(x-3)(-47x^2+644x-738)}2
+                 -237\mathbf{1}_{\{x=3\}},\\
+ R_C(1,x)&=\frac{(5-x)(47x^2-210x+390)}2
+                 -237\mathbf{1}_{\{x=2\}},\\
+ R_C(2,x)&=\frac{(x-2)(x-3)(284-47x)}2
+                 -237\mathbf{1}_{\{x=1\}}.
+\end{align*}
+It is enough---and slightly stronger than the outer cap requires---to use
+the intervals
+\[
+\begin{array}{c|ccc}
+&g=0&g=1&g=2\\ \hline
+\text{line}&3\leq x\leq7&2\leq x\leq6&1\leq x\leq5\\
+\text{circle}&3\leq x\leq6&2\leq x\leq5&1\leq x\leq4.
+\end{array}
+\]
+Each displayed expression is nonnegative on its indicated interval.  Thus
+the opening is a coefficientwise proof, not a conclusion inferred from
+sampled incidence patterns.
+
+\paragraph{Affine certificate.}
+For reference, retain the zero- and positive-slack variables
+\[
+ c_{03},c_{12},c_{15},c_{21},c_{22},l_{03},l_{12},l_{21}
+\]
+in addition to the variables in \cref{lem:n13-capacity-gap}.  With every
+row written as left side minus right side, the eight conservation equations
+are
+\begin{align*}
+R_C={}&1+c_{03}+h+k+A_6+c_{12}+y+z+c_{15}+c_{21}+c_{22}+f+g-(60-d),\\
+R_O={}&c_{03}+c_{12}+c_{21}-(13+j),\\
+R_0={}&c_{03}+4h+10k+20A_6+y+4z+10c_{15}+f+4g
+       +l_{03}+4\ell+w+p-35,\\
+R_1={}&c_{12}+3y+6z+10c_{15}+2c_{22}+6f+12g
+       +l_{12}+3w+2t+6p-126,\\
+R_2={}&c_{21}+2c_{22}+3f+4g+l_{21}+2t+3p-105,\\
+R_W={}&c_{22}+3f+6g-(48+r),\\
+R_X={}&3c_{03}-5k-12A_6+2c_{12}-4z-10c_{15}+c_{21}-3f-8g\\
+ &\quad+3l_{03}+2l_{12}+l_{21}-3p-(21+u),\\
+R_\Gamma={}&-12+c_{12}-z-2c_{15}+2c_{21}-2f-4g
+       +l_{12}+2l_{21}-2p-(18+v).
+\end{align*}
+All eight equal zero.
+
+\smallskip
+\noindent\emph{The second-dual inequality.}
+For a nonselected block $B$, put $g=|B\cap\Gamma|$, $x=|B\cap X|$ and
+$s=g+x$.  Let $D_B=s(s-4)$ for a circle and $D_B=2s(s-2)$ for a line.
+Weight the four triple rows by $6,9,12,6$, add $6M_X+3M_\Gamma$, and
+subtract $36C+6W$.  The coefficient of $B$ is
+\begin{align*}
+ A_2(g,x)={}&6\binom x3+9g\binom x2+12\binom g2x
+ +(6x+3g)(4-g-x)\\
+ &-36\mathbf1_{\{B\text{ is a circle}\}}
+ -6\mathbf1_{\{B\text{ is a circle and }g=2\}}\binom x2.
+\end{align*}
+For $g=0,1,2$, the residual $4D_B-A_2(g,x)$ is
+\[
+\begin{array}{c|ccc}
+&g=0&g=1&g=2\\ \hline
+\text{line}&
+x(x-3)(14-x)&
+(x-2)(-2x^2+21x+17)/2&
+(x-1)(-x^2+7x+12)\\
+\text{circle}&
+(x-3)(-x^2+10x-12)&
+(5-x)(x-2)(2x-3)/2&
+(4-x)(x-2)(x-1).
+\end{array}
+\]
+The line ranges are respectively $3\leq x\leq7$, $2\leq x\leq6$,
+$1\leq x\leq5$, and the circle ranges are $3\leq x\leq6$,
+$2\leq x\leq5$, $1\leq x\leq4$.  Every displayed factor is nonnegative;
+the selected circle separately has equality $48=4\cdot12$.  Summing and
+using $\mathsf D\leq117$ gives exactly
+\begin{align}
+ B_0:={}&12h+26k+36A_6+3y+5z+2f+40\ell+31w+22t+48p\notag\\
+        &\quad+6u+3v+36d-(12+6r)\leq0.             \label{eq:n13-B0}
+\end{align}
+The zero-residual types are precisely
+$c_{03},c_{12},c_{15},c_{21},c_{22},l_{03},l_{12},l_{21}$ and
+$g=c(2,4)$; every omitted type has nonnegative residual and may safely be
+discarded from the retained budget.
+This proves the budget used in \eqref{eq:n13-second-budget}
+coefficientwise.
+
+\smallskip
+\noindent\emph{The integral coordinate.}
+In the row order $(R_C,R_O,R_0,R_1,R_2,R_W,R_X,R_\Gamma)$, define
+\begin{align*}
+ F_0={}&14f-\bigl(180A_6+24\ell-30r+36d+60h+36j+106k-140p\\
+      &\qquad\quad-66t+2u-13v-21w+15y+z\bigr),\\
+ G_0={}&336g-\bigl(294+342r-1716A_6-240\ell-276d-516h-276j\\
+      &\qquad\quad-976k+1302p+618t-20u+123v+189w-87y+25z\bigr).
+\end{align*}
+Their fixed row certificates are
+\begin{align}
+ F_0={}&-36R_C+36R_O-6R_0+9R_1+24R_2-30R_W+2R_X-13R_\Gamma=0,
+                                                               \label{eq:n13-F0}\\
+ G_0={}&276R_C-276R_O+60R_0-83R_1-226R_2+342R_W
+         -20R_X+123R_\Gamma=0.                                \label{eq:n13-G0}
+\end{align}
+Put $N=j+y+z$ and
+\begin{align*}
+ B_1={}&9N+36h+72k+108A_6+76\ell+49w+22t+49p\\
+       &\quad+72d+11u+2v-(21+18r),\\
+ H={}&2j+y-v+4h+7k+12A_6+\ell+2d-10p-5t-2w-2r.
+\end{align*}
+The right side subtracted from $14f$ in \eqref{eq:n13-F0} has the exact
+decomposition
+\[
+ (K_0+7j-2r)+14H.
+\]
+Consequently
+\[
+ K_0+7j-2r=14(f-H).
+\]
+Set $\mu=f-H$ and $E_\mu=K_0+7j-2r-14\mu$.  Then $\mu$ is an integer,
+$E_\mu=0$, and $\mu\geq0$: indeed the left side above is at least
+$-2r\geq-12$, so it cannot be a negative multiple of $14$.
+
+The remaining budget transformations are the fixed identities
+\begin{align}
+ 7B_0-4B_1-F_0&=0,                                  \label{eq:n13-B01}\\
+ B_1+21+18r&=2K_0+7Q_0,                             \label{eq:n13-B1KQ}\\
+ B_1&=7\{Q_0+4\mu-2j-(3+2r)\}+2E_\mu.              \label{eq:n13-B1mu}
+\end{align}
+Thus $B_0\leq0$ and $F_0=E_\mu=0$ imply $B_1\leq0$ and precisely the two
+relations in \eqref{eq:n13-mu}.
+
+\smallskip
+\noindent\emph{The $\delta$ and $J$ certificates.}
+Let
+\[
+ \delta=7\mu-4j,\qquad
+ L=3+2r-(Q_0+4\mu-2j)\geq0.
+\]
+Direct substitution in the displayed definitions gives the fixed identity
+\begin{align}
+ S&:=6-k-5\ell-6d-5t-5w-24p-21\mu+12j\notag\\
+  &=f+2L+z\geq0,                                    \label{eq:n13-S}
+\end{align}
+and hence
+\[
+ 3\delta=6-k-5\ell-6d-5t-5w-24p-S.
+\]
+This is \eqref{eq:n13-delta}.  The same substitution gives the two exact
+equalities
+\begin{align}
+ v={}&2\delta+2r-a-2u-4h-8k-12A_6-10\ell-8d-4t-7w,
+                                                               \label{eq:n13-v-cert}\\
+ f={}&2j+\mu+y-v+4h+7k+12A_6+\ell+2d
+       -10p-5t-2w-2r.                              \label{eq:n13-f-cert}
+\end{align}
+
+For the last elimination set $G=24g$ and
+\begin{align*}
+ G_*={}&21+42r+123\mu-228A_6-105\ell-90d-72h-83j-140k\\
+      &\quad+93p+9t-19u-48w-8y-7N.
+\end{align*}
+Then the first fixed certificate is
+\begin{equation}
+ G_0-14(G-G_*)+123E_\mu=0,                          \label{eq:n13-Gstar}
+\end{equation}
+so $G=G_*$.  Let $E_\delta=\delta-(7\mu-4j)$, let $E_v$ be the left side
+minus the right side of \eqref{eq:n13-v-cert}, and put
+\begin{align*}
+ E_{7f}=7f-\bigl(&18j+15\delta+7(y-a)-14v-7k-63\ell-42d\\
+                 &-70p-63t-14u-63w\bigr).
+\end{align*}
+Equation \eqref{eq:n13-f-cert} gives $E_{7f}=0$.  Finally, let $E_J$ be
+$7J$ minus the right side of \eqref{eq:n13-J}.  The terminal fixed
+identity is
+\begin{equation}
+ E_J+7(G-G_*)-84E_v+7E_{7f}-123E_\delta=0.          \label{eq:n13-EJ}
+\end{equation}
+Every term except $E_J$ has just been shown to vanish, proving
+\eqref{eq:n13-J}.  This explicit chain establishes
+\eqref{eq:n13-mu}--\eqref{eq:n13-J}; no multiplier is chosen by
+optimisation or incidence search.
+
+\paragraph{What was checked arithmetically.}
+During preparation, exact-arithmetic checks independently replayed the
+opening residuals, the $W=47$
+identities, all eight affine rows and their fixed eliminations, the seven
+values of $\rho$, the capacity-gap conversion, the three-residue
+calculations, the four half-cap polynomials, the coefficients of $S_M$, and
+the fourteen-point residual table.  These checks manipulate integers, rationals,
+and symbolic polynomials only.
+
+Such arithmetic checks do not prove Melchior's theorem, Langer's inequality, the pivot form
+of Lenchner's theorem~\cite{Lenchner2007}, the inversion dictionary, or the
+real six-marked-conic signature and host lemmas.  Those are the stated
+geometric inputs to the written proofs.  The classification-free
+$\Gamma_5$ transfer in \cref{lem:n13-gamma5} is checked directly through
+its displayed blockwise coefficients and endpoint equations.  The distributed
+exact-arithmetic supplement
+\path{supplement/verify_n13_gamma5_global_closure.py} checks an independent
+global closure of that branch.  In every case the arithmetic is
+corroborative, not a substitute for the theorem-level arguments above.

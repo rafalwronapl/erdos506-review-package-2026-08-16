@@ -1,0 +1,175 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=29mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,longtable,array}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black,
+  urlcolor=blue!55!black]{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{construction}[theorem]{Construction}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\ind}{\mathbf{1}}
+\newcommand{\floor}[1]{\left\lfloor #1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil #1\right\rceil}
+\DeclareMathOperator{\supp}{supp}
+
+\title{The minimum number of proper circles determined by a planar point set}
+\author{Anonymous review manuscript}
+\date{5 August 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+For a finite set \(P\subset\R^2\), let \(C(P)\) be the number of distinct
+proper Euclidean circles containing at least three points of \(P\).  We
+determine the minimum of \(C(P)\) over all \(n\)-point sets which are neither
+collinear nor concyclic.  The three exceptional values are
+\[
+ f(6)=8,\qquad f(7)=11,\qquad f(8)=17,
+\]
+whereas
+\[
+ f(n)=1+\binom{n-1}{2}-\floor{\frac{n-1}{2}}
+\]
+for \(n=4,5\) and for every \(n\ge9\).
+
+The proof is organized around unique ownership of triples by maximal line
+and circle blocks.  Inversion converts the local block structure into real
+line arrangements, allowing Melchior-type inequalities and their weighted
+consequences.  A uniform half-size cap and one nonnegative-slack identity
+settle all \(n\ge15\), with a separate two-case argument at \(n=14\).
+The finite window is reduced to named real-projective rigidity lemmas and
+small displayed certificates.  The proof uses no computerized search
+through point configurations, block supports, or symmetry orbits.
+\end{abstract}
+
+\section{Introduction}
+
+Erd\H{o}s asked for the least number of circles determined by \(n\) planar
+points not all on a circle~\cite{Erdos1961}.  If collinear sets are admitted,
+the minimum is trivially zero, so one must specify a nondegeneracy
+convention.  We follow Elliott~\cite{Elliott1967}: the points are required
+to be neither all collinear nor all concyclic.  A determined circle is
+counted once, independently of how many selected points it contains.
+This differs from the ordinary-circle problem, in which exactly three
+selected points are required~\cite{LinEtAl2018}.
+
+Purdy and Smith corrected the previously claimed large-\(n\) formula and
+identified the natural extremal construction consisting of a circle and
+its centre~\cite{PurdySmith2010}.  The present argument proves the exact
+minimum at every finite value under Elliott's convention.
+
+\begin{theorem}\label{thm:main}
+For every integer \(n\ge4\),
+\[
+ (f(4),f(5),f(6),f(7),f(8))=(3,5,8,11,17),
+\]
+and
+\[
+ \boxed{\displaystyle
+ f(n)=1+\binom{n-1}{2}-\floor{\frac{n-1}{2}}}
+ \qquad(n\ge9).
+\]
+\end{theorem}
+
+\subsection*{Architecture of the proof}
+
+Every selected triple is contained in a unique maximal carrier: its line
+when it is collinear, and its proper circle otherwise.  This elementary
+partition is the common source of all counting identities in the paper.
+Inverting about a selected point turns the carriers through that point into
+spanned lines.  Melchior's inequality, applied before and after restoring
+the inversion centre, then yields local slack variables and two global
+weighted inequalities.
+
+The large range is conceptually the shortest part.  A rich-carrier pencil
+first bounds every block by \(\floor{n/2}\).  A single functional
+\(S_M\), whose coefficients are visibly nonnegative at that cap, gives the
+target for every \(n\ge15\).  At \(n=14\), the same functional handles the
+absence of a seven-point circle and one selected-circle inequality handles
+its presence.
+
+For \(4\le n\le13\), the universal identities leave a finite number of
+equality mechanisms.  We isolate their geometry as reusable lemmas:
+the real Fano and Orchard walls, pentagon and golden-axis rigidity,
+circle-lift trace and conic-event bounds, and the grid and gallery
+obstructions.  The remaining arithmetic consists of fixed coefficient
+identities or small structural certificates displayed in the text.
+
+\subsection*{Classical and computational boundaries}
+
+The external incidence inputs are stated with their exact hypotheses at
+first use.  They are Melchior's inequality~\cite{Melchior1940}, the
+non-strict Kelly--Moser ordinary-line estimate~\cite{KellyMoser1958},
+Langer's inequality in the form recorded by de Zeeuw
+~\cite{Langer2003,DeZeeuw2018}, Lenchner's affine ordinary-point theorem
+~\cite{Lenchner2007}, and Ungar's direction theorem~\cite{Ungar1982}.
+Inversion, the
+circle lift, polarity, and the local conic arguments are proved within the
+paper rather than treated as black boxes.
+
+Exact-arithmetic checks used during preparation replay displayed integer
+identities, rational coefficients, and fixed determinants.  They do not
+discover cases and do not supply a geometric premise.  Two small
+finite residues remain explicit: a nine-row coefficient table in the
+ten-point six-circle case, and a four-state corner propagation in the
+twelve-line gallery.  These are hand-checkable certificates, not
+enumerations of configurations or realizations.
+
+\subsection*{Organization}
+
+\Cref{sec:foundations-small} develops the block calculus, records the
+classical inputs and upper constructions, and proves the cases
+\(4\le n\le9\).  \Cref{sec:finite-n10-n12} proves the three most geometric
+finite cases \(n=10,11,12\).  \Cref{sec:n13-infinity} treats \(n=13\), the
+two-case endpoint \(n=14\), and the uniform range \(n\ge15\), and records
+the fixed-certificate boundary.
+
+\input{sections/01_foundations_small_cases}
+\input{sections/02_finite_n10_n12}
+\input{sections/03_n13_infinity_certificates}
+
+\begin{proof}[Proof of \cref{thm:main}]
+The exact values for \(4\le n\le9\) are
+\cref{thm:small-values}.  The values for \(n=10,11,12\) are
+\cref{thm:finite-n10-n12}, and the value at \(n=13\) is
+\cref{thm:n13-value}.  Finally, \cref{thm:large-range} proves the stated
+formula for every \(n\ge14\).  The constructions in
+\cref{sec:foundations-small} give equality in every case.
+\end{proof}
+
+\section*{Reproducibility statement}
+
+The distributed supplementary checker uses exact integer, rational, and
+symbolic arithmetic.  Its logical role is secondary verification of one
+independent closure whose direct proof is already printed in the manuscript.
+No optimizer, satisfiability result,
+configuration catalogue, support search, or orbit search is a premise of
+the proof.  This supplementary replay is not a Lean formalization.
+
+\bibliographystyle{alpha}
+\bibliography{references}
+
+\end{document}

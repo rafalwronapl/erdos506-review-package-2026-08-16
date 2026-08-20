@@ -1,0 +1,391 @@
+\begin{lemma}[The \(C=39\) arithmetic front]\label{lem:n11-C39-front-v2}
+Assume that eleven admissible points have \(39\) proper circles, contain a
+proper five-circle, and have no proper circle larger than five.  Every
+generalized block has size at most five, and the number \(L\) of maximal
+lines belongs to \(\{12,15\}\).
+
+Fix a proper five-circle \(\Gamma\), with outsider set \(X\).  Let \(A_{ij}\)
+count nonselected blocks containing \(i\) points of \(\Gamma\) and \(j\)
+outsiders, and put
+\[
+ H=A_{22}+3A_{23},\quad x=A_{23},\quad
+ r=A_{13},\quad s=A_{14},\quad
+ q=A_{04}+3A_{05},\quad y=A_{05}.
+\]
+If \(L=3k\), and if
+\[
+ B_0=A_{03}+A_{04}+A_{05},\qquad
+ T_0=A_{03}+4A_{04}+10A_{05},
+\]
+then
+\begin{align}
+A_{22}&=H-3x,&A_{21}&=60-2H+3x,\notag\\
+A_{12}&=75-2H-3r-6s,&
+B_0&=3H+L-97-x+2r+5s,\notag\\
+T_0&=20-x-r-4s,&
+q&=39-H-k-r-3s. \label{eq:C39-full-front-v2}
+\end{align}
+Moreover
+\begin{equation}\label{eq:C39-rich-cap-v2}
+ 0\le q\le3,\qquad y=1\Longrightarrow q=3,
+\end{equation}
+and, if \(e_\Gamma,e_X\) count points with \(d_3=9\) on the two sides,
+\begin{equation}\label{eq:C39-high-split-v2}
+ e_\Gamma=55-2H+2x-r-2s,\qquad
+ e_X=2k-r-2s-2q+2y.
+\end{equation}
+Every point has \(d_3\in\{6,9\}\) and \(d_5\le4\).
+\end{lemma}
+
+\begin{proof}
+Let \(A\) be a maximal \(a\)-line and put \(b=11-a\).  For each pair of
+outsiders, its pair-hosts on \(A\) form a matching, so the line pencil gives
+the uniform lower bound
+\[
+ C\ge b\binom a2-\binom b2\floor{a/2}.
+\]
+For \(a=6,7,8,9,10\) its values are respectively
+\(45,66,72,68,45\), so a line of size at least six is impossible.  Let
+\(N_j\) be the number of generalized \(j\)-blocks.  Counting blocks and
+triples gives
+\[
+ N_3+N_4+N_5=39+L,\qquad N_3+4N_4+10N_5=165.
+\]
+Consequently
+\begin{equation}\label{eq:C39-global-blocks-v2}
+ L=3k,\qquad N_4+3N_5=42-k,\qquad
+ N_3=-3+4k+2N_5.
+\end{equation}
+
+At a pivot, inversion gives
+\[
+ d_3+3d_4+6d_5=45.
+\]
+Kelly--Moser gives \(d_3\ge5\).  Deleting the pivot destroys at most
+\(39-f(10)=6\) three-circles, and its three-lines use disjoint pairs of the
+other ten points, so \(d_3\le11\).  The displayed congruence now yields
+\(d_3\in\{6,9\}\).
+
+If five four-point image lines existed at a pivot, their twenty incidences
+on ten points and
+\(\sum_u\binom{r_u}{2}\le\binom52\) would force every image point to be
+the intersection of exactly two of the lines.  A further image line distinct
+from those five contains at most two such pair-labelled points: three labels
+would either share an index, giving one of the five lines, or be three
+disjoint edges of \(K_5\), which is impossible.  The link equation nevertheless
+requires a further three-point line.  Six four-point image lines are excluded
+already by \(\sum_u\binom{r_u}{2}\ge18>\binom62\).  Hence \(d_5\le4\).
+
+Melchior on the original lines gives
+\[
+ 3\ell_3+7\ell_4+12\ell_5\le52,
+\]
+so \(L\le15\).  Summing the pivot slack and the deletion bound gives
+\[
+ \sum_p(d_3(p)-3-d_5(p))=4L+N_5-42\ge0,
+ \qquad 2N_5\le25-k.
+\]
+These inequalities exclude \(L=0,3,6\).  For \(L=9\), put
+\(E=\#\{p:d_3(p)=9\}=2N_5-13\).  Then \(7\le N_5\le11\).
+Splitting the pivot slack between \(\Gamma\) and \(X\) gives
+\[
+ 45+4y-4N_5\le3r+7s+6q\le39+4y-3N_5,
+ \qquad r+3s+q\ge6.
+\]
+For \(q=0,1,2,3\), these intervals leave only
+\[
+ (N_5,r,s)=(7,6,0),(7,1,2),(8,0,2).
+\]
+The first and third rows have \(H=30\), hence no deficient outsider pair,
+although respectively an \(A_{13}\) or an \(A_{14}\) block would require
+one.  The middle row has \(H=29\), whose sole deficient edge cannot meet all
+four outsider triples of an \(A_{14}\) block.  Thus \(L\ne9\), proving
+\(L\in\{12,15\}\).
+
+The three triple partitions relative to \(\Gamma\) give
+\eqref{eq:C39-full-front-v2}.  Distinct outsider \(K_4\)'s have disjoint
+complement pairs, while an outsider \(K_5\) excludes every \(K_4\).
+Therefore either \(A_{05}=1,A_{04}=0\), or \(A_{05}=0,A_{04}\le3\), which
+is \eqref{eq:C39-rich-cap-v2}.  Finally, summing three-block incidences on
+\(\Gamma\) and on \(X\) gives \eqref{eq:C39-high-split-v2}.
+\end{proof}
+
+\begin{lemma}[Added-centre and singleton interfaces]
+\label{lem:n11-C39-interfaces-v2}
+Under the hypotheses of \cref{lem:n11-C39-front-v2}, put \(m=N_5\).  Then
+\begin{equation}\label{eq:C39-line-cut-v2}
+ L=12:\quad7\ell_4+16\ell_5\le m+8,
+ \qquad
+ L=15:\quad7\ell_4+16\ell_5\le m-7.
+\end{equation}
+If two generalized five-blocks meet in the single point \(p\), then
+\begin{equation}\label{eq:C39-singleton-v2}
+ (d_3(p),d_5(p))=(9,2).
+\end{equation}
+Moreover, every generalized five-block contains at most two points of type
+\((d_3,d_4,d_5)=(9,4,4)\).
+\end{lemma}
+
+\begin{proof}
+Write \(\sigma_p=d_3(p)-3-d_5(p)\).  The inversion images are noncollinear:
+otherwise inversion back would put all eleven original points on one
+generalized block.  Thus \cref{prop:universal-melchior-rows} applies,
+gives \(\sigma_p\ge0\), and its restored-centre row is
+\[
+ 3\ell_3(p)+\sum_{j\ge4}j\ell_j(p)\le10+\sigma_p.
+\]
+After summing over the eleven pivots and using
+\eqref{eq:C39-global-blocks-v2},
+\[
+ 9\ell_3+16\ell_4+25\ell_5
+ \le110+\sum_p\sigma_p,
+ \qquad \sum_p\sigma_p=4L+m-42.
+\]
+Since \(L=\ell_3+\ell_4+\ell_5\), this is exactly
+\eqref{eq:C39-line-cut-v2}.
+
+For the singleton assertion, invert at its carrier \(p\).  The two
+five-blocks become disjoint four-point link lines, so \(z=d_5(p)\ge2\).
+The cap \(z\le4\), pointwise \(\sigma_p\ge0\), and
+\(d_3\in\{6,9\}\) leave only
+\[
+ (d_3,z)=(6,2),(6,3),(9,2),(9,3),(9,4).
+\]
+The two cases \(z=3\) are excluded by \cref{lem:n11-K3}(K3.1).  In the
+case \((d_3,z)=(9,4)\), the link equation gives \(d_4=4\), so the
+complete-quadrangle conclusion (K3.2) says that every pair of base lines
+meets at a selected link point.
+
+It remains to exclude \((d_3,z)=(6,2)\).  Dualizing the ten-point link turns
+the two disjoint four-point lines into two fourfold points.  The ten dual
+lines split into families of sizes \(4,4,2\); after removing pairs already
+meeting at the two fourfold points, the four pair classes have sizes
+\[
+ 16,\qquad8,\qquad8,\qquad1.
+\]
+The link equation requires nine triple vertices.  If the sole pair in the
+last class is unused, all nine triples require one pair from each eight-edge
+side class.  If it is used, the other eight triples exhaust both side
+classes before the exceptional triple uses two further side edges.  Both
+alternatives are impossible.  This proves \eqref{eq:C39-singleton-v2} for
+circles and for the possible five-line alike.
+
+Finally, a point of type \((9,4,4)\) supplies a harmonic complement on every
+incident five-block by (K3.2).  The real cross-ratio argument (K3.3) allows
+at most two such complements on five points, proving the last assertion.
+\end{proof}
+
+\begin{lemma}[The \(L=15\) harmonic collapse]
+\label{lem:n11-C39-L15-v2}
+The \(C=39,L=15\) branch is impossible.
+\end{lemma}
+
+\begin{proof}
+Let \(z_p=d_5(p)\), and call \(p\) high when \(d_3(p)=9\).  From
+\eqref{eq:C39-global-blocks-v2},
+\[
+ E:=\#\{p:p\text{ is high}\}=2m-5,
+ \qquad \sum_pz_p=5m.
+\]
+Thus \(3\le m\le8\).  The second cut in
+\eqref{eq:C39-line-cut-v2} forces \(m\in\{7,8\}\) and
+\(\ell_4=\ell_5=0\); in particular all fifteen maximal lines are triples
+and all generalized five-blocks are proper circles.
+
+Define the nonnegative integral restored-centre slack
+\[
+ \kappa_p=10+\sigma_p-3\ell_3(p).
+\]
+Summing gives \(\sum_p\kappa_p=m-7\), while pointwise
+\begin{equation}\label{eq:C39-kappa-point-v2}
+ 3\ell_3(p)=
+ \begin{cases}
+ 13-z_p-\kappa_p,&p\text{ low},\\
+ 16-z_p-\kappa_p,&p\text{ high}.
+ \end{cases}
+\end{equation}
+For \(m=7\), every \(\kappa_p\) vanishes.  Pointwise
+\(\sigma_p\ge0\) and \eqref{eq:C39-kappa-point-v2} make the two low points
+have \(z=1\), while
+the nine high points have \(z\in\{1,4\}\).  Since \(\sum z=35\), exactly
+eight high points have \(z=4\), and the link equation makes their type
+\((9,4,4)\).  Counting their incidences with five-blocks gives
+\(8\cdot4\le2m=14\), contrary to
+\cref{lem:n11-C39-interfaces-v2}.
+
+For \(m=8\), all eleven points are high and precisely one has
+\(\kappa=1\).  The ten zero-slack points have \(z\in\{1,4\}\), while the
+exceptional point has \(z\in\{0,3\}\).  The sum \(\sum z=40\) therefore
+forces respectively ten or nine points with \(z=4\).  Their incidences give
+\(40\le16\) or \(36\le16\), again contradicting the harmonic cap.
+\end{proof}
+
+\begin{lemma}[The \(L=12\) low-host moment]
+\label{lem:n11-C39-low-L12-v2}
+In the \(C=39,L=12\) branch, some proper five-circle has host load
+\(H\ge26\).
+\end{lemma}
+
+\begin{proof}
+Suppose every proper five-circle has host load at most \(25\), and put
+\[
+ E=2m-9,\qquad z_p=d_5(p),\qquad
+ G=2\sum_p\binom{z_p}{2}-\sum_{p\text{ high}}z_p.
+\]
+Here \(m\ge5\), \(\sum_pz_p=5m\), and the K1 moment is
+\begin{equation}\label{eq:C39-global-moment-v2}
+ \sum_\Delta H_\Delta=20m+G+\sum_\Delta q_\Delta.
+\end{equation}
+The successive costs of increasing \(z_p\) from zero to four are
+\[
+ \begin{array}{c|rrrr}
+ &1&2&3&4\\ \hline
+ p\text{ low}&0&2&4&6\\
+ p\text{ high}&-1&1&3&5.
+ \end{array}
+\]
+Filling these increasing marginal costs gives \(G\ge31\) at \(m=5\).
+For \(m\ge6\), Cauchy and
+\(\sum_{p\text{ high}}z_p\le4(2m-9)\) give
+\[
+ G\ge\frac{25m^2}{11}-13m+36>5m+5.
+\]
+
+The original-line Melchior row is
+\(36+4\ell_4+9\ell_5\le52\), so there is at most one five-line.  A proper
+five-circle contributes at most \(25\) to the left side of
+\eqref{eq:C39-global-moment-v2}, and a possible five-line at most the
+universal host cap \(30\).  Hence \(\sum H_\Delta\le25m+5\), whereas the
+right side is at least \(131\) for \(m=5\) and is strictly larger than
+\(25m+5\) for \(m\ge6\).  This contradiction proves the lemma.
+\end{proof}
+
+\begin{lemma}[The \(L=12\) maximum-host router]
+\label{lem:n11-C39-maxhost-v2}
+In the \(C=39,L=12\) branch, no proper five-circle of maximum host load has
+\(26\le H\le30\).
+\end{lemma}
+
+\begin{proof}
+Let \(h\) be the maximum proper-circle host load, let
+\(t=\ell_5\in\{0,1\}\), and use \(m,E,G\) as in the preceding proof.
+Besides \(G\ge31\) for \(m=5\), marginal filling gives
+\begin{equation}\label{eq:C39-G-small-v2}
+ G\ge45\quad(m=6),\qquad G\ge61\quad(m=7).
+\end{equation}
+and the Cauchy bound above is greater than \(8m+2\) for \(m\ge8\).
+Since the possible five-line has host at most thirty, K1 gives
+\begin{equation}\label{eq:C39-maxhost-moment-v2}
+ 20m+G\le h(m-t)+30t.
+\end{equation}
+
+For \(h=26\), \eqref{eq:C39-G-small-v2} and
+\eqref{eq:C39-maxhost-moment-v2} leave
+only \((m,t)=(5,1)\).  For \(h=27\), they
+leave \((5,0),(5,1),(6,1)\).  But
+\eqref{eq:C39-line-cut-v2} gives \(16t\le m+8\), removing every listed row
+with \(t=1\).  Thus \(h\ne26\), and at \(h=27\) necessarily
+\begin{equation}\label{eq:C39-H27-face-v2}
+ m=5,\qquad t=0.
+\end{equation}
+
+We record a consequence used twice.  Rebase at a proper five-circle
+\(\Delta\), put \(R=30-H_\Delta\), and let \(r,s,q,y\) have the front
+meaning.  If \(R\ge3\) and \(s=0\), then
+\begin{equation}\label{eq:C39-no-singleton-front-v2}
+ A_{12}=3q-R,\qquad e_X=3-R-q+2y.
+\end{equation}
+If \(y=1\), then \(q=3\) and the second quantity is \(2-R<0\).  If
+\(y=0\), nonnegativity in \eqref{eq:C39-no-singleton-front-v2} gives
+simultaneously \(3q\ge R\) and
+\(q\le3-R\), again impossible.  Hence every circle with \(H\le27\) has
+\begin{equation}\label{eq:C39-singleton-degree-v2}
+ s_\Delta\ge1.
+\end{equation}
+
+In the face \eqref{eq:C39-H27-face-v2}, form the graph whose five vertices
+are the five-blocks and whose edges are their singleton intersections.  By
+\eqref{eq:C39-singleton-degree-v2} it has minimum
+degree one and hence at least three edges.  But
+\eqref{eq:C39-singleton-v2} injects its edges into the \(E=1\) high points:
+a carrier has \(d_5=2\) and can carry only that one edge.  This excludes
+\(h=27\).
+
+Suppose next that \(h=28\).
+Equations \eqref{eq:C39-G-small-v2} and
+\eqref{eq:C39-maxhost-moment-v2} leave
+\(m\in\{5,6\}\),
+and the line cut gives \(t=0\).  We claim that
+\eqref{eq:C39-singleton-degree-v2} still holds for a circle
+with \(H=28\).  Otherwise its outsider deficiency
+\(\delta(e)=2-h_e\) has total weight two.  Its support is one zero edge
+\(Z\), two adjacent single edges \(S_a\), or two disjoint single edges
+\(S_d\).  Every \(A_{13}\) triangle contains a deficient edge by
+\cref{lem:five-conic-rigidity}(K2.1).  A single edge has one host chord;
+(K2.1) places that chord in a unique page-colour class, and triple ownership
+allows at most one page of that colour through the edge.  Thus a zero edge
+lies in four outsider triangles, while each single edge supports at most one
+clean page, with the one
+triangle on two adjacent singles as the only overlap.  Therefore
+\begin{equation}\label{eq:C39-defect-page-caps-v2}
+ r\le4,3,2\quad\hbox{in types }Z,S_a,S_d.
+\end{equation}
+With \(s=0\), the front says \(r+q=7\), so
+\eqref{eq:C39-defect-page-caps-v2} and \(q\le3\) force type
+\(Z\) and \((r,q)=(4,3)\).  If its zero edge is \(uv\), the four pages are
+\(uvw\), one for every other outsider \(w\).  The high split gives
+\(e_X=-2+2y\), hence \(y=1\): there is one outsider \(K_5\).  It must omit
+\(u\) or \(v\), since otherwise it shares an outsider triple \(uvw\) with
+a page, and it is consequently all-double.  Suppose it omits \(u\), and
+let \(\gamma_i\) be the colour of the page \(uvw\).  The adjacent double
+edges \(uw,vw\) determine two distinct vertices of \(D_i\); triple
+ownership makes both host matchings omit \(i\).  The vertex coming from
+\(vw\) lies on the all-double \(K_5\) trace and is its unique centre
+\(\delta_i\) omitting \(i\), whereas the page trace contains
+\(\gamma_i,\delta_i\) and the second vertex coming from \(uw\).  This is
+exactly the tangent-separation obstruction in (K2.4).  The case in which
+the \(K_5\) omits \(v\) is symmetric.  This proves the claim.
+
+The singleton graph on the \(m\) proper five-circles consequently has
+minimum degree one.  If \(m=5\), it has at least three singleton edges,
+whereas \(E=1\), a contradiction.  Let \(m=6\).  Now it has at least three
+edges and \eqref{eq:C39-singleton-v2} gives at most \(E=3\), so it is a
+perfect matching and all three high points have \(z_p=2\).
+
+Let \(A_j\) count pairs of five-circles meeting in \(j\) points, and put
+\(Q=\sum_\Delta q_\Delta\).  Since \(A_1=3\),
+\[
+ A_0+A_1+A_2=15,\qquad
+ \sum_p\binom{z_p}{2}=A_1+2A_2=27-2A_0.
+\]
+The three high points contribute six to the high incidence sum, hence
+\begin{equation}\label{eq:C39-m6-G-v2}
+ G=48-4A_0.
+\end{equation}
+Every disjoint pair contributes three to \(q_\Delta\) at each endpoint, so
+\(Q\ge6A_0\).  The global moment and \(H_\Delta\le28\) give
+\(G+Q\le48\).  Together with \eqref{eq:C39-m6-G-v2}, this forces
+\begin{equation}\label{eq:C39-m6-equality-v2}
+ A_0=0,\qquad Q=0,\qquad H_\Delta=28
+ \quad\hbox{for every }\Delta.
+\end{equation}
+For any \(\Delta\), the perfect matching gives \(s=1\), while
+\eqref{eq:C39-m6-equality-v2} gives
+\(q=0\); the front therefore gives \(r=4\).  But an \(A_{14}\) outsider
+four-set forces the two deficiency units to be the disjoint perfect
+matching on that set.  Every \(A_{13}\) triangle then contains exactly one
+of its two single edges, and (K2.1) permits at most one clean page on each.
+Thus \(r\le2\), the final contradiction for \(h=28\).
+
+If \(h=29\), the deficiency graph of a maximum-host circle is one single
+edge \(uv\).  An \(A_{14}\) support is impossible, and every \(A_{13}\)
+triangle contains \(uv\).  The edge has one host chord; (K2.1) assigns that
+chord to a unique page colour, and triple ownership permits at most one page
+of that colour through \(u,v\).  Hence \(r\le1\).  The front, however, gives
+\(r+q=6\), so \(q\le3\) forces \(r\ge3\).
+
+Finally, if \(h=30\), every outsider edge is double.  Clause (K2.1) forbids
+an \(A_{13}\) block, and any \(A_{14}\) block contains a forbidden
+all-double outsider triangle.  Thus \(r=s=0\), while the front gives
+\(q=5>3\).  This exhausts \(26\le h\le30\).
+\end{proof}

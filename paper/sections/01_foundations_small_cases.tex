@@ -1,0 +1,1238 @@
+\section{Foundations and the cases \texorpdfstring{$4\leq n\leq9$}{4 <= n <= 9}}
+\label{sec:foundations-small}
+
+This section fixes the conventions used throughout the paper, derives the
+universal counting rows, and proves all values up to nine.  A line is used as
+a bookkeeping carrier, but is never counted as a circle.
+
+\subsection{The problem and the block language}
+
+\begin{definition}[The V1 problem]\label{def:v1-admissible}
+Let $P\subset\R^2$ be a set of $n\geq4$ distinct points.  We call $P$
+\emph{admissible} if it is neither collinear nor contained in one proper
+Euclidean circle.  A \emph{determined circle} is a proper circle containing a
+noncollinear triple of $P$.  Write $C(P)$ for the number of distinct
+determined circles and
+\[
+  f(n):=\min\{C(P): |P|=n\text{ and }P\text{ is admissible}\}.
+\]
+\end{definition}
+
+For a line or a proper circle $X$, its \emph{full trace} is $P\cap X$.
+A maximal generalized $s$-block is a full trace of size $s\geq3$.  We write
+\[
+ L_s:=\#\{\text{$s$-point line blocks}\},\qquad
+ C_s:=\#\{\text{$s$-point circle blocks}\},\qquad
+ B_s:=L_s+C_s.
+\]
+Thus
+\begin{equation}\label{eq:circle-objective}
+ C(P)=\sum_{s\geq3}C_s.
+\end{equation}
+For $p\in P$, let $\ell_s(p)$, $c_s(p)$, and
+$d_s(p)=\ell_s(p)+c_s(p)$ count, respectively, the line, circle, and all
+$s$-blocks through $p$.
+
+\begin{lemma}[Unique ownership]\label{lem:triple-ownership}
+Every triple of $P$ belongs to exactly one maximal generalized block.
+Consequently
+\begin{align}
+ \mathsf T
+   &:=\sum_{s\geq3}\binom{s}{3}B_s=\binom n3,
+       \label{eq:row-T}\\
+ \sum_{p\in P}d_s(p)&=sB_s,
+ &\sum_{p\in P}\ell_s(p)&=sL_s.                  \label{eq:block-incidence}
+\end{align}
+If $L_2$ denotes the number of ordinary, two-point full line traces, then
+\begin{equation}\label{eq:line-pair-partition}
+ L_2+\sum_{s\geq3}\binom{s}{2}L_s=\binom n2.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+A collinear triple has its unique carrier line; a noncollinear triple has its
+unique circumcircle.  Passing to the full trace gives a unique maximal owner.
+Equation~\eqref{eq:row-T} counts triples by that owner, and
+\eqref{eq:block-incidence} counts point--block incidences.  Finally, every
+pair of distinct points has one carrier line, which proves
+\eqref{eq:line-pair-partition}.
+\end{proof}
+
+\begin{lemma}[The eight-point Orchard bound]\label{lem:orchard-eight}
+Let \(Q\) be a set of eight noncollinear points of the real projective plane,
+with no four collinear.  If \(t_i\) denotes the number of lines containing
+exactly \(i\) points of \(Q\), then
+\[
+ t_3\leq 7.
+\]
+\end{lemma}
+
+\begin{proof}
+Pair counting gives \(t_2+3t_3=28\).  Melchior's inequality excludes
+\(t_3\geq9\), so it remains only to rule out \(t_3=8\).  In that case
+\(t_2=4\).  At a point \(v\in Q\), let \(r_v\) and \(s_v\) be the numbers
+of three-point and ordinary lines through \(v\).  Then
+\[
+ 7=2r_v+s_v.
+\]
+Thus \(s_v\) is a positive odd integer, while
+\(\sum_v s_v=2t_2=8\).  Consequently \(s_v=1\) and \(r_v=3\) for every
+\(v\).  The four ordinary lines are therefore a perfect matching; denote
+its pairs by
+\[
+ A=\{A_0,A_1\},\quad B=\{B_0,B_1\},\quad
+ C=\{C_0,C_1\},\quad D=\{D_0,D_1\}.
+\]
+Every three-point line uses three different pairs.  Since the eight such
+lines account for all \(24\) cross-pair incidences, exactly two omit each
+of \(A,B,C,D\).  Explicitly, if \(n_A,n_B,n_C,n_D\) are the four
+omission counts, then the four edges between, say, \(A\) and \(B\) give
+\(n_C+n_D=4\); the six analogous equations force
+\(n_A=n_B=n_C=n_D=2\).
+
+We first determine the resulting incidence structure.  Two triples on the
+same three pairs cannot differ in only one entry, because then their two
+common points would determine both lines.  They also cannot differ in
+exactly two entries.  Indeed, after relabelling suppose the two \(ABC\)
+triples are
+\[
+ A_0B_0C_0,\qquad A_1B_1C_0.
+\]
+The unused cross edges force the remaining triples to have the form
+\[
+\begin{array}{ll}
+ A_0B_1D_x,&A_1B_0D_y,\\
+ A_0C_1D_z,&A_1C_1D_{1-z},\\
+ B_0C_1D_w,&B_1C_1D_{1-w}.
+\end{array}
+\]
+The \(AD\), \(BD\), and \(CD\) edges successively give
+\(y=z=1-x\) and \(w=x\), after which one of the two \(C_1D_i\) edges is
+repeated.  Hence the two triples on any fixed three pairs are complementary.
+After fixing the \(ABC\) pair as \(000,111\), the unused \(AB,AC,BC\)
+edges are the three cross-matchings.  A flip of the \(D\)-labels fixes one
+\(ABD\) triple, and the unused \(AD\) and \(BD\) edges then force all
+remaining bits.  Up to relabelling, the unique incidence list is
+\begin{equation}\label{eq:orchard-eight-incidence}
+\begin{split}
+&A_0B_0C_0,\quad A_1B_1C_1,\quad
+ A_0B_1D_0,\quad A_1B_0D_1,\\
+&A_0C_1D_1,\quad A_1C_0D_0,\quad
+ B_0C_1D_0,\quad B_1C_0D_1.
+\end{split}
+\end{equation}
+
+Choose the projective frame
+\[
+ A_0=(1,0,0),\quad A_1=(0,1,0),\quad
+ B_0=(0,0,1),\quad B_1=(1,1,1).
+\]
+The first four incidences in \eqref{eq:orchard-eight-incidence} allow the
+normalization
+\[
+ C_0=(1,0,u),\quad C_1=(1,v,1),\quad
+ D_0=(w,1,1),\quad D_1=(0,1,z),
+\]
+where the relevant parameters are nonzero.  The next incidences give
+\[
+ vz=uw=vw=1.
+\]
+Thus \(u=v\) and \(w=z=1/u\).  The last incidence,
+\(B_1C_0D_1\), now gives
+\[
+ u^2-u+1=0,
+\]
+which has no real root.  Hence \(t_3=8\) is impossible.
+\end{proof}
+
+\begin{lemma}[Radical-axis cross-block bound]
+\label{lem:radical-axis-cross-block}
+Let \(A\) and \(B\) be marked points on two distinct real circles, after
+deleting any marked point common to the circles.  A \emph{cross-block} is a
+line or circle containing two points of \(A\) and two points of \(B\).
+If \((|A|,|B|)=(5,4)\), there are at most \(12\) cross-blocks.  If
+\((|A|,|B|)=(4,4)\), there are at most \(10\).
+\end{lemma}
+
+\begin{proof}
+For each chord of the first circle and each chord of the second, the four
+endpoints are concyclic precisely when the two supporting lines meet on the
+radical axis.  A coincident pair of supporting lines gives a line
+cross-block and is assigned to its intersection with the same radical
+axis.  (The common supporting line cannot itself be the radical axis,
+because the marked common points were deleted.)
+
+At a point \(q\) of the radical axis, let \(a_q\) and \(b_q\) be the
+numbers of selected chords from \(A\) and \(B\) through \(q\).  Chords
+through a fixed external point form a matching, so
+\[
+ a_q\leq\floor{|A|/2},\qquad b_q\leq\floor{|B|/2}.
+\]
+Moreover, \(\sum_q a_q=\binom{|A|}{2}\),
+\(\sum_q b_q=\binom{|B|}{2}\), and the number of cross-blocks is
+\[
+ M=\sum_q a_qb_q.
+\]
+For \(5+4\), this gives \(M\leq2\sum_qb_q=12\).
+
+For \(4+4\), both multiplicity sums are \(6\), and \(M\leq12\).  Equality
+\(M=11\) is impossible: from
+\[
+ 12-M=\sum_q a_q(2-b_q)=1
+\]
+there would be one point with \(a_q=b_q=1\), while every other point with
+\(a_q>0\) had \(b_q=2\).  If \(r\) and \(s\) count the remaining points
+with \(a_q=1\) and \(a_q=2\), respectively, then
+\[
+ 1+r+2s=6,\qquad 1+2r+2s\leq6,
+\]
+forcing \(r=0\) and then \(1+2s=6\), a contradiction.  Equality \(M=12\)
+would force exactly three points \(q\), with
+\(a_q=b_q=2\) at each.  These are the three diagonal points of each of the
+two complete quadrangles, yet all three lie on the radical axis.  The
+diagonal points of a nondegenerate complete quadrangle are noncollinear
+(in the standard frame their determinant is \(-2\)).  Thus \(M\leq10\).
+\end{proof}
+
+\subsection{Sharp upper constructions}
+
+\begin{construction}[A circle and its centre]\label{con:circle-centre}
+Put $r=n-1$ distinct points on a proper circle $\Gamma$ and add its centre
+$o$.  Choose exactly $\floor{r/2}$ antipodal boundary pairs; if $r$ is odd,
+choose the remaining boundary point without its antipode.  The boundary
+triples determine only $\Gamma$.  A triple consisting of $o$ and a boundary
+pair is collinear precisely for an antipodal pair.  Every other boundary
+pair gives a different proper circle, since a circle different from
+$\Gamma$ meets $\Gamma$ in at most two points.  Thus this admissible set
+determines exactly
+\begin{equation}\label{eq:circle-centre-count}
+ F(n):=1+\binom{n-1}{2}-\floor{\frac{n-1}{2}}
+\end{equation}
+ circles.  In particular it gives the sharp upper targets $3,5$ for
+ $n=4,5$ and $25$ for $n=9$.
+\end{construction}
+
+ The three exceptional upper bounds have equally explicit fixed certificates.
+For points $p_i=(x_i,y_i)$, write
+\begin{equation}\label{eq:concyclic-determinant}
+ \Delta(i,j,k,l):=
+ \det\begin{pmatrix}
+ x_i^2+y_i^2&x_i&y_i&1\\
+ x_j^2+y_j^2&x_j&y_j&1\\
+ x_k^2+y_k^2&x_k&y_k&1\\
+ x_l^2+y_l^2&x_l&y_l&1
+ \end{pmatrix}.
+\end{equation}
+For a noncollinear quadruple, $\Delta=0$ is equivalent to concyclicity.
+
+\begin{construction}[Six rational points and eight circles]
+\label{con:six-upper}
+Take
+\[
+\begin{array}{c|cccccc}
+i&0&1&2&3&4&5\\ \hline
+p_i&(0,0)&(4,0)&(1,0)&(1,3)&
+ (\tfrac25,\tfrac65)&(2,2).
+\end{array}
+\]
+The collinear triples are exactly
+\[
+ 012,\qquad034,\qquad135.
+\]
+Exact substitution in $x^2+y^2+Dx+Ey+F=0$ gives the following eight
+circle traces and coefficient triples $(D,E,F)$:
+\[
+\begin{array}{c|c}
+013&(-4,-2,0)\\
+0145&(-4,0,0)\\
+0235&(-1,-3,0)\\
+024&(-1,-1,0)\\
+1234&(-5,-3,4)\\
+125&(-5,-1,4)\\
+245&(-3,-2,2)\\
+345&(-2,-4,4).
+\end{array}
+\]
+The three four-circles own four triples each and the other five circles own
+one triple each.  Together with the three collinear triples this accounts for
+all $\binom63=20$ triples.  Thus the configuration is admissible and
+determines exactly $8$ circles.
+\end{construction}
+
+\begin{construction}[Seven points and eleven circles]
+\label{con:seven-upper}
+Let $u=\sqrt3$ and take
+\[
+\begin{array}{c|ccccccc}
+i&0&1&2&3&4&5&6\\ \hline
+p_i&(-1,0)&(1,0)&(0,u)&(0,0)&
+(-\tfrac12,\tfrac u2)&(\tfrac12,\tfrac u2)&(0,\tfrac u3).
+\end{array}
+\]
+The collinear triples are exactly
+\[
+ 013,\ 024,\ 056,\ 125,\ 146,\ 236,
+\]
+where a string denotes the corresponding set of indices.  Direct expansion
+of \eqref{eq:concyclic-determinant}, using the dihedral symmetry of the
+equilateral triangle, gives exactly the six proper four-circles
+\[
+ 0145,\ 0235,\ 0346,\ 1234,\ 1356,\ 2456.
+\]
+Their $24$ triples are disjoint.  The five remaining noncollinear triples
+are
+\[
+ 012,\ 016,\ 026,\ 126,\ 345.
+\]
+The determinant list also shows that they have five different owners and
+that no five-point circle occurs.  Hence the configuration determines
+$6+5=11$ circles.
+\end{construction}
+
+\begin{construction}[Eight rational points and seventeen circles]
+\label{con:eight-upper}
+Take
+\[
+\begin{array}{c|cccccccc}
+i&0&1&2&3&4&5&6&7\\ \hline
+p_i&(0,0)&(1,0)&(\tfrac13,0)&(\tfrac23,0)&
+(\tfrac23,\tfrac13)&(\tfrac25,\tfrac15)&
+(\tfrac13,\tfrac13)&(\tfrac35,\tfrac15).
+\end{array}
+\]
+Its collinear triples are exactly
+\[
+ 012,\ 013,\ 023,\ 123,\ 045,\ 167.
+\]
+Exact rational evaluation of \eqref{eq:concyclic-determinant} gives exactly
+the eleven proper four-circles
+\[
+\begin{gathered}
+0146,\ 0157,\ 0247,\ 0256,\ 0367,\ 1245,\\
+1347,\ 1356,\ 2346,\ 2357,\ 4567.
+\end{gathered}
+\]
+No five-point subset has all its quadruples on this list.  The six remaining
+noncollinear triples are
+\[
+ 034,\ 035,\ 126,\ 127,\ 267,\ 345.
+\]
+Thus the eleven four-circles own $44$ triples and the last six triples have
+six distinct owners, for a total of $17$ circles.
+\end{construction}
+
+\subsection{The elementary cases \texorpdfstring{$n=4,5$}{n=4,5}}
+
+\begin{proposition}\label{prop:n4-n5}
+One has $f(4)=3$ and $f(5)=5$.
+\end{proposition}
+
+\begin{proof}
+Let first $|P|=4$.  If three points lie on a line, the fourth point together
+with each of the three pairs on that line gives a proper circle; the three
+circles are distinct.  If no triple is collinear, all four triples are
+noncollinear, and two of them could share a circle only if all four points
+were concyclic.  Hence $C(P)\geq3$.  Construction
+\ref{con:circle-centre} attains three.
+
+Now let $|P|=5$.  A four-point line and its outsider give six distinct
+circles, so assume that no line has four points.  Distinct three-point lines
+use disjoint pairs; therefore $3L_3\leq\binom52$ and $L_3\leq3$.  If no
+four-point circle occurs, every noncollinear triple has a different owner,
+and
+\[
+ C(P)=\binom53-L_3\geq7.
+\]
+If a four-point circle $\Gamma$ occurs, it is unique.  Every three-point line
+contains the outsider and a chord of $\Gamma$, and these chords form a
+matching, so there are at most two such lines.  At least eight triples are
+noncollinear; four lie on $\Gamma$, while the other four have mutually
+different owners, since a repeated owner would be a second four-point
+circle.  Thus $C(P)\geq1+4=5$, attained by
+\cref{con:circle-centre}.
+\end{proof}
+
+
+We repeatedly use, without further comment, that two distinct proper circles
+meet in at most two points, two distinct lines in at most one point, and a
+line meets a proper circle in at most two points.
+
+\subsection{Classical incidence inputs and their exact scope}
+\label{subsec:classical-inputs}
+
+For later reference we record every external incidence theorem used in the
+proof.  The hypotheses below are part of the statements; in particular, none
+of these results assumes general position.
+
+\begin{theorem}[Melchior]\label{thm:melchior}
+Let $\mathcal A$ be a finite arrangement of distinct real projective lines,
+not all concurrent, and let $t_r(\mathcal A)$ count vertices incident with
+exactly $r$ lines.  Then
+\begin{equation}\label{eq:melchior}
+ t_2\geq3+\sum_{r\geq4}(r-3)t_r.
+\end{equation}
+Equivalently, the same inequality holds for the multiplicities of lines
+determined by a finite set of distinct noncollinear real projective points.
+All projective vertices, including those at infinity, are counted.
+\end{theorem}
+
+This is the point-dual form of Melchior's theorem~\cite{Melchior1940}.  We do
+not import a classification of its equality cases.
+
+\begin{theorem}[Kelly--Moser]\label{thm:kelly-moser}
+If $Q$ is a finite set of $q$ distinct noncollinear real points and $t_2$ is
+the number of its ordinary determined lines, then
+\begin{equation}\label{eq:kelly-moser}
+ 3q\leq7t_2,
+ \qquad
+ t_2\geq\ceil{\frac{3q}{7}}.
+\end{equation}
+The inequality is non-strict; no equality classification is assumed.
+\end{theorem}
+
+This is Theorem~3.6 of Kelly and Moser~\cite{KellyMoser1958}.
+
+\begin{theorem}[Langer--de Zeeuw form]\label{thm:langer}
+Let $Q$ be a finite set of $N$ distinct affine points over $\mathbb C$.
+Assume that every affine line contains at most $2N/3$ points of $Q$.  If
+$t_r$ counts the spanned lines containing exactly $r$ points, then
+\begin{equation}\label{eq:langer}
+ \sum_{r\geq2}r t_r\geq\frac{N(N+3)}{3}.
+\end{equation}
+In particular the result applies to real point sets.  Both the occupancy cap
+and the conclusion are non-strict.
+\end{theorem}
+
+We use the formulation of de Zeeuw~\cite{DeZeeuw2018}, derived from
+Langer's orbifold inequality~\cite{Langer2003}.
+
+\begin{theorem}[Lenchner]\label{thm:lenchner}
+Let $\mathcal A$ be an affine arrangement of $q$ distinct real lines, neither
+all parallel nor all concurrent.  Apart from one specified exceptional
+six-line arrangement, the number $o_{\mathrm{fin}}(\mathcal A)$ of finite
+ordinary intersections satisfies
+\begin{equation}\label{eq:lenchner}
+ 7o_{\mathrm{fin}}(\mathcal A)\geq2q-3.
+\end{equation}
+Consequently \eqref{eq:lenchner} is available under the simpler guard
+$q\neq6$.
+\end{theorem}
+
+The word \emph{finite} is essential.  This is the corollary of Lenchner's
+Theorem~8~\cite{Lenchner2007} used later in the paper.
+
+\begin{theorem}[Ungar, six-point consequence]\label{thm:ungar-six}
+Six distinct noncollinear real affine points determine at least six
+directions, where a direction is a parallelism class of determined lines.
+\end{theorem}
+
+This is the only consequence of Ungar's direction theorem that we use
+\cite{Ungar1982}.
+
+\begin{theorem}[Hall]\label{thm:hall}
+Let $G$ be a finite bipartite graph with parts $X,Y$.  If
+$|S|\leq|N(S)|$ for every $S\subseteq X$, then $G$ has a matching saturating
+$X$.
+\end{theorem}
+
+We use Hall's theorem~\cite{Hall1935} only after the relevant neighbourhood
+inequalities have been established geometrically.
+
+Inversion, projective duality, directed Menelaus, and power of a point are
+not treated as external incidence black boxes.  The inversion statements
+needed for the universal rows are proved next; later geometric uses are
+proved at their point of application.
+
+\subsection{Inversion and the universal rows}
+
+Fix $p\in P$ and $\rho>0$.  On $\R^2\setminus\{p\}$ put
+\[
+ I_{p,\rho}(x)=p+\frac{\rho}{\|x-p\|^2}(x-p).
+\]
+
+\begin{lemma}[Inversion dictionary]\label{lem:inversion-dictionary}
+The map $I_{p,\rho}$ is an injective involution on
+$\R^2\setminus\{p\}$.  A line through $p$ maps to itself, while a proper
+circle through $p$ maps to a line avoiding $p$, and conversely.  Hence every
+maximal $s$-block through $p$ becomes a full line containing exactly $s-1$
+points of the inverted set
+\[
+ Q_p:=I_{p,\rho}(P\setminus\{p\}).
+\]
+The set $Q_p$ is noncollinear.  It remains noncollinear after the inversion
+centre $o=p$ is added.
+\end{lemma}
+
+\begin{proof}
+The formula immediately gives $I_{p,\rho}^2=\mathrm{id}$.  Translating
+$p$ to the origin and substituting the formula into a linear or quadratic
+equation gives the stated line--circle dictionary.  Full traces are
+preserved because the map is injective.
+
+If $Q_p$ lay on a line through $o$, then all original points would lie on
+that line.  If it lay on a line avoiding $o$, the inverse carrier would be a
+proper circle through $p$ containing all of $P$.  Both possibilities violate
+admissibility.  Adding $o$ cannot make a noncollinear set collinear.
+\end{proof}
+
+\begin{corollary}[The Lenchner pivot bridge]\label{cor:pivot-lenchner}
+Let \(p\in P\), put \(q=n-1\), and assume \(q\neq6\).  Then at least
+\[
+ \ceil{\frac{2q-3}{7}}
+\]
+proper three-point circles of \(P\) pass through \(p\).  Equivalently,
+\[
+ c_3(p)\geq\ceil{\frac{2n-5}{7}}.
+\]
+\end{corollary}
+
+\begin{proof}
+Invert \(P\setminus\{p\}\) at \(p\), obtaining the \(q\) distinct,
+noncollinear image points \(Q_p\) from
+\cref{lem:inversion-dictionary}.  Work projectively, dualize those points,
+and declare the dual \(p^*\) of the inversion centre to be the line at
+infinity.  This produces \(q\) distinct real affine lines.
+
+The dual lines are not all parallel: otherwise the points of \(Q_p\)
+would be collinear on a line through \(p\).  They are not all concurrent
+at a finite point: otherwise \(Q_p\) would be collinear on a line avoiding
+\(p\).  Thus the arrangement satisfies the geometric hypotheses of
+\cref{thm:lenchner}; the guard \(q\neq6\) also removes its sole exceptional
+cardinality.  It consequently has at least
+\(\ceil{(2q-3)/7}\) finite ordinary intersections.
+
+Under projective duality, such an intersection is an ordinary determined
+line of \(Q_p\).  Finiteness says exactly that this line avoids \(p\):
+ordinary intersections on \(p^*\) correspond instead to image lines
+through \(p\), and are deliberately not counted.  By inversion, an ordinary
+image line avoiding \(p\) is a proper circle whose full trace on \(P\)
+consists of \(p\) and the two preimages.  Distinct image lines give distinct
+circles, proving the claim.
+\end{proof}
+
+The inversion dictionary verifies every noncollinearity hypothesis in the next
+two applications of \cref{thm:melchior}.
+
+\begin{proposition}[Universal Melchior rows]\label{prop:universal-melchior-rows}
+For every admissible $n$-point set and every $p\in P$, define
+\begin{equation}\label{eq:pivot-slack}
+ \sigma_p:=d_3(p)-3-\sum_{s\geq5}(s-4)d_s(p).
+\end{equation}
+Then $\sigma_p\geq0$, and
+\begin{align}
+ \mathsf P
+   &:=\sum_{s\geq3}s(4-s)B_s\geq3n,
+      \label{eq:row-P}\\
+ \sum_{p\in P}\sigma_p&=\mathsf P-3n.             \label{eq:sum-pivot-slack}
+\end{align}
+If $\ell_2(p)$ counts the ordinary original lines through $p$, then
+\begin{align}
+ \ell_2(p)+\sum_{s\geq3}(s-1)\ell_s(p)&=n-1,
+      \label{eq:pivot-arms}\\
+ \sum_{s\geq3}s\ell_s(p)&\leq n-1+\sigma_p.
+      \label{eq:added-centre-local}
+\end{align}
+After summing \eqref{eq:added-centre-local}, one obtains
+\begin{equation}\label{eq:row-D}
+ \mathsf D
+ :=\sum_{s\geq3}s(s-4)C_s
+   +\sum_{s\geq3}2s(s-2)L_s
+ \leq n(n-4).
+\end{equation}
+Finally, direct application of Melchior to $P$ gives
+\begin{equation}\label{eq:global-line-row}
+ 3L_3+\sum_{s\geq4}
+   \left(\binom{s}{2}+s-3\right)L_s
+ \leq\binom n2-3.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Apply \cref{thm:melchior} to the $n-1$ inverted points.  By
+\cref{lem:inversion-dictionary}, its $(s-1)$-point lines are exactly the
+$s$-blocks through $p$.  Melchior is therefore precisely
+$\sigma_p\geq0$.  Summing over $p$ and using
+\eqref{eq:block-incidence} gives \eqref{eq:row-P} and
+\eqref{eq:sum-pivot-slack}.
+
+The original lines through $p$ partition $P\setminus\{p\}$ into arms,
+which proves \eqref{eq:pivot-arms}.  Add the inversion centre $o$.  The
+line multiplicities of the resulting $n$-point set are exactly
+\[
+ t_2=c_3(p)+\ell_2(p),\qquad
+ t_i=c_{i+1}(p)+\ell_i(p)\quad(i\geq3).
+\]
+The slack in Melchior is then
+\[
+ \sigma_p+\ell_2(p)-\sum_{s\geq3}\ell_s(p)\geq0.
+\]
+Using \eqref{eq:pivot-arms} yields
+\eqref{eq:added-centre-local}.  Sum it over $p$, use
+\eqref{eq:block-incidence} and \eqref{eq:sum-pivot-slack}, and subtract
+$\mathsf P$ from the resulting inequality.  The circle coefficient is
+$-s(4-s)=s(s-4)$ and the line coefficient is
+$s^2-s(4-s)=2s(s-2)$, giving \eqref{eq:row-D}.
+
+For the last assertion, substitute \eqref{eq:line-pair-partition} in
+\eqref{eq:melchior} applied directly to $P$.
+\end{proof}
+
+\begin{proposition}[Conditional Langer row]\label{prop:universal-langer-row}
+Suppose that, for every pivot $p$, every line determined by $Q_p$ contains
+at most $2(n-1)/3$ image points.  Then
+\begin{equation}\label{eq:row-L}
+ \mathsf L:=\sum_{s\geq3}s(s-1)B_s
+ \geq\frac{n(n-1)(n+2)}{3}.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Apply \cref{thm:langer} to the $N=n-1$ image points at each pivot.  Its
+incidence count is $\sum_{s\geq3}(s-1)d_s(p)$.  Summing over $p$ and using
+\eqref{eq:block-incidence} proves \eqref{eq:row-L}.  Notice that the
+occupancy hypothesis must be verified before this row is used.
+\end{proof}
+
+Equations \eqref{eq:row-T}, \eqref{eq:row-P}, \eqref{eq:row-D}, and,
+under its stated cap, \eqref{eq:row-L}, are the four universal rows imported
+by the later sections.
+
+\subsection{Two pencil bounds}
+
+\begin{lemma}[Rich-line pencil]\label{lem:rich-line-pencil}
+If a line contains $m\geq3$ points of an admissible $n$-point set and
+$q=n-m\geq1$ points lie off it, then
+\begin{equation}\label{eq:rich-line-pencil}
+ C(P)\geq q\binom m2-\binom q2\floor{\frac m2}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+For a fixed outsider, its circles with pairs on the line are proper and
+mutually distinct.  For two fixed outsiders, common circles use disjoint
+pairs of line points: two pairs sharing a point would give two circles with
+three common points.  Thus two outsider pencils overlap in at most
+$\floor{m/2}$ circles.  The two-term Bonferroni inequality gives
+\eqref{eq:rich-line-pencil}; higher intersections do not invalidate this
+lower bound.
+\end{proof}
+
+\begin{lemma}[Rich-circle pencil]\label{lem:rich-circle-pencil}
+If a proper circle $\Gamma$ contains $m\geq3$ selected points and
+$q=n-m\geq1$ points lie outside it, then
+\begin{equation}\label{eq:rich-circle-pencil}
+ C(P)\geq
+ 1+q\left(\binom m2-\floor{\frac m2}\right)
+   -\binom q2\floor{\frac m2}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+For an outsider $x$, the chords of $\Gamma$ passing through $x$ form a
+matching on the $m$ marked points, so at most $\floor{m/2}$ marked pairs are
+collinear with $x$.  Every other pair gives a distinct proper circle through
+$x$.  As in the line case, two outsider pencils overlap in at most
+$\floor{m/2}$ circles.  Add $\Gamma$ and apply Bonferroni.
+\end{proof}
+
+\subsection{Six points}
+
+\begin{proposition}\label{prop:n6}
+One has $f(6)=8$.
+\end{proposition}
+
+\begin{proof}
+Construction~\ref{con:six-upper} gives the upper bound.  Suppose, for a
+contradiction, that an admissible six-point set satisfies $C(P)\leq7$, and
+let $k$ be the maximum number of selected points on a proper circle.
+
+If $k=5$, \cref{lem:rich-circle-pencil} gives $C(P)\geq9$.  If $k=3$,
+every noncollinear triple has a different circle owner.  Let a largest line
+contain $m$ points and put $r=6-m$.  For $m\geq4$, a collinear triple not
+contained in that line uses at most one of its points, and an outsider pair
+can be collinear with at most one point on the line.  Thus the number $T_0$
+of collinear triples satisfies
+\[
+ T_0\leq\binom m3+\binom r3+\binom r2.
+\]
+This leaves at least $10$ noncollinear triples for $m=5$ and at least $15$
+for $m=4$.  If all lines have size at most three, their collinear triples use
+disjoint sets of three pairs, so there are at most
+$\floor{\binom62/3}=5$ of them.  Again at least $15$ circles remain.
+
+It remains that $k=4$.  The rich-line bound is $10$ for both $m=4$ and
+$m=5$, so every line has size at most three.  All maximal generalized blocks
+therefore have size three or four, and every four-block is a circle.  Put
+\[
+ b=C_4,\qquad L=L_3.
+\]
+Triple ownership, the pivot Melchior row, the exact circle count, and the
+global line row give, respectively,
+\begin{align}
+ B_3+4b&=20,                                      \label{eq:n6-triples}\\
+ 0\leq\sum_{p\in P}(d_3(p)-3)&=42-12b,           \label{eq:n6-pivot}\\
+ C(P)&=20-3b-L,                                   \label{eq:n6-circles}\\
+ L&\leq4.                                         \label{eq:n6-lines}
+\end{align}
+Hence $b\leq3$, while $C(P)\leq7$ forces
+\begin{equation}\label{eq:n6-terminal-rows}
+ b=3,\qquad L=4.
+\end{equation}
+
+At any $p\in P$, ownership of the ten triples containing $p$ reads
+\[
+ d_3(p)+3d_4(p)=10.
+\]
+The first Melchior row gives $d_3(p)\geq3$, and $d_3(p)\equiv1\pmod3$.
+Since $\sum_p d_4(p)=4b=12$, necessarily
+\begin{equation}\label{eq:n6-local-profile}
+ d_3(p)=4,\qquad d_4(p)=2,\qquad \sigma_p=1
+ \quad\text{for every }p.
+\end{equation}
+The added-centre inequality \eqref{eq:added-centre-local} becomes
+\begin{equation}\label{eq:n6-kappa}
+ \kappa_p:=6-3\ell_3(p)\geq0.
+\end{equation}
+
+Since $L=4$, summing \eqref{eq:n6-kappa} gives zero, so every point lies on
+exactly two of the four three-point lines.  No three of those lines are
+concurrent, and their six pairwise intersections are the selected points:
+the line pattern is a complete quadrilateral.  Label its four lines
+\[
+ 012,\qquad034,\qquad135,\qquad245.
+\]
+Apply a Euclidean similarity, which preserves lines and circles, so that
+\begin{equation}\label{eq:n6-pasch-coordinates}
+\begin{gathered}
+p_0=(0,0),\quad p_1=(1,0),\quad p_3=(u,v),\qquad v\ne0,\\
+p_2=(a,0),\quad p_4=b(u,v),\quad
+p_5=t(1,0)+(1-t)(u,v),\qquad
+t=\frac{a(b-1)}{b-a}.
+\end{gathered}
+\end{equation}
+Here distinctness gives $a,b\notin\{0,1\}$.  Moreover $a\neq b$: if
+$a=b$, then the line $p_2p_4$ is parallel to $p_1p_3$ (their direction
+vectors differ by the nonzero scalar $a$), and the two lines are distinct
+because $a\neq1$; they therefore cannot share the affine point $p_5$.
+Put
+$R=u^2+v^2>0$.
+
+By \eqref{eq:n6-local-profile}, the complements of the three four-circles
+are three disjoint pairs partitioning $P$.  Each complement meets every one
+of the four collinear triples.  In a complete quadrilateral the only such
+pairs are the three diagonal pairs, so the circle supports are forced to be
+\[
+ 0145,\qquad0235,\qquad1234.
+\]
+Substitution in \eqref{eq:concyclic-determinant} gives, in the same order,
+\[
+\begin{split}
+ \Delta(0,1,4,5)
+  &=\frac{vb^2(a-1)(b-1)}{(a-b)^2}(-Rb+2au-a),\\
+ \Delta(0,2,3,5)
+  &=\frac{va^2(a-1)(b-1)}{(a-b)^2}(-Rb-a+2bu),\\
+ \Delta(1,2,3,4)
+  &=v(a-1)(b-1)(-Rb+a).
+\end{split}
+\]
+All prefactors displayed here are nonzero.  Thus concyclicity gives
+\[
+ a(1-2u)+bR=0,\qquad
+ a+b(R-2u)=0,\qquad
+ a-bR=0.
+\]
+The third equation gives $a=bR$.  Substitution in the second gives
+$2b(R-u)=0$, hence $R=u$.  The first equation then becomes
+$2bu(1-u)=0$.  Since $b\ne0$ and $u=R>0$, one has $u=1$.
+But $R=u=1$ and $R=u^2+v^2$ force $v=0$, contradicting
+\eqref{eq:n6-pasch-coordinates}.  Thus $C(P)\geq8$.
+\end{proof}
+
+\subsection{Seven points and the planar Fano wall}
+
+\begin{lemma}[Planar Fano wall]\label{lem:fano-seven-wall}
+There do not exist seven distinct real points together with seven proper
+four-point circles whose three-point complements form a Steiner triple
+system on the seven points.
+\end{lemma}
+
+\begin{proof}
+We first derive, rather than quote, the unique form of a Steiner triple
+system on seven labels.  Name one triple $123$.  The two remaining triples
+through $1$ partition $\{4,5,6,7\}$ into two pairs, so after relabelling they
+are $145$ and $167$.  The triples through $2$ use neither pair $45$ nor pair
+$67$; after possibly interchanging $6,7$, they are $246$ and $257$.  The
+unused pairs on $\{4,5,6,7\}$ are then $47$ and $56$, forcing the final two
+triples through $3$.  Thus the system is
+\begin{equation}\label{eq:fano-triples}
+ 123,\quad145,\quad167,\quad246,\quad257,\quad347,
+ \quad356.
+\end{equation}
+
+Invert at point $1$.  The four triples in \eqref{eq:fano-triples} avoiding
+$1$ have complementary four-circles through $1$, which become the lines
+\begin{equation}\label{eq:fano-inverted-lines}
+ 357,\qquad346,\qquad256,\qquad247.
+\end{equation}
+The first three form a nondegenerate triangle and the fourth is a
+transversal.  Put
+\[
+ A=3,\quad B=5,\quad C=6,\qquad
+ X=7\in AB,\quad Y=4\in AC,\quad Z=2\in BC.
+\]
+The complements of the three Fano triples through $1$ become the proper
+circles
+\begin{equation}\label{eq:fano-inverted-circles}
+ ABYZ,\qquad ACXZ,\qquad BCXY.
+\end{equation}
+
+Use directed affine parameters
+\[
+ AB:A=0,B=1,X=x,\quad
+ AC:A=0,C=1,Y=y,\quad
+ BC:B=0,C=1,Z=z.
+\]
+All six quantities $x,y,z,1-x,1-y,1-z$ are nonzero.  Put
+$a^2=|BC|^2$, $b^2=|CA|^2$, and $c^2=|AB|^2$.  Power of a point applied at
+the opposite vertices to the three circles in
+\eqref{eq:fano-inverted-circles} gives
+\[
+ b^2(1-y)=a^2(1-z),\qquad
+ c^2(1-x)=a^2z,\qquad
+ c^2x=b^2y.
+\]
+Multiplying the resulting ratios yields
+\begin{equation}\label{eq:fano-power-product}
+ \frac{x}{1-x}\frac{z}{1-z}\frac{1-y}{y}=+1.
+\end{equation}
+But $X,Y,Z$ are collinear by the fourth line in
+\eqref{eq:fano-inverted-lines}, so directed Menelaus in triangle $ABC$
+gives the same left-hand side equal to $-1$.  This contradiction proves the
+lemma.
+\end{proof}
+
+\begin{proposition}\label{prop:n7}
+One has $f(7)=11$.
+\end{proposition}
+
+\begin{proof}
+Construction~\ref{con:seven-upper} gives $f(7)\leq11$.  Suppose that an
+admissible seven-point set satisfies $C(P)\leq10$.  The two pencil bounds
+give
+\[
+ \begin{array}{c|ccc}
+ \text{circle size }m&4&5&6\\ \hline
+ \text{lower bound}&7&15&13
+ \end{array}
+ \qquad
+ \begin{array}{c|ccc}
+ \text{line size }m&4&5&6\\ \hline
+ \text{lower bound}&12&18&15.
+ \end{array}
+\]
+The entry $m=4$ for circles need not be excluded; all larger circles and
+all lines of size at least four are excluded.  Thus maximal blocks have size
+three or four, and every four-block is a circle.
+
+Let $L=L_3$, let $Q=C_4$, and let $R=C_3$.  Triple ownership gives
+\begin{equation}\label{eq:n7-count}
+ 35=L+4Q+R,\qquad C(P)=Q+R=35-L-3Q.
+\end{equation}
+Since $21=L_2+3L$, Melchior gives $L_2\geq3$ and hence $L\leq6$.
+The complements of two different four-circles intersect in at most one
+point: the two circle supports intersect in at most two.  Therefore no pair
+of labels occurs in two complementary triples, and $3Q\leq21$, so $Q\leq7$.
+
+The assumption $C(P)\leq10$ and \eqref{eq:n7-count} imply
+$L+3Q\geq25$.  If $Q\leq6$, the left side is at most $6+18=24$.
+Consequently $Q=7$.  The seven complements contain
+$7\binom32=21$ distinct pairs, hence every pair exactly once: they form a
+Steiner triple system.  This contradicts \cref{lem:fano-seven-wall}.
+\end{proof}
+
+\subsection{Eight points}
+
+\begin{lemma}[Even-arrangement slack]\label{lem:even-arrangement-slack}
+Let $\mathcal A$ be a non-pencil arrangement of an even number of distinct
+real projective lines.  Its Melchior slack
+\[
+ \kappa:=t_2-3-\sum_{r\geq4}(r-3)t_r
+\]
+cannot equal $1$.
+\end{lemma}
+
+\begin{proof}
+Let $V,E,F$ be the numbers of vertices, edges, and faces of the projective
+cell decomposition.  Euler's formula and the incidence count
+$E=\sum_r r t_r$ give
+\[
+ \kappa=\sum_{\text{faces }G}(|G|-3).
+\]
+Because the number of lines is even, the sign of the product of homogeneous
+linear equations for the lines is well-defined on the real projective plane
+and two-colours the faces.  Every edge borders one face of each colour.
+If $F_i$ is the number of faces of colour $i$, the sum of their boundary
+lengths is $E$, and their excess is
+\[
+ \kappa_i=E-3F_i\geq0.
+\]
+Thus $\kappa_0\equiv\kappa_1\pmod3$ and
+$\kappa=\kappa_0+\kappa_1\neq1$.
+\end{proof}
+
+\begin{proposition}\label{prop:n8}
+One has $f(8)=17$.
+\end{proposition}
+
+\begin{proof}
+Construction~\ref{con:eight-upper} gives the upper bound.  Suppose that an
+admissible eight-point set has $C(P)\leq16$, and let $k$ be the maximum
+number of selected points on a proper circle.  For $k=7,6,5$,
+\cref{lem:rich-circle-pencil} gives, respectively,
+\[
+ C(P)\geq19,\qquad22,\qquad19.
+\]
+If $k=3$, every noncollinear triple has a different owner.  If a largest
+line has $m\geq4$ points and $r=8-m$, the number of collinear triples is at
+most
+\[
+ \binom m3+\binom r3+\binom r2\leq35.
+\]
+If all lines have size at most three, their triples use disjoint triples of
+pairs and there are at most $\floor{28/3}=9$ of them.  In either event
+$C(P)\geq21$.  The case $k=8$ is inadmissible, so only $k=4$ remains.
+
+A line of size $m=5,6,7$ gives, by
+\cref{lem:rich-line-pencil}, respectively $24,27,21$ circles.  Hence every
+maximal generalized block has size three or four.  Put
+\[
+ b=B_4=C_4+L_4,\qquad
+ L=L_3+L_4,\qquad h=L_4.
+\]
+Triple ownership, the summed pivot row, the original Melchior row, the
+added-centre row, and the circle count are
+\begin{align}
+ B_3+4b&=56,                                         \label{eq:n8-triples}\\
+ K:=\sum_{p\in P}\sigma_p&=144-12b\geq0,             \label{eq:n8-K}\\
+ 3L+4h&\leq25,                                       \label{eq:n8-global-line}\\
+ 9L+7h&\leq200-12b,                                  \label{eq:n8-added}\\
+ C(P)&=56-3b-L.                                      \label{eq:n8-circle-count}
+\end{align}
+Indeed, \eqref{eq:n8-added} is
+$9L_3+16L_4\leq56+K$ rewritten in terms of $L,h$.
+Equations \eqref{eq:n8-K}, \eqref{eq:n8-global-line}, and
+\eqref{eq:n8-circle-count} imply
+\begin{equation}\label{eq:n8-b-range}
+ b\in\{11,12\}.
+\end{equation}
+
+Suppose first that $b=11$.  Then $K=12$ and
+\eqref{eq:n8-circle-count} gives $L\geq7$.  The two line inequalities force
+\[
+ L=7,\qquad h=0.
+\]
+At $p$, write $r_p=d_4(p)$.  Ownership of triples through $p$ and the
+definition of $\sigma_p$ give
+\[
+ d_3(p)+3r_p=21,\qquad \sigma_p=18-3r_p.
+\]
+The local added-centre slack is
+\[
+ \kappa_p:=7+\sigma_p-3\ell_3(p).
+\]
+It is nonnegative and congruent to $1$ modulo $3$, hence at least one.
+On the other hand,
+\[
+ \sum_{p\in P}\kappa_p=56+K-9L_3=56+12-63=5,
+\]
+which cannot be the sum of eight positive integers.
+
+Now let $b=12$.  Then $K=0$, so $\sigma_p=0$ for every $p$, and
+\begin{equation}\label{eq:n8-local-kappa}
+ \kappa_p=7-3\ell_3(p)-4\ell_4(p)\geq0.
+\end{equation}
+The added-centre configuration has eight points and no line containing more
+than four of them.  Its dual is therefore a non-pencil arrangement of eight
+real projective lines, and $\kappa_p$ is its Melchior slack.  By
+\cref{lem:even-arrangement-slack},
+\begin{equation}\label{eq:n8-kappa-not-one}
+ \kappa_p\neq1.
+\end{equation}
+Equations \eqref{eq:n8-local-kappa}--\eqref{eq:n8-kappa-not-one} imply
+$\ell_3(p)\leq1$: if $\ell_4(p)=0$, the only additional nonnegative case is
+$\ell_3(p)=2$, which gives slack one; if $\ell_4(p)\geq1$, then necessarily
+$\ell_4(p)=1$ and already $\ell_3(p)\leq1$.  Hence
+$3L_3\leq8$ and $L_3\leq2$.
+
+Equation \eqref{eq:n8-circle-count} gives $L\geq4$.  Combining this with
+\eqref{eq:n8-global-line}, \eqref{eq:n8-added}, and $L_3\leq2$ leaves
+\begin{equation}\label{eq:n8-final-line-row}
+ L_3=2,\qquad L_4=2,\qquad C(P)=16.
+\end{equation}
+Moreover,
+\[
+ \sum_p\kappa_p=56-9L_3-16L_4=6.
+\]
+The four possible local pairs and slacks are
+\[
+\begin{array}{c|cccc}
+(\ell_3(p),\ell_4(p))&(0,0)&(1,0)&(0,1)&(1,1)\\ \hline
+\kappa_p&7&4&3&0.
+\end{array}
+\]
+Since $\sum_p\ell_4(p)=4L_4=8$, every point lies on one four-line; the slack
+sum then forces two points of type $(0,1)$ and six of type $(1,1)$.  Thus the
+two four-lines are disjoint and partition $P$.  Each of the two three-lines
+contains three points, so two of them lie on the same four-line.  The
+three-line and that four-line would then be the same geometric line, contrary
+to maximality of their different supports.  This final contradiction proves
+$C(P)\geq17$.
+\end{proof}
+
+\subsection{Nine points}
+
+\begin{proposition}\label{prop:n9}
+One has \(f(9)=25\).
+\end{proposition}
+
+\begin{proof}
+Construction~\ref{con:circle-centre}, with four antipodal boundary pairs,
+gives \(f(9)\leq1+\binom82-4=25\).  For the reverse inequality, suppose
+that an admissible nine-point set \(P\) satisfies
+\begin{equation}\label{eq:n9-counterassumption}
+ C(P)\leq24,
+\end{equation}
+and let \(k\) be the largest number of selected points on a proper circle.
+Then \(3\leq k\leq8\).
+
+\smallskip
+\noindent\emph{The branches \(k\geq6\).}
+For \(k=8,7,6\), respectively, the rich-circle bound
+\eqref{eq:rich-circle-pencil} gives
+\[
+ C(P)\geq25,\quad34,\quad28.
+\]
+Thus none of these branches is compatible with
+\eqref{eq:n9-counterassumption}.
+
+\smallskip
+\noindent\emph{The branch \(k=5\).}
+Fix a five-point circle \(\Gamma\) and put
+\(X=P\setminus\Gamma\), so \(|X|=4\).  First,
+\cref{lem:rich-line-pencil} excludes every line of size at least five:
+for line sizes \(m=5,6,7,8\), its lower bound is, respectively,
+\[
+ 28,\quad36,\quad39,\quad28.
+\]
+Hence all lines below have size at most four.
+
+For a proper circle other than \(\Gamma\), let \(c_{r,t}\) count those
+having \(r\) points on \(\Gamma\) and \(t\) points in \(X\).  Necessarily
+\(r\leq2\).  Let \(\lambda_{r,t}\) denote the analogous number of rich
+lines and set
+\begin{equation}\label{eq:n9-R}
+ R:=\sum_t t\lambda_{2,t}.
+\end{equation}
+At each outsider, the chords of \(\Gamma\) passing through it form a
+matching on five vertices.  Therefore
+\begin{equation}\label{eq:n9-R-cap}
+ R\leq8.
+\end{equation}
+
+For \(x\in X\), let \(\mathcal S_x\) consist of the proper circles through
+\(x\) and two points of \(\Gamma\).  Exactly the chord-lines through \(x\)
+fail to yield such circles, whence
+\[
+ \sum_{x\in X}|\mathcal S_x|=40-R.
+\]
+For an outsider pair \(x,y\), the \(\Gamma\)-pairs represented in
+\(\mathcal S_x\cap\mathcal S_y\) form a matching, so this intersection has
+size at most two.  No circle contains two points of \(\Gamma\) and all four
+outsiders, because \(k=5\).  Thus inclusion--exclusion stops after outsider
+triples.  If \(c_2\) counts all circles with exactly two
+\(\Gamma\)-points, then
+\begin{equation}\label{eq:n9-four-outsider-union}
+ c_2\geq40-R-12+c_{2,3}=28-R+c_{2,3}.
+\end{equation}
+Let \(c_{\leq1}\) count circles other than \(\Gamma\) with at most one
+\(\Gamma\)-point.  Since \(C(P)=1+c_2+c_{\leq1}\),
+\eqref{eq:n9-counterassumption} gives the four-outsider master inequality
+\begin{equation}\label{eq:n9-four-outsider-master}
+ R\geq5+c_{2,3}+c_{\leq1}.
+\end{equation}
+
+We now use only the four possible incidence types of \(X\).
+
+\emph{No three outsiders are collinear and the four are not concyclic.}
+The four outsider triples determine four distinct proper circles.  They
+are counted by \(c_{2,3}+c_{\leq1}\), so
+\eqref{eq:n9-four-outsider-master} gives \(R\geq9\), contradicting
+\eqref{eq:n9-R-cap}.
+
+\emph{All four outsiders are collinear.}
+Put \(a=c_{1,2}\) and \(b=c_{2,2}\).  Counting the \(30\) triples with one
+\(\Gamma\)-point and two outsiders gives
+\begin{equation}\label{eq:n9-collinear-four-count}
+ a+2b=30.
+\end{equation}
+There is no line contribution, since every outsider pair already lies on
+the four-outsider line; nor can a proper circle contain three of its
+collinear points.  The pair-intersection bound above gives \(b\leq12\),
+and hence \(a\geq6\).  Moreover, the exact membership count for the
+\(\mathcal S_x\) gives \(c_2=40-R-b\).  Therefore
+\[
+ C(P)=1+(40-R-b)+a
+     =26-R+\frac32a\geq27,
+\]
+again a contradiction.
+
+\emph{Exactly three outsiders are collinear.}
+Let \(\lambda\) be their line and let \(s\in\{0,1\}\) record whether
+\(\lambda\) contains a point of \(\Gamma\).  Put
+\[
+ a:=c_{1,3},\qquad h:=c_{2,3},\qquad
+ \ell:=\lambda_{1,2}.
+\]
+The other three outsider triples determine three distinct proper circles.
+Thus \(h+c_{\leq1}\geq3\).  Combining this with
+\eqref{eq:n9-R-cap}, \eqref{eq:n9-four-outsider-union}, and
+\eqref{eq:n9-four-outsider-master} first gives
+\(R=8\) and \(h+c_{\leq1}=3\).  If
+\[
+ I:=\sum_{\{x,y\}\subset X}|\mathcal S_x\cap\mathcal S_y|
+   =c_{2,2}+3h,
+\]
+then \(I\leq12\), while exact inclusion--exclusion gives
+\[
+ C(P)=1+40-R-I+h+c_{\leq1}=36-I.
+\]
+Thus \eqref{eq:n9-counterassumption} forces \(I=12\) and equality
+throughout:
+\begin{equation}\label{eq:n9-three-collinear-equality}
+ R=8,\qquad C(P)=24,\qquad
+ h+c_{\leq1}=3,\qquad c_{2,2}+3h=12.
+\end{equation}
+In particular those three outsider-triple circles exhaust
+\(c_{\leq1}+h\), so \(c_{1,2}=0\).  The last equality says that each
+outsider pair lies on exactly two circles with two \(\Gamma\)-points, and
+their two \(\Gamma\)-pairs are disjoint.  There can be no line of type
+\((2,2)\): its \(\Gamma\)-pair would have to be disjoint from both circle
+pairs, which is impossible on five points.
+
+Counting again the triples with one \(\Gamma\)-point and two outsiders,
+and then applying the global line row, gives
+\begin{align}
+ \ell+3a+3s&=6,                         \label{eq:n9-three-collinear-triples}\\
+ 3\ell+4s&\leq6.                        \label{eq:n9-three-collinear-lines}
+\end{align}
+Indeed, the term already covered by the two-\(\Gamma\) circles is
+\(2(c_{2,2}+3h)=24\); while the rich lines are the eight chord incidences,
+\(\lambda\), and the \(\ell\) lines of type \((1,2)\).
+Equations \eqref{eq:n9-three-collinear-triples}--%
+\eqref{eq:n9-three-collinear-lines} yield
+\[
+ \ell=0,\qquad a+s=2.
+\]
+For each outsider pair, the two disjoint \(\Gamma\)-pairs in
+\eqref{eq:n9-three-collinear-equality} leave one \(\Gamma\)-point.  Its
+triple with the outsider pair must be owned by one of the \(a\)
+three-outsider circles or, when \(s=1\), by \(\lambda\).
+The pair-shadows of two distinct three-subsets of a four-set cover only
+five of its six pairs.  One pair is therefore left without an owner, a
+contradiction.
+
+\emph{The four outsiders are concyclic.}
+Let \(\Omega\) be their circle.  It contains \(\delta\in\{0,1\}\) selected
+points of \(\Gamma\).  Put
+\[
+ a:=c_{1,2},\quad b:=c_{2,2},\quad
+ u:=\lambda_{2,1},\quad v:=\lambda_{2,2},\quad
+ \ell:=\lambda_{1,2}.
+\]
+Apart from \(\Gamma,\Omega\), every rich circle or line has type
+\((2,1),(1,2)\), or \((2,2)\): a distinct carrier meets each of
+\(\Gamma,\Omega\) in at most two points.  Consequently
+\begin{align}
+ R&=u+2v,                                                   \label{eq:n9-concyclic-R}\\
+ C(P)&=42-R-b+a.                                           \label{eq:n9-concyclic-C}
+\end{align}
+Write \(b=12-e\), where \(e\geq0\).  From
+\eqref{eq:n9-counterassumption}, \eqref{eq:n9-R-cap}, and
+\eqref{eq:n9-concyclic-C},
+\begin{equation}\label{eq:n9-concyclic-master}
+ R\geq6+e+a,\qquad e+a\leq2.
+\end{equation}
+The same \(30\)-triple count and the global line row now read
+\begin{align}
+ \ell+2v&=6-a+2e-6\delta,                 \label{eq:n9-concyclic-triples}\\
+ 3R+3\ell+v&\leq33.                       \label{eq:n9-concyclic-lines}
+\end{align}
+
+If \(\delta=0\), all \(b+v\) generalized blocks of type \((2,2)\)
+are cross-blocks between five points of \(\Gamma\) and four points of
+\(\Omega\).  By \cref{lem:radical-axis-cross-block},
+\(b+v\leq12\), hence \(v\leq e\).  But
+\eqref{eq:n9-concyclic-master}--\eqref{eq:n9-concyclic-lines} give
+\[
+ 33\geq3R+3\ell+v\geq36+9e-5v,
+\]
+or \(5v\geq3+9e\), impossible when \(v\leq e\).
+
+If \(\delta=1\), remove the common selected point of \(\Gamma\) and
+\(\Omega\).  A type-\((2,2)\) block cannot use that point: a circle would
+share three points with \(\Omega\), while a line would contain three
+collinear points of \(\Omega\).  The \(4+4\) case of
+\cref{lem:radical-axis-cross-block} therefore gives
+\[
+ b+v\leq10,\qquad v\leq e-2.
+\]
+Together with \eqref{eq:n9-concyclic-master}, this forces
+\[
+ e=2,\qquad a=v=0,\qquad R=8.
+\]
+Equation~\eqref{eq:n9-concyclic-triples} gives \(\ell=4\), and
+\eqref{eq:n9-concyclic-lines} becomes \(36\leq33\), the final
+contradiction in the \(k=5\) branch.
+
+\smallskip
+\noindent\emph{The branches \(k\leq4\).}
+The same rich-line calculation excludes lines of size at least five.
+All maximal generalized blocks therefore have size three or four.  Put
+\[
+ B:=B_4=C_4+L_4,\qquad L:=L_3+L_4.
+\]
+Triple ownership and the circle objective give
+\begin{equation}\label{eq:n9-four-block-count}
+ C(P)=84-3B-L.
+\end{equation}
+The global line row is \(3L_3+7L_4\leq33\), so \(L\leq11\).
+Under \eqref{eq:n9-counterassumption},
+\eqref{eq:n9-four-block-count} then forces \(B\geq17\).
+
+Fix \(p\in P\) and invert the other eight points at \(p\).  They are
+noncollinear by \cref{lem:inversion-dictionary}, and no four are collinear:
+such a line would invert to a five-point proper circle or a five-point
+line through \(p\).  A three-point image line is exactly a generalized
+four-block of \(P\) through \(p\).  Hence
+\cref{lem:orchard-eight} gives \(d_4(p)\leq7\).  Summing over all pivots,
+\[
+ 4B=\sum_{p\in P}d_4(p)\leq9\cdot7=63,
+\]
+so \(B\leq15\), contrary to \(B\geq17\).
+
+Every possible value of \(k\) has now been excluded under
+\eqref{eq:n9-counterassumption}.  Thus \(C(P)\geq25\), completing the
+proof.
+\end{proof}
+
+\begin{theorem}[The small values]\label{thm:small-values}
+For the V1 problem,
+\[
+ \bigl(f(4),f(5),f(6),f(7),f(8),f(9)\bigr)
+   =(3,5,8,11,17,25).
+\]
+\end{theorem}
+
+\begin{proof}
+Combine \cref{prop:n4-n5,prop:n6,prop:n7,prop:n8,prop:n9}.
+\end{proof}

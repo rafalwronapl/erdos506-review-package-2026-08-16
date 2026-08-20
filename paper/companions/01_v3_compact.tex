@@ -1,0 +1,608 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,
+  urlcolor=blue!55!black]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{construction}[theorem]{Construction}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\floor}[1]{\left\lfloor #1\right\rfloor}
+
+\title{The no-three-collinear variant V3:\\[1mm]a compact, search-free proof}
+\author{Companion note}
+\date{5 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+For \(n\geq4\), let \(f_{\mathrm{V3}}(n)\) be the least number of proper
+Euclidean circles determined by \(n\) distinct real planar points, no three
+collinear and not all concyclic.  We prove
+\[
+ f_{\mathrm{V3}}(8)=20,
+ \qquad
+ f_{\mathrm{V3}}(n)=1+\binom{n-1}{2}\quad(n\neq8).
+\]
+The infinite range follows from a summed inverted Melchior inequality and
+two explicit lower bounds.  The only equality obstructions left in the
+small range are proved here: a seven-point Fano wall and a ten-point
+six-circle power wall.  No configuration, support, or orbit catalogue and
+no SAT, ILP, or finite-range search is used.
+\end{abstract}
+
+\section{Statement and geometric conventions}
+
+\begin{definition}[V3]
+A \emph{V3 configuration} is a set \(P\subset\R^2\) of \(n\geq4\) distinct
+points such that no three points of \(P\) are collinear and \(P\) is not
+contained in one proper circle.  A circle is counted when it is a proper
+Euclidean circle containing at least three points of \(P\), and it is
+counted only once, independently of the size of its full trace on \(P\).
+We denote the count by \(C(P)\) and its minimum by \(f_{\mathrm{V3}}(n)\).
+\end{definition}
+
+Put
+\begin{equation}\label{eq:G}
+ G(n):=1+\binom{n-1}{2}.
+\end{equation}
+
+We use the following standard facts, always over the real plane.  A
+noncollinear triple has a unique circumcircle; two distinct proper circles,
+or a proper circle and a line, meet in at most two points.  Inversion about
+\(o\) interchanges the lines avoiding \(o\) with the proper circles through
+\(o\), sends circles avoiding \(o\) to circles avoiding \(o\), and preserves
+all incidences away from \(o\).  For a proper circle and two secants through
+a point, directed power of a point equates the two products of directed
+intercepts.  Directed Menelaus applies to a nondegenerate real affine
+triangle and three collinear points on its extended sides; none of the six
+ratios used below has a zero denominator.  The one global incidence input,
+Melchior's inequality, is derived in \S\ref{sec:universal} for every finite
+noncollinear real projective point set.  Thus all classical inputs are used
+on their stated real, finite, nondegenerate ranges.
+
+\begin{theorem}\label{thm:v3}
+For every integer \(n\geq4\),
+\[
+ \boxed{
+ f_{\mathrm{V3}}(n)=
+ \begin{cases}
+ 20,&n=8,\\[1mm]
+ G(n),&n\neq8.
+ \end{cases}}
+\]
+In particular,
+\[
+ \bigl(f_{\mathrm{V3}}(4),\ldots,f_{\mathrm{V3}}(10)\bigr)
+   =(4,7,11,16,20,29,37).
+\]
+\end{theorem}
+
+\section{The two upper constructions}
+
+\begin{construction}[A circle and one outsider]\label{con:near-circle}
+Choose \(n-1\) distinct points on a proper circle \(\Gamma\), and choose
+\(x\notin\Gamma\) outside every line through two of them.  The forbidden set
+is a finite union of proper curves, so such an \(x\) exists.  The resulting
+set has no collinear triple.  It is not concyclic, since any circle through
+the \(n-1\geq3\) selected points of \(\Gamma\) equals \(\Gamma\), while
+\(x\notin\Gamma\).  Thus it is V3.  Its triples on \(\Gamma\) give
+\(\Gamma\), and every other triple
+consists of \(x\) and a pair on \(\Gamma\).  Different pairs give different
+circles: a coincidence would produce a circle through \(x\) sharing at least
+three points with \(\Gamma\).  Hence
+\begin{equation}\label{eq:upper-G}
+ f_{\mathrm{V3}}(n)\leq1+\binom{n-1}{2}=G(n).
+\end{equation}
+\end{construction}
+
+The exceptional construction is just as explicit, but it is clearer before
+inversion, where lines and circles are temporarily treated together as
+\emph{generalized circles}.
+
+\begin{construction}[The eight-point cross]\label{con:cross}
+Fix \(0<a<b\), let \(S=\{-b,-a,a,b\}\), and set
+\[
+ Q=(S\times\{0\})\cup(\{0\}\times S).
+\]
+The two axes are four-point generalized circles.  If \(x_1\neq x_2\) and
+\(y_1\neq y_2\), then
+\begin{equation}\label{eq:product-criterion}
+ (x_1,0),(x_2,0),(0,y_1),(0,y_2)
+ \text{ are concyclic}
+ \quad\Longleftrightarrow\quad x_1x_2=y_1y_2.
+\end{equation}
+Indeed, on restricting
+\(X^2+Y^2+DX+EY+F=0\) to the two axes, Vieta's formula says that both
+root pairs have product \(F\); conversely, equality of the products fixes
+\(D,E,F\) and gives a proper circle.
+
+The six unordered pairs from \(S\) have four distinct product fibres,
+\[
+ \begin{array}{c|cccc}
+ \text{product}&ab&-ab&-b^2&-a^2\\ \hline
+ \text{multiplicity}&2&2&1&1.
+ \end{array}
+\]
+Consequently \eqref{eq:product-criterion} gives
+\(2^2+2^2+1^2+1^2=10\) four-point \(2+2\) circles.  There are \(48\) mixed
+triples.  Those ten circles own \(10\binom43=40\) of them.  Each of the
+remaining eight triples has its own three-point circle: if two had the same
+carrier, that carrier could meet each axis at most twice, so their union
+would be a four-point \(2+2\) support and hence one of the ten circles
+already counted.  Thus the generalized blocks are
+\[
+ 2\text{ axes},\qquad10\text{ four-point circles},\qquad
+ 8\text{ three-point circles},
+\]
+and both the block and triple counts are exact:
+\begin{equation}\label{eq:cross-count}
+ 2+10+8=20,
+ \qquad
+ 2\binom43+10\binom43+8=\binom83.
+\end{equation}
+
+Let \(\mathcal U\) be the union of these twenty lines and circles.  A finite
+union of such curves does not cover the plane, so choose \(o\notin\mathcal U\)
+and invert about \(o\).  Since \(Q\subset\mathcal U\), the centre is not a
+selected point.  Every one of the twenty generalized blocks becomes a
+proper circle with the same selected trace.  Conversely, a circle through
+an image triple pulls back to the unique generalized carrier of the
+original triple, so there are no additional blocks.
+
+No three image points are collinear: the inverse of such a line would be a
+generalized circle containing \(o\) and an original triple, contrary to
+\(o\notin\mathcal U\).  The image is not concyclic either, since its inverse
+would put all of \(Q\) on one generalized circle, whereas a proper circle
+meets either axis at most twice and no line contains all eight points.
+Therefore
+\begin{equation}\label{eq:upper-eight}
+ f_{\mathrm{V3}}(8)\leq20.
+\end{equation}
+\end{construction}
+
+The product fibres, not a list of supports, explain the exception: after
+inversion the two rich axes and ten \(2+2\) collisions compress all
+\(\binom83\) triples into only twenty proper circles.
+
+\section{Universal lower bounds}\label{sec:universal}
+
+Fix a V3 configuration.  Let \(c_s\) be the number of circles whose full
+selected trace has size \(s\), let \(C=\sum_s c_s\), and let
+\(m=\max\{s:c_s>0\}\).  Unique circumcircles partition the selected triples,
+and nonconcyclicity gives \(3\leq m\leq n-1\).  Hence
+\begin{equation}\label{eq:T}
+ \boxed{\mathsf T:\quad
+ \sum_{s=3}^{m}\binom{s}{3}c_s=\binom n3},
+ \qquad C=\sum_{s=3}^{m}c_s.
+\end{equation}
+
+\subsection{Summed inverted Melchior}
+
+For a finite noncollinear real projective point set, let \(t_r\) count its
+spanned lines containing exactly \(r\) selected points.  Dualize to an
+essential arrangement of real projective lines.  If \(V,E,F\) denote its
+numbers of vertices, edges, and faces, then
+\[
+ V=\sum_{r\geq2}t_r,\qquad E=\sum_{r\geq2}r t_r,
+ \qquad V-E+F=1.
+\]
+Every face has at least three sides, so \(3F\leq2E\).  Therefore
+\(E\leq3V-3\), which is exactly
+\begin{equation}\label{eq:melchior}
+ t_2\geq3+\sum_{r\geq4}(r-3)t_r.
+\end{equation}
+
+Invert now at a selected point \(p\) and remove \(p\).  The \(n-1\) images
+are noncollinear: a common image line through the centre would give a
+collinear original triple, while a common image line avoiding the centre
+would put all original points on one circle through \(p\).  Also, every
+spanned image line avoids the centre, again by the no-three-collinear
+hypothesis.  Thus an \(s\)-point circle through \(p\) becomes an
+\((s-1)\)-point line, with no exceptional line term.
+
+Sum \eqref{eq:melchior} over all \(n\) pivots.  A three-circle contributes
+to \(t_2\) at each of its three points; a four-circle has coefficient zero;
+and an \(s\)-circle, \(s\geq5\), contributes \(s-4\) at each of its \(s\)
+points.  We obtain
+\begin{equation}\label{eq:M}
+ \boxed{\mathsf M:\quad
+ 3c_3-\sum_{s=5}^{m}s(s-4)c_s\geq3n.}
+\end{equation}
+
+\subsection{The bounded-support functional}
+
+Assume \(m\geq4\), and put
+\[
+ A=\binom m3,\qquad B=m(m-4),\qquad D=3A+B,
+ \qquad
+ \lambda_m=\frac{B+3}{D},\quad \mu_m=\frac{A-1}{D}.
+\]
+Here \(D=m(m-3)(m+2)/2>0\), and both multipliers are positive.  Add
+\(\lambda_m\mathsf T\) and \(\mu_m\mathsf M\).  Directly from the
+definitions,
+\[
+ \lambda_m+3\mu_m=1,\qquad
+ \lambda_m\binom m3-\mu_m m(m-4)=1,
+\]
+so the coefficients of \(c_3\) and \(c_m\) are one.  For every integer
+\(4\leq s\leq m\), the exact slack below one is
+\begin{equation}\label{eq:slack}
+ 1-\left(\lambda_m\binom s3-\mu_m s(s-4)\right)
+ =\frac{(m-s)(s-3)(ms-m-s-2)}{3m(m+2)}\geq0,
+\end{equation}
+because \(ms-m-s-2=(m-1)(s-1)-3\geq6\).  The weighted left side is
+therefore at most \(C\), whereas its right side is a lower bound.  Hence
+\begin{equation}\label{eq:L}
+ C\geq L(n,m):=\lambda_m\binom n3+3n\mu_m
+ =\frac{n(3m^2+mn^2-3mn+2m-n^2+3n+4)}{3m(m+2)}.
+\end{equation}
+Direct subtraction gives the useful strict monotonicity
+\begin{equation}\label{eq:L-monotone}
+ L(n,m)-L(n,m+1)
+ =\frac{n(n-4)(n+1)(m^2-m-3)}
+ {3m(m+1)(m+2)(m+3)}>0
+\end{equation}
+for \(n\geq5\) and \(m\geq4\).
+
+\subsection{The rich-circle pencil}
+
+Suppose a circle \(\Gamma\) contains \(m\) selected points, with
+\(k=n-m\) outsiders.  For each outsider \(x\), the circles through \(x\)
+and a pair on \(\Gamma\) form a fan of exactly \(\binom m2\) circles.  A
+circle common to the fans of \(x\) and \(y\) uses the same pair on
+\(\Gamma\).  The pairs arising from two distinct common circles are
+disjoint, since otherwise the circles would share \(x,y\) and a point of
+\(\Gamma\).  Thus two fans meet in at most \(\floor{m/2}\) circles.
+Two-term Bonferroni, together with \(\Gamma\), yields
+\begin{equation}\label{eq:P}
+ C\geq P(n,m):=
+ 1+(n-m)\binom m2-\binom{n-m}{2}\floor{\frac m2}.
+\end{equation}
+
+For later use suppose \(m>\floor{n/2}\), so \(1\leq k<m\).  If \(m=2r\),
+then \(k\leq2r-1\) and
+\begin{align}
+ 2(P(n,2r)-G(n))
+  &=(k-1)\bigl(4r^2-6r+2-k(r+1)\bigr),\label{eq:P-even}\\
+ 4r^2-6r+2-k(r+1)
+  &\geq(2r-1)(r-3).\nonumber
+\end{align}
+If \(m=2r+1\), then \(k\leq2r\) and
+\begin{align}
+ 2(P(n,2r+1)-G(n))
+  &=(k-1)\bigl(4r^2-2r-k(r+1)\bigr),\label{eq:P-odd}\\
+ 4r^2-2r-k(r+1)&\geq2r(r-2).\nonumber
+\end{align}
+For \(n\geq11\), every relevant even or odd rich case has \(r\geq3\).
+Consequently
+\begin{equation}\label{eq:P-rich}
+ P(n,m)\geq G(n)
+ \qquad(n\geq11, m>\floor{n/2}).
+\end{equation}
+
+\section{The whole infinite range}
+
+Let \(n\geq11\).  If \(m=3\), then \eqref{eq:T} gives
+\(C=\binom n3>G(n)\).  If \(m>\floor{n/2}\), use
+\eqref{eq:P-rich}.  In the remaining range
+\(4\leq m\leq\floor{n/2}\), monotonicity gives
+\[
+ C\geq L(n,m)\geq L\bigl(n,\floor{n/2}\bigr).
+\]
+
+For \(n=2r\), \(r\geq6\), exact subtraction yields
+\begin{equation}\label{eq:large-even}
+ L(2r,r)-G(2r)
+ =\frac{(r-2)(2r^2-13r+2)}{3(r+2)}.
+\end{equation}
+At \(r=6\) this is \(-2/3\), and integrality of \(C\) and \(G(12)\) rounds
+\(C\geq G(12)-2/3\) up to \(C\geq G(12)\).  At \(r=7\) the quadratic factor
+is \(9\), and thereafter its forward difference \(4r-11\) is positive.
+
+For \(n=2r+1\), \(r\geq5\), one obtains
+\begin{equation}\label{eq:large-odd}
+ L(2r+1,r)-G(2r+1)
+ =\frac{(2r-3)(r^3-4r^2-4r-2)}{3r(r+2)}.
+\end{equation}
+The cubic factor is \(3\) at \(r=5\), and its forward difference
+\(3r^2-5r-7\) is positive for \(r\geq5\).  The three ranges for \(m\) are
+disjoint and exhaustive, so
+\begin{equation}\label{eq:large-result}
+ C\geq G(n)\qquad(n\geq11).
+\end{equation}
+
+\section{The two small real walls}
+
+\subsection{Four-point circles and the Fano wall}
+
+When \(m=4\), \eqref{eq:T} and \eqref{eq:M} reduce to
+\begin{equation}\label{eq:m4}
+ \binom n3=c_3+4c_4,\qquad c_3\geq n.
+\end{equation}
+Let \(\rho(n)\) be the least integer at least \(n\) congruent to
+\(\binom n3\pmod4\).  Then
+\begin{equation}\label{eq:m4-bound}
+ C=\frac{\binom n3+3c_3}{4}
+ \geq\frac{\binom n3+3\rho(n)}4.
+\end{equation}
+For \(n=5,\ldots,10\), the values of \(\rho(n)\) are
+\[
+ (6,8,7,8,12,12),
+\]
+and \eqref{eq:m4-bound} gives respectively
+\begin{equation}\label{eq:m4-values}
+ (7,11,14,20,30,39).
+\end{equation}
+Only the \(n=7\) equality lies below the eventual target.
+
+\begin{lemma}[The planar Fano wall]\label{lem:fano}
+Seven distinct real points cannot carry seven proper four-point circles
+whose three-point complements form a Steiner triple system \(\mathrm{STS}(7)\).
+\end{lemma}
+
+\begin{proof}
+First normalize the Steiner system without a classification.  Name one
+triple \(123\).  The other triples through \(1\) pair the remaining four
+points, so relabel them as \(145,167\).  The triples through \(2\) must use
+the other pairings; after swapping \(6,7\) if needed, take \(246,257\).
+The two remaining unused pairs among \(4,5,6,7\) are \(47,56\), forcing
+\begin{equation}\label{eq:fano-lines}
+ 123,\quad145,\quad167,\quad246,\quad257,\quad347,\quad356.
+\end{equation}
+
+Invert at point \(1\).  The circles complementary to the last four triples
+in \eqref{eq:fano-lines} become lines with full selected traces
+\[
+ 357,\qquad346,\qquad256,\qquad247.
+\]
+The first three have the three distinct pairwise intersections \(3,5,6\);
+they are therefore the sides of a nondegenerate triangle.  Set
+\[
+ A=3,\quad B=5,\quad C=6,\qquad
+ X=7\in AB,\quad Y=4\in AC,\quad Z=2\in BC.
+\]
+The fourth line is the transversal \(XYZ\).  The three circles not through
+the inversion centre have traces
+\begin{equation}\label{eq:fano-circles}
+ ABYZ,\qquad ACXZ,\qquad BCXY.
+\end{equation}
+All vertices and marked points are distinct because the displayed traces
+are full traces of distinct carriers.
+
+Use directed affine parameters
+\[
+ AB:(A,B,X)=(0,1,x),\quad
+ AC:(A,C,Y)=(0,1,y),\quad
+ BC:(B,C,Z)=(0,1,z),
+\]
+and put \(a^2=|BC|^2\), \(b^2=|CA|^2\), \(c^2=|AB|^2\).
+Directed power at \(C,B,A\), respectively, for the circles in
+\eqref{eq:fano-circles} gives
+\[
+ b^2(1-y)=a^2(1-z),\qquad
+ c^2(1-x)=a^2z,\qquad
+ c^2x=b^2y.
+\]
+The six factors \(x,y,z,1-x,1-y,1-z\) are nonzero.  Multiplying the three
+resulting ratios gives
+\begin{equation}\label{eq:fano-plus}
+ \frac{x}{1-x}\frac{z}{1-z}\frac{1-y}{y}=+1.
+\end{equation}
+But directed Menelaus for the transversal \(XYZ\) in triangle \(ABC\)
+gives the same product equal to \(-1\), a contradiction.
+\end{proof}
+
+Return to \(n=7,m=4\).  Congruence in \eqref{eq:m4} says either
+\(c_3=7\) or \(c_3\geq11\).  In the former case \(c_4=7\).  If \(A_i\) are
+the seven circle traces and \(B_i=P\setminus A_i\), then for \(i\neq j\)
+\[
+ |B_i\cap B_j|=|A_i\cap A_j|-1\leq1,
+\]
+because two four-subsets of a seven-set meet and two distinct circles meet
+in at most two selected points.  Thus the seven triples \(B_i\) contain
+\(7\binom32=21\) distinct pairs, exactly all pairs of \(P\); they form an
+\(\mathrm{STS}(7)\), contrary to Lemma~\ref{lem:fano}.  Hence
+\(c_3\geq11\), and \eqref{eq:m4-bound} improves to
+\begin{equation}\label{eq:fano-jump}
+ C\geq17\qquad(n=7,m=4).
+\end{equation}
+
+\subsection{Six five-point circles on ten points}
+
+\begin{lemma}[The six-five wall]\label{lem:six-five}
+Ten distinct real points cannot support six distinct proper five-point
+circles if every two of their full traces meet in at most two points.
+\end{lemma}
+
+\begin{proof}
+Let the traces be \(B_1,\ldots,B_q\) in a ten-set \(X\), and put
+\(w_i=\one_{B_i}-\tfrac12\one_X\).  Then
+\[
+ \|w_i\|^2=\frac52,\qquad
+ \langle w_i,w_j\rangle=|B_i\cap B_j|-\frac52\leq-\frac12.
+\]
+Therefore
+\begin{equation}\label{eq:energy}
+ 0\leq\left\|\sum_{i=1}^q w_i\right\|^2
+ \leq\frac{5q}{2}-\binom q2=\frac{q(6-q)}2.
+\end{equation}
+In particular \(q\leq6\).  If \(q=6\), equality throughout
+\eqref{eq:energy} forces
+\begin{equation}\label{eq:design-equality}
+ |B_i\cap B_j|=2\quad(i\neq j),
+ \qquad d(x)=3\quad(x\in X),
+\end{equation}
+where the second conclusion follows coordinatewise from
+\(\sum_iw_i=0\).
+
+We now derive, rather than assume, the equality design.  Delete \(B_6\).
+Its five points have degree two among \(B_1,\ldots,B_5\), and the other five
+have degree three.  Record the memberships of the first five as edges of a
+multigraph \(E\) on block labels \(1,\ldots,5\); record the two-label
+complements of the memberships of the latter five as edges of a multigraph
+\(H\).  Each label has degree two in \(E\), because
+\(|B_i\cap B_6|=2\).  It also has degree two in \(H\): among the five
+points outside \(B_6\), label \(i\) occurs three times and is omitted twice.
+Thus both graphs are \(2\)-regular.
+
+The graph \(E\) has no doubled edge.  Otherwise two degree-two points would
+exhaust \(B_i\cap B_j\), so no degree-three membership could contain both
+\(i,j\).  Yet \(i,j\) occur six times in total among the five degree-three
+memberships, impossible if each membership contains at most one of them.
+The graph \(H\) has no doubled edge either.  If \(ij\) were doubled, the
+degrees of \(i,j\) would be exhausted and the other three vertices would
+form a triangle.  Its three edges are disjoint from \(ij\), so their
+complementary memberships would put at least three points in
+\(B_i\cap B_j\), contradicting \eqref{eq:design-equality}.  Hence \(E,H\)
+are simple \(2\)-regular graphs on five vertices, and thus both are
+five-cycles.
+
+For a label pair \(ij\), the number of \(H\)-edges disjoint from it is
+\(1+\one_{\{ij\in H\}}\).  Counting \(B_i\cap B_j\) now gives
+\[
+ 2=\one_{\{ij\in E\}}+1+\one_{\{ij\in H\}},
+\]
+so \(E\) and \(H\) are complementary cycles.  This proves uniqueness up to
+relabeling, without enumerating designs.  Choose
+\[
+ E=\{14,15,23,25,34\},\qquad
+ H=\{12,13,24,35,45\}.
+\]
+The five memberships through block \(6\) are \(6e\), \(e\in E\), and the
+other five are the complements in \(\{1,\ldots,5\}\) of the edges in \(H\).
+Thus a forced normal form for the ten points is
+\begin{equation}\label{eq:six-design}
+ 123,124,135,236,146,156,245,256,345,346.
+\end{equation}
+This is one normal form derived from the two cycles, not a list of candidate
+supports.
+
+Invert at the point \(123\).  The three incident circles become distinct
+lines.  Their pairwise second selected intersections \(124,135,236\) are
+distinct, so they form a nondegenerate triangle.  Write
+\[
+\begin{aligned}
+ A&=124,\quad B=135,\quad C=236,\\
+ X&=146,\quad Y=156,\quad U=245,\quad
+ V=256,\quad W=345,\quad Z=346.
+\end{aligned}
+\]
+Then \(X,Y\in AB\), \(U,V\in AC\), and \(W,Z\in BC\).  The three
+nonincident circles have full traces
+\begin{equation}\label{eq:six-circles}
+ AXUWZ,\qquad BYUVW,\qquad CXYVZ.
+\end{equation}
+
+Parametrize the sides by
+\[
+\begin{aligned}
+ AB:&\ (A,B,X,Y)=(0,1,x,y),\\
+ AC:&\ (A,C,U,V)=(0,1,u,v),\\
+ BC:&\ (B,C,W,Z)=(0,1,w,z)
+\end{aligned}
+\]
+and again put \(a^2=|BC|^2\), \(b^2=|CA|^2\), \(c^2=|AB|^2\).
+Power at the two omitted vertices for each circle in
+\eqref{eq:six-circles} gives all six identities
+\begin{align}
+ c^2(1-x)&=a^2wz,&
+ b^2(1-u)&=a^2(1-w)(1-z),\label{eq:six-power-a}\\
+ c^2y&=b^2uv,&
+ a^2(1-w)&=b^2(1-u)(1-v),\label{eq:six-power-b}\\
+ c^2xy&=b^2v,&
+ c^2(1-x)(1-y)&=a^2z.\label{eq:six-power-c}
+\end{align}
+The nine image points are distinct, so each of
+\[
+ x,y,u,v,w,z,\quad1-x,1-y,1-u,1-v,1-w,1-z
+\]
+is nonzero; every following division is legal.  Dividing the fifth identity
+by the third, the sixth by the first, and combining the second with the
+fourth gives
+\begin{equation}\label{eq:six-substitutions}
+ x=\frac1u,\qquad1-y=\frac1w,\qquad
+ (1-v)(1-z)=1.
+\end{equation}
+The first, fourth, and third identities, with their squared side lengths
+cancelled, also give the coefficient-free cycle
+\begin{equation}\label{eq:six-cycle}
+ \frac{(1-x)(1-w)uv}{wz(1-u)(1-v)y}=1.
+\end{equation}
+Substitution from \eqref{eq:six-substitutions} makes the left side of
+\eqref{eq:six-cycle} equal to
+\[
+ \frac{((u-1)/u)(1-w)uv}
+ {w\,(v/(v-1))(1-u)(1-v)((w-1)/w)}=-1.
+\]
+Every displayed factor is nonzero by the preceding guard.  This
+contradiction proves that \(q=6\) is impossible over \(\R\).
+\end{proof}
+
+Now take \(n=10,m=5\) and write \(q=c_5\).  Circle intersection gives the
+hypothesis of Lemma~\ref{lem:six-five}, so \(q\leq5\).  Equations
+\eqref{eq:T} and \eqref{eq:M} become
+\begin{equation}\label{eq:n10-arithmetic}
+ 120=c_3+4c_4+10q,\qquad3c_3-5q\geq30.
+\end{equation}
+Modulo four, \(c_3\equiv-2q\pmod4\).  For \(0\leq q\leq5\), every candidate
+through \(8+2q\) violates the second inequality, since
+\(3(8+2q)-5q=24+q<30\); all smaller integers in the same residue class do
+as well.  The next congruent integer is \(12+2q\), so
+\(c_3\geq12+2q\), and elimination of \(c_4\) gives
+\begin{equation}\label{eq:n10-39}
+ C=30+\frac34c_3-\frac32q\geq39
+ \qquad(n=10,m=5).
+\end{equation}
+
+\section{The fixed small dispatch and conclusion}
+
+For \(4\leq n\leq10\), every possible largest trace size is one of
+\(m=3,\ldots,n-1\).  In that order, the lower bounds obtained from
+\eqref{eq:T}, \eqref{eq:m4-values}, \eqref{eq:fano-jump},
+\eqref{eq:n10-39}, and \eqref{eq:P} are
+\begin{align*}
+ n=4 &: \quad (4),\\
+ n=5 &: \quad (10,7),\\
+ n=6 &: \quad (20,11,11),\\
+ n=7 &: \quad (35,17,19,16),\\
+ n=8 &: \quad (56,20,25,28,22),\\
+ n=9 &: \quad (84,30,29,37,40,29),\\
+ n=10&: \quad (120,39,39,43,55,53,37).
+\end{align*}
+This is a seven-line substitution into proved formulas, not a catalogue of
+configurations or supports.  Taking the minimum in each line gives
+\[
+ 4,7,11,16,20,29,37.
+\]
+Construction~\ref{con:near-circle} attains every value except at eight;
+Construction~\ref{con:cross} attains twenty at eight.  Together with
+\eqref{eq:large-result}, this proves Theorem~\ref{thm:v3}.
+
+\section*{Computational boundary}
+
+No computation is a premise of this proof.  Exact-arithmetic companion
+programs can corroborate the polynomial factorizations
+\eqref{eq:slack}--\eqref{eq:large-odd}, the two product-fibre identities,
+the forced incidence normal forms, and the final sign cancellations.  They
+do not formalize projective Euler topology, inversion, directed power, or
+Menelaus, and they do not establish any geometric incidence used above.
+Conversely, this text uses no finite scan in \(n\) or \(m\), no generated
+configuration or support family, no orbit reduction, and no solver output.
+
+\end{document}

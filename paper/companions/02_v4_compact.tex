@@ -1,0 +1,250 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,
+  urlcolor=blue!55!black]{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{construction}[theorem]{Construction}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb R}
+
+\title{The no-four-concyclic variant V4:\\[1mm]a compact one-lemma proof}
+\author{Companion note}
+\date{5 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+For \(n\ge4\), consider \(n\) distinct real planar points which are not all
+collinear and no four of which lie on one proper Euclidean circle.  Count
+the distinct proper circles determined by selected noncollinear triples.
+We prove that the minimum is
+\[
+ \binom{n-1}{2},
+\]
+and that equality occurs precisely for a near-pencil: \(n-1\) points on a
+line and one point off it.  The proof identifies circles with noncollinear
+triples and applies one elementary richest-line count.  It uses no finite
+search, classification, induction, or external incidence theorem.
+\end{abstract}
+
+\section{The frozen variant and the result}
+
+\begin{definition}[V4 configuration]\label{def:v4}
+A \emph{V4 configuration} is a finite set \(P\subset\R^2\) of \(n\ge4\)
+distinct points such that \(P\) is not collinear and no proper Euclidean
+circle contains four points of \(P\).  A circle is counted if it contains a
+noncollinear triple from \(P\); it is counted once, independently of its
+full selected trace.  Write \(C(P)\) for this count and \(f_{\mathrm{V4}}(n)\)
+for its minimum.
+\end{definition}
+
+The condition \emph{not collinear} is part of the definition.  Without it,
+a collinear set would determine no proper circle and the minimum would be
+zero.  Lines themselves are never counted.
+
+\begin{definition}[Near-pencil]
+A noncollinear \(n\)-point set is a \emph{near-pencil} if some line contains
+exactly \(n-1\) of its points.
+\end{definition}
+
+\begin{theorem}\label{thm:v4}
+For every integer \(n\ge4\),
+\begin{equation}\label{eq:v4-value}
+ \boxed{f_{\mathrm{V4}}(n)=\binom{n-1}{2}}.
+\end{equation}
+Moreover, a V4 configuration attains this value if and only if it is a
+near-pencil.  In particular, the values for \(n=4,\ldots,10\) are
+\[
+ 3,6,10,15,21,28,36.
+\]
+\end{theorem}
+
+\section{The elementary circle interface}
+
+We record the entire geometric input, so that the later extremal argument
+is purely combinatorial.
+
+\begin{lemma}\label{lem:circle-interface}
+Three distinct noncollinear real points determine a unique proper Euclidean
+circle.  A proper circle and a line have at most two common points.
+\end{lemma}
+
+\begin{proof}
+A circle has an equation
+\begin{equation}\label{eq:circle-equation}
+ x^2+y^2+Ax+By+D=0.
+\end{equation}
+Substitution of three points gives a linear system for \(A,B,D\) whose
+coefficient determinant is twice their signed triangle area.  It is
+nonzero exactly when the points are noncollinear.  Thus the solution is
+unique; because the equation contains three distinct real points, its
+radius is positive.
+
+After a rigid change of coordinates, a given line is \(y=0\).  Restricting
+\eqref{eq:circle-equation} to it gives \(x^2+Ax+D=0\), which has at most two
+real roots.  This proves the intersection bound.
+\end{proof}
+
+Let \(\tau(P)\) denote the number of noncollinear three-subsets of \(P\).
+
+\begin{corollary}[Triple--circle bijection]\label{cor:triple-circle}
+For every V4 configuration,
+\begin{equation}\label{eq:circle-triple-bijection}
+ C(P)=\tau(P).
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+By \cref{lem:circle-interface}, every noncollinear triple determines one
+proper circle.  If two distinct triples determined the same circle, their
+union would contain at least four distinct selected points on that circle,
+contrary to \cref{def:v4}.  The map is therefore injective.  It is
+surjective because a counted circle is, by definition, one containing a
+selected noncollinear triple.
+\end{proof}
+
+\section{One extremal lemma}
+
+The next statement no longer mentions circles and is valid for every
+finite noncollinear real point set.
+
+\begin{lemma}[Richest-line triple bound]\label{lem:triple-bound}
+Let \(P\subset\R^2\) be a set of \(n\ge4\) distinct points which are not all
+collinear.  Then
+\begin{equation}\label{eq:triple-bound}
+ \tau(P)\ge\binom{n-1}{2}.
+\end{equation}
+Equality holds if and only if \(P\) is a near-pencil.
+\end{lemma}
+
+\begin{proof}
+Choose a line \(L\) containing the largest possible number \(m\) of points
+of \(P\), and put
+\[
+ k=n-m=|P\setminus L|.
+\]
+A line through a selected pair shows \(m\ge2\), while noncollinearity gives
+\(k\ge1\).
+
+First choose two points of \(P\cap L\) and one point outside \(L\).  These
+are exactly
+\[
+ k\binom m2
+\]
+noncollinear triples.  Next fix an unordered pair \(x,y\in P\setminus L\).
+The line \(xy\ne L\) contains at most one selected point of \(L\).  Hence at
+least \(m-1\) points of \(P\cap L\) form a noncollinear triple with
+\(x,y\).  Different outside pairs give different triples, so this supplies
+at least
+\[
+ \binom k2(m-1)
+\]
+further triples.  The two families are disjoint, since their members contain
+respectively two and one points of \(L\).  Triples wholly outside \(L\) may
+be omitted.  Consequently
+\begin{align}
+ \tau(P)
+ &\ge k\binom m2+\binom k2(m-1)\notag\\
+ &=\frac{k(m-1)(n-1)}2.\label{eq:two-family-count}
+\end{align}
+The exact excess of the displayed lower bound over the target is
+\begin{equation}\label{eq:factorized-gap}
+ \frac{k(m-1)(n-1)}2-\binom{n-1}{2}
+ =\frac{(n-1)(k-1)(m-2)}2\ge0.
+\end{equation}
+This proves \eqref{eq:triple-bound}.
+
+Suppose equality holds.  The sandwich formed by
+\eqref{eq:two-family-count}--\eqref{eq:factorized-gap} forces
+\(k=1\) or \(m=2\).  In the first case \(L\) contains \(n-1\) points, so
+\(P\) is a near-pencil.  In the second case maximality of \(L\) says that no
+three points of \(P\) are collinear.  Every triple is then noncollinear, and
+\[
+ \tau(P)-\binom{n-1}{2}
+ =\binom n3-\binom{n-1}{2}
+ =\frac{(n-1)(n-2)(n-3)}6>0,
+\]
+contrary to equality for \(n\ge4\).  Conversely, in a near-pencil the
+noncollinear triples are exactly the outsider together with a pair from
+the long line, so there are \(\binom{n-1}{2}\).  This completes the equality
+classification.
+\end{proof}
+
+\begin{remark}\label{rem:equality}
+The richest-line choice is needed only for the equality classification;
+the lower count itself works for any line determined by two selected
+points.  For \(n\ge4\), the \((n-1)\)-point line of a near-pencil is unique:
+two such distinct lines would contain at least \(2n-3>n\) selected points
+in their union.  Thus the equality statement classifies the incidence
+type, not a unique metric realization.
+\end{remark}
+
+\section{Proof and construction}
+
+For a V4 configuration, \cref{cor:triple-circle,lem:triple-bound} give
+immediately
+\[
+ C(P)=\tau(P)\ge\binom{n-1}{2}.
+\]
+
+\begin{construction}[Near-pencil extremizers]\label{con:near-pencil}
+Take
+\[
+ (0,0),(1,0),\ldots,(n-2,0),\qquad u=(0,1).
+\]
+The set is not collinear.  By \cref{lem:circle-interface}, a proper circle
+contains at most two selected points of the line \(y=0\); there is only one
+selected point outside that line.  Thus every proper circle contains at
+most three selected points, and the construction is V4-admissible.
+
+Its noncollinear triples are precisely \(u\) together with a pair on
+\(y=0\).  Therefore \cref{cor:triple-circle} gives exactly
+\(\binom{n-1}{2}\) counted circles.
+\end{construction}
+
+The construction proves the upper bound in \eqref{eq:v4-value}, while the
+preceding inequality proves the lower bound.  If a V4 configuration attains
+equality, \cref{lem:triple-bound} makes it a near-pencil; conversely, the
+same construction argument applies to every near-pencil.  This proves
+\cref{thm:v4}.
+
+\section{Scope and computational boundary}
+
+The theorem concerns the frozen variant in \cref{def:v4}.  It is not the
+historical unrestricted Erd\H{o}s problem: the no-four-concyclic condition
+is an additional hypothesis.  It is also distinct from the no-three-
+collinear variant, since V4 permits arbitrarily rich lines.
+
+The same formula holds at \(n=3\) if noncollinearity is required: one
+triangle determines one circle.  If instead no three points are allowed to
+be collinear, then every triple in a V4 configuration determines a different
+circle, so the count is \(\binom n3\).  Such configurations exist for every
+finite \(n\): add points successively outside the finitely many lines and
+circles forbidden by the points already chosen.
+
+No computation is a premise of this proof.  The companion programs
+\path{verify_v4_minimal_lemma.py} and
+\path{verify_v4_minimal_lemma_redteam.py} check the polynomial identities
+\eqref{eq:two-family-count}--\eqref{eq:factorized-gap} coefficientwise,
+without looping over \(n\), line sizes, point sets, triples, circles, or
+configurations.  They do not formalize the elementary geometric facts in
+\cref{lem:circle-interface}.  Earlier finite-window and coordinate checks
+are redundant archival tests, not proof dependencies.  This note is not a
+Lean or Coq formalization.
+
+\end{document}
