@@ -67,3 +67,7 @@ mathematical and formal review.
 - `audit/AXIOMS.md` -- public theorem axiom audit;
 - `paper/erdos506_v1_review_manuscript.pdf` -- review manuscript;
 - `docs/ERDOS506_FORMALIZATION_AUDIT_2026-08-15.md` -- current Lean audit.
+
+## License
+
+This repository is available under the Apache License 2.0. See `LICENSE`.
