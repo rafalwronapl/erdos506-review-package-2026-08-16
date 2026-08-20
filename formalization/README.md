@@ -5,6 +5,14 @@ pinned to Lean/mathlib 4.30.0.
 
 ## Exact status
 
+- **The exact Formal Conjectures-style endpoint is build-verified.**
+  `Erdos506.erdos_506` proves `IsLeast` for the official `Finset` predicate,
+  with answer `Erdos506.v1Target n`. `Erdos506/Canonical.lean` proves the
+  equivalence between the official set-based `numCircles` and the internal
+  `circleCount`.
+- **V1 sharpness is now formalized.** Explicit exact constructions cover
+  `n=6,7,8`; the paired circle-and-centre family covers all remaining
+  theorem-domain values.
 - **The V1 source endpoint is parameter-free and build-verified.**
   `Erdos506.V1.circleCount_ge_v1Target` covers every admissible `n>=4` and
   now accepts only `cfg`, `Admissible cfg`, and `4 <= Fintype.card alpha`.
@@ -17,7 +25,7 @@ pinned to Lean/mathlib 4.30.0.
 - **V4 is unconditional and complete** inside its frozen model, including
   lower bound, equality classification, and extremal construction.
 
-The public root imports `V1.Main`, `V3.Fano`, `V3.Main`, and `V4.Main` (with
+The public root imports `Canonical`, `V1.Main`, `V3.Fano`, `V3.Main`, and `V4.Main` (with
 selected intermediate/front modules retained for audit visibility).
 
 ## Public V1 endpoints
@@ -29,6 +37,7 @@ n=11: circleCount_ge_forty_one_of_card_eleven
 n=12: circleCount_ge_fifty_one_of_card_twelve
 n=13: circleCount_ge_sixty_one_of_card_thirteen
 all n>=4: circleCount_ge_v1Target
+exact minimum: Erdos506.erdos_506
 ```
 
 The global theorem has no principle, callback, or circle-count hypothesis.
@@ -76,10 +85,12 @@ The final chain contains no `sorry`, `admit`, or project-local `axiom`.
 
 ```text
 lake -Kjobs=1 build Erdos506.V1.Main
+lake -Kjobs=1 build Erdos506.V1.Sharpness
+lake -Kjobs=1 build Erdos506.Canonical
 lake -Kjobs=1 build Erdos506
 lake env lean -DwarningAsError=true AxiomsAudit.lean
 ```
 
 The commands pass on the current source tree. This formalization directory is
-the synchronized source included in the reviewer artifact and its 2026-08-16
+the synchronized source included in the reviewer artifact and its 2026-08-20
 distribution archive.

@@ -1,14 +1,18 @@
 # Current Review Snapshot
 
-Refresh date: 2026-08-16.
+Refresh date: 2026-08-20.
 
 The current source tree has passed the complete local Lean release gate:
 
 - `Erdos506.V1.Main`: PASS, 8885 jobs;
-- `Erdos506`: PASS, 8888 jobs;
+- `Erdos506.V1.Sharpness`: PASS, 8892 jobs;
+- `Erdos506.Canonical`: PASS, 8893 jobs;
+- `Erdos506`: PASS, 8896 jobs;
 - `AxiomsAudit.lean` with `-DwarningAsError=true`: PASS.
 
-The public V1 theorem is parameter-free at the source interface. The last
+The exact public endpoint `Erdos506.erdos_506` proves the official-style
+`IsLeast` statement with answer `v1Target n`. The public V1 lower bound is
+parameter-free at the source interface. The last
 finite-window residual was the `(15,6)` rich-line case, closed by
 `LangerApplicationFifteenLineSixFinish.lean`. The source contains the current
 V1/V3/V4 public assemblies; this package intentionally omits `.lake`, logs,

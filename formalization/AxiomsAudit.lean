@@ -57,6 +57,9 @@ import Erdos506
 #print axioms Erdos506.V1.circleCount_ge_fifty_one_of_card_twelve
 #print axioms Erdos506.V1.circleCount_ge_sixty_one_of_card_thirteen
 #print axioms Erdos506.V1.circleCount_ge_v1Target
+#print axioms Erdos506.V1.exists_v1_extremizer
+#print axioms Erdos506.numCircles_pointSet_eq_circleCount
+#print axioms Erdos506.erdos_506
 #print axioms Erdos506.Incidence.FiniteProjectiveLineArrangement.realProjectiveArrangementGlobalInput
 #print axioms Erdos506.Incidence.realPlaneMelchiorPrinciple
 #print axioms Erdos506.Incidence.realPlaneEvenArrangementPrinciple

@@ -1,6 +1,6 @@
 # Verification Results
 
-Verification date: 2026-08-15 for Lean; 2026-08-16 for the package refresh.
+Verification date: 2026-08-20 for Lean and the package refresh.
 Environment: Windows/PowerShell, Lean 4.30.0, pinned mathlib 4.30.0.
 
 ## Lean
@@ -9,16 +9,22 @@ Environment: Windows/PowerShell, Lean 4.30.0, pinned mathlib 4.30.0.
 lake -Kjobs=1 build Erdos506.V1.Main
 Build completed successfully (8885 jobs).
 
+lake -Kjobs=1 build Erdos506.V1.Sharpness
+Build completed successfully (8892 jobs).
+
+lake -Kjobs=1 build Erdos506.Canonical
+Build completed successfully (8893 jobs).
+
 lake -Kjobs=1 build Erdos506
-Build completed successfully (8888 jobs).
+Build completed successfully (8896 jobs).
 
 lake env lean -DwarningAsError=true AxiomsAudit.lean
 PASS
 ```
 
 The ordinary builds print non-fatal linter/deprecation warnings but no errors.
-The public axiom audit reports only `propext`, `Classical.choice`, and
-`Quot.sound`.
+The exact endpoint `Erdos506.erdos_506`, its sharpness theorem, and the
+set-count bridge report only `propext`, `Classical.choice`, and `Quot.sound`.
 
 ## Manuscript
 

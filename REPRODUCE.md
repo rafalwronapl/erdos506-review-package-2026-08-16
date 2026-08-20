@@ -9,13 +9,16 @@ revision. Do not include that generated directory in a redistributed archive.
 ```powershell
 Set-Location formalization
 lake -Kjobs=1 build Erdos506.V1.Main
+lake -Kjobs=1 build Erdos506.V1.Sharpness
+lake -Kjobs=1 build Erdos506.Canonical
 lake -Kjobs=1 build Erdos506
 lake env lean -DwarningAsError=true AxiomsAudit.lean
 ```
 
 The toolchain is Lean 4.30.0 and the manifest pins mathlib to the v4.30.0
-revision. The expected results are 8885 jobs, 8888 jobs, and `PASS` for the
-strict audit, respectively. Normal builds may print non-fatal linter warnings.
+revision. The expected results are 8885, 8892, 8893, and 8896 jobs, followed
+by `PASS` for the strict audit. Normal builds may print non-fatal linter
+warnings.
 
 ## Source hygiene
 

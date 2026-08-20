@@ -1,0 +1,104 @@
+﻿'Erdos506.Finite.fanoBV_classification' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.Finite.sixFiveBV_classification' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V1.three_n_le_rowP_of_realPlaneMelchior' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V1.rowD_le_n_mul_n_sub_four_of_realPlaneMelchior' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V1.globalLineRow_le_choose_two_sub_three_of_realPlaneMelchior' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Erdos506.V1.n_mul_n_sub_one_mul_n_add_two_le_three_rowL_of_realPlaneLanger' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Erdos506.V1.halfBlockCap_of_circleCount_lt_v1UniformTarget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V1.v1UniformTarget_lt_circleCount_of_halfBlockCap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V1.v1UniformTarget_le_circleCount_large' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V1.circleCount_ge_target_of_card_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V1.circleCount_ge_target_of_card_five' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V1.circleCount_ge_target_small_of_hard' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V1.six_terminal_census' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V1.no_labelled_pasch_three_circle_pattern' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V1.circleCount_ge_target_of_card_six' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V1.blockSizeCap_six_of_fourteen_of_circleCount_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V1.circleCount_ge_seventy_three_of_card_fourteen_of_noSevenCircle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Erdos506.V1.circleCount_ge_seventy_three_of_card_fourteen' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V1.circleCount_ge_target_of_card_seven' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V1.circleCount_ge_target_of_card_eight' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V1.circleCount_ge_target_small_of_middle_hard' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V1.circleCount_ge_target_of_middle_hard' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V1.circleCount_ge_target_small_of_nine_hard' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V1.circleCount_ge_target_of_nine_hard' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V1.circleCount_ge_twenty_five_of_card_nine_of_circle_cap_four' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Erdos506.V1.circleCount_ge_twenty_five_of_card_nine_of_circleTrace_ge_six' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Erdos506.V1.nineFive_exactlyThree_impossible' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V1.nineFive_concyclic_impossible' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V1.circleCount_ge_twenty_five_of_card_nine_of_selected_five_circle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Erdos506.V1.circleCount_ge_twenty_five_of_card_nine' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V1.circleCount_ge_thirty_three_of_ten_of_selected_six_circle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Erdos506.V1.ten_five_scalar_faces' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V1.circleCount_ge_thirty_three_of_card_ten_of_circle_cap_five_endpoint' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Erdos506.V1.ten_circle_cap_four_forced_profile' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.Finite.card_le_five_of_twoTriangleLinks' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V1.circleCount_ge_thirty_three_of_card_ten_of_circle_cap_four' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Erdos506.V1.circleCount_ge_thirty_three_of_card_ten_of_five_circle_endpoint' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Erdos506.V1.elevenGammaSix_front_circleCount_ge_thirty_nine' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V1.exists_circle_trace_card_five_or_six_of_card_eleven_of_circleCount_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Erdos506.V1.twelveGammaFive_front_circleCount_ge_forty_seven' depends on axioms: [propext, Quot.sound]
+'Erdos506.V1.twelveGammaFive_qSum_circleCount_ge_fifty' depends on axioms: [propext, Quot.sound]
+'Erdos506.V1.exists_circle_trace_card_five_or_six_of_card_twelve_of_circleCount_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Erdos506.V1.circleCount_ge_sixty_one_of_card_thirteen_of_circleTrace_le_five' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Erdos506.V1.thirteen_six_opening_weight_ge_forty_eight' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V1.circleCount_ge_sixty_one_of_card_thirteen_of_six_circle_hard' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Erdos506.V1.circleCount_ge_twenty_five_of_card_nine_of_five_circle_endpoint' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Erdos506.V1.circleCount_ge_forty_one_of_card_eleven_of_five_or_six_endpoint' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Erdos506.V1.circleCount_ge_fifty_one_of_card_twelve_of_five_or_six_endpoint' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Erdos506.V1.circleCount_ge_target_of_exact_finite_hard_core' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V1.RealPlaneTenFiveReductionPrinciple.toGeometry' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V1.circleCount_ge_thirty_three_of_card_ten' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V1.circleCount_ge_forty_one_of_card_eleven' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V1.circleCount_ge_fifty_one_of_card_twelve' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V1.circleCount_ge_sixty_one_of_card_thirteen' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V1.circleCount_ge_v1Target' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V1.exists_v1_extremizer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.numCircles_pointSet_eq_circleCount' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.erdos_506' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.Incidence.FiniteProjectiveLineArrangement.realProjectiveArrangementGlobalInput' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Erdos506.Incidence.realPlaneMelchiorPrinciple' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.Incidence.realPlaneEvenArrangementPrinciple' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V3.circleCount_ge_target_of_realPlaneMelchior' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V3.circleCount_ge_target' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V3.exists_v3_extremal_configuration' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V4.circleCount_ge_target' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V4.circleCount_eq_target_iff_nearPencil' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V4.exists_extremal_configuration' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos506.V4.main' depends on axioms: [propext, Classical.choice, Quot.sound]

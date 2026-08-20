@@ -8,3 +8,4 @@ import Erdos506.V1.TwelveGammaFiveFront
 import Erdos506.V3.Fano
 import Erdos506.V3.Main
 import Erdos506.V4.Main
+import Erdos506.Canonical

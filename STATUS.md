@@ -1,6 +1,24 @@
 # Exact Status and Trust Boundary
 
-## V1 public theorem
+## Exact canonical V1 theorem
+
+The current top-level endpoint is:
+
+```lean
+Erdos506.erdos_506 (n : Nat) (hn : 4 <= n) :
+  IsLeast {k : Nat | exists P : Finset Point2,
+    P.card = n /\ not Collinear Real (P : Set Point2) /\
+    not Cospherical (P : Set Point2) /\
+    numCircles (P : Set Point2) = k}
+  (v1Target n)
+```
+
+This matches the mathematical predicate in the Formal Conjectures statement.
+`Canonical.lean` proves the bridge
+`numCircles (pointSet cfg) = circleCount cfg`, so the endpoint does not merely
+reuse the internal count without justification.
+
+## V1 lower-bound theorem
 
 The current public endpoint is:
 
@@ -55,7 +73,9 @@ The following commands passed on the current source:
 
 ```text
 lake -Kjobs=1 build Erdos506.V1.Main       # PASS, 8885 jobs
-lake -Kjobs=1 build Erdos506                # PASS, 8888 jobs
+lake -Kjobs=1 build Erdos506.V1.Sharpness  # PASS, 8892 jobs
+lake -Kjobs=1 build Erdos506.Canonical     # PASS, 8893 jobs
+lake -Kjobs=1 build Erdos506               # PASS, 8896 jobs
 lake env lean -DwarningAsError=true AxiomsAudit.lean  # PASS
 ```
 
